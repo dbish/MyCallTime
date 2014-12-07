@@ -20,6 +20,7 @@
     <RootNamespace>MyCallTime</RootNamespace>
     <InterpreterId>{6ca4c05c-9d14-405d-9b77-0fe792b96e4a}</InterpreterId>
     <InterpreterVersion>3.4</InterpreterVersion>
+    <NameOfLastUsedPublishProfile>mycalltime</NameOfLastUsedPublishProfile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)' == 'Debug' ">
     <DebugSymbols>true</DebugSymbols>
@@ -43,6 +44,7 @@
     <Folder Include="MyCallTime\templates\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="mycalltime.pubxml" />
     <Content Include="requirements.txt" />
     <Content Include="MyCallTime\static\content\bootstrap.css" />
     <Content Include="MyCallTime\static\content\bootstrap.min.css" />
