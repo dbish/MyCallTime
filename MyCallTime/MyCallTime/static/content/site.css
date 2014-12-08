@@ -50,6 +50,10 @@ input[type="checkbox"].input-validation-error {
   vertical-align: top;
 }
  
+.title{
+    color: indianred;
+}
+
 .navbar-inner {
   text-align:center;
 }
@@ -57,4 +61,5 @@ input[type="checkbox"].input-validation-error {
 .navbar{
     width: 80%;
     margin: 0 auto;
-}​
+}
+

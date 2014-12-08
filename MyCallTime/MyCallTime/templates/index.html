@@ -3,31 +3,58 @@
 {% block content %}
 
 <div class="jumbotron">
-    <h1>Flask</h1>
-    <p class="lead">Flask is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://flask.pocoo.org/" class="btn btn-primary btn-large">Learn more &raquo;</a></p>
+    <h1><span class="title">My Call Sheets</span> 
+        <a href="#"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size:30px;color:indianred"></span></a></h1>
+    <form>
+        <div class="form-group">
+            <input type="search" class="form-control" placeholder="search"/> 
+        </div>
+    </form>
+    <div class="table-responsive">
+        <table class="table table-striped table-responsive table-hover">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Shoot</th>
+                    <th>Location</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr class="danger">
+                    <td>Dec-12, 2014</td>
+                    <td>Old Navy Spring</td>
+                    <td>440 W. 15th</td>
+                </tr>
+                <tr class="success">
+                    <td>Dec-8, 2014</td>
+                    <td>Vogue Australia</td>
+                    <td>450 W. 15th</td>
+                </tr>
+                <tr>
+                    <td>Nov-29, 2014</td>
+                    <td>Vanity Fair</td>
+                    <td>59 Chelsea Piers</td>
+                </tr>
+                <tr>
+                    <td>Nov-17, 2014</td>
+                    <td>Miu Miu</td>
+                    <td>450 W. 15th</td>
+                </tr>
+                <tr>
+                    <td>Nov-12, 2014</td>
+                    <td>Old Navy Christmas</td>
+                    <td>450 W. 15th</td>
+                </tr>
+                <tr>
+                    <td>Oct-29, 2014</td>
+                    <td>Saks Holiday Collection</td>
+                    <td>59 Chelsea Piers</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
 </div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            Flask gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://flask.pocoo.org/docs/">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>The Python Package Index is a repository of software for the Python programming language.</p>
-        <p><a class="btn btn-default" href="https://pypi.python.org/pypi">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Microsoft Azure</h2>
-        <p>You can easily publish to Microsoft Azure using Python Tools for Visual Studio. Find out how you can host your application using a free trial today.</p>
-        <p><a class="btn btn-default" href="http://azure.microsoft.com">Learn more &raquo;</a></p>
-    </div>
-</div>
+
 
 {% endblock %}
