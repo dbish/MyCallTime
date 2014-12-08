@@ -4,7 +4,7 @@
 
 <div class="jumbotron">
     <h1><span class="title">My Call Sheets</span> 
-        <a href="#"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size:30px;color:indianred"></span></a></h1>
+        <a href="{{ url_for('newSheet') }}"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size:30px;color:indianred"></span></a></h1>
     <form>
         <div class="form-group">
             <input type="search" class="form-control" placeholder="search"/> 
@@ -17,6 +17,7 @@
                     <th>Date</th>
                     <th>Shoot</th>
                     <th>Location</th>
+                    <th>Status</th>
                 </tr>
             </thead>
             <tbody>
@@ -24,31 +25,37 @@
                     <td>Dec-12, 2014</td>
                     <td>Old Navy Spring</td>
                     <td>440 W. 15th</td>
+                    <td>saved</td>
                 </tr>
                 <tr class="success">
                     <td>Dec-8, 2014</td>
                     <td>Vogue Australia</td>
                     <td>450 W. 15th</td>
+                    <td>sent</td>
                 </tr>
                 <tr>
                     <td>Nov-29, 2014</td>
                     <td>Vanity Fair</td>
                     <td>59 Chelsea Piers</td>
+                    <td>sent</td>
                 </tr>
                 <tr>
                     <td>Nov-17, 2014</td>
                     <td>Miu Miu</td>
                     <td>450 W. 15th</td>
+                    <td>sent</td>
                 </tr>
                 <tr>
                     <td>Nov-12, 2014</td>
                     <td>Old Navy Christmas</td>
                     <td>450 W. 15th</td>
+                    <td>sent</td>
                 </tr>
                 <tr>
                     <td>Oct-29, 2014</td>
                     <td>Saks Holiday Collection</td>
                     <td>59 Chelsea Piers</td>
+                    <td>sent</td>
                 </tr>
             </tbody>
         </table>
