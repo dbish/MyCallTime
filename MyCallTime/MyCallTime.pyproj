@@ -48,6 +48,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mycalltime.pubxml" />
+    <Content Include="MyCallTime\static\scripts\loadSheet.js" />
     <Content Include="MyCallTime\templates\newSheet.html" />
     <Content Include="requirements.txt" />
     <Content Include="MyCallTime\static\content\bootstrap.css" />
