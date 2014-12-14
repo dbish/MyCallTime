@@ -143,18 +143,25 @@ $(document).ready(function () {
         }
 
         for (var j = 0; j < categoryObjects[i].people.length; j++) {
-        //    var html = console.log(categoryObjects[i].people[j].toHtml());
-            // panels[i].append("<div>"+categoryObjects[i].people[j].title+"</div>");
             var divs = categoryObjects[i].people[j].toHtml();
             for (var k = 0; k < divs.length; k++) {
                 panels[i].append(divs[k]);
             }
             
         }
-      
-
+        
+        panels[i].append('<button type="button" class="btn btn-success">Save</button>');
 
     }
 
+    $(".btn-success").click(function () {
+        saveValues($(this).parent());
+    });
    
 });
+
+function saveValues(parent) {
+    $(parent).find(".form-control").each(function (i) {
+        console.log($(this).val());
+    });
+};
