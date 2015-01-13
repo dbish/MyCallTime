@@ -7,10 +7,10 @@ from flask import render_template
 from MyCallTime import app
 from MyCallTime.forms import ContactForm
 import pypyodbc as pyodbc
-
+import config
 
 def getConn():
-    conn = pyodbc.connect('Driver={SQL Server};Server=tcp:.database.windows.net,1433;Database=MyCallTimeDB;Uid=;Pwd={};Encrypt=yes;Connection Timeout=30;')
+    conn = pyodbc.connect(config.connectionString)
     return conn
 
 def insertDB(conn):
@@ -58,14 +58,6 @@ def about():
 @app.route('/newSheet')
 def newSheet():
     """Renders the about page."""
-    conn = getConn()
-
-    try:
-        insertDB(conn)
-    except:
-        pass
-
-    conn.close()
 
     return render_template(
         'newSheet.html',
