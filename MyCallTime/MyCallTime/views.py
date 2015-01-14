@@ -6,27 +6,14 @@ from datetime import datetime
 from flask import render_template
 from MyCallTime import app
 from MyCallTime.forms import ContactForm
-import pypyodbc as pyodbc
-import config
-
-def getConn():
-    conn = pyodbc.connect(config.connectionString)
-    return conn
-
-def insertDB(conn):
-    cursor = conn.cursor()
-    cursor.execute("insert into Shoots(ID, UserName, Name) values (3,'test', 'Example Shoot')")
-    conn.commit()
-
+from MyCallTime.models  import db
+from MyCallTime.models import People, Shoots
 
 
 @app.route('/')
 @app.route('/home')
 def home():
     """Renders the home page."""
-    
-
-
   
     return render_template(
         'index.html',
@@ -58,10 +45,14 @@ def about():
 @app.route('/newSheet')
 def newSheet():
     """Renders the about page."""
+   
+    newEntry = Shoots(123, "shoot 2")
+    db.session.add(newEntry)
+    db.session.commit()
 
     return render_template(
         'newSheet.html',
-        title='New Sheet',
+        title='test',
         year=datetime.now().year,
         message='Your application description page.',
        
