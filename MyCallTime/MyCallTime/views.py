@@ -5,7 +5,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, request, flash, session, url_for, redirect
 from MyCallTime import app
-from MyCallTime.forms import ContactForm, SignupForm
+from MyCallTime.forms import ContactForm, SignupForm, SignInForm
 from MyCallTime.models  import db
 from MyCallTime.models import People, Shoots, User
 
@@ -78,3 +78,27 @@ def signup():
    
   elif request.method == 'GET':
     return render_template('signup.html', form=form)
+
+
+@app.route('/signin', methods=['GET', 'POST'])
+def signin():
+  form = SignInForm()
+   
+  if request.method == 'POST':
+    if form.validate() == False:
+      return render_template('signin.html', form=form)
+    else:
+      session['email'] = form.email.data
+      return redirect(url_for('home'))
+                 
+  elif request.method == 'GET':
+    return render_template('signin.html', form=form)
+
+@app.route('/signout')
+def signout():
+ 
+  if 'email' not in session:
+    return redirect(url_for('signin'))
+     
+  session.pop('email', None)
+  return redirect(url_for('home'))
