@@ -11,6 +11,7 @@ import MyCallTime.config
 
 
 app = Flask(__name__)
+app.secret_key = config.appKey
 app.config['SQLALCHEMY_DATABASE_URI'] = config.connectionString
 
 db.init_app(app) 
