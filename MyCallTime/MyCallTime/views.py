@@ -7,7 +7,7 @@ from flask import render_template, request, flash, session, url_for, redirect
 from MyCallTime import app
 from MyCallTime.forms import ContactForm, SignupForm, SignInForm
 from MyCallTime.models  import db
-from MyCallTime.models import Shoots, User, Talent
+from MyCallTime.models import People, Shoots, User
 
 
 @app.route('/')
@@ -48,9 +48,8 @@ def about():
 def newSheet():
     """Renders the about page."""
    
-    #newShoot = Shoots("diamond's shoot")
-    #newShoot.talent = [Talent(name="diamond")]
-    #db.session.add(newShoot)
+    #newEntry = Shoots(123, "shoot 2")
+    #db.session.add(newEntry)
     #db.session.commit()
 
     return render_template(

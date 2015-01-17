@@ -1,70 +1,47 @@
 from flask_sqlalchemy import SQLAlchemy
 from werkzeug import generate_password_hash, check_password_hash
-from sqlalchemy.orm import relationship, backref
 
 db = SQLAlchemy()
 
-#class People(db.Model):
-#    __tablename__ = 'People'
-#    ID = db.Column(db.Integer, primary_key = True , autoincrement=False)
-#    Name = db.Column(db.String(50))
-#    Category= db.Column(db.String(15))
-#    Phone = db.Column(db.Integer)
-#    Email = db.Column(db.Integer)
-#    Company = db.Column(db.Integer)
+class People(db.Model):
+    __tablename__ = 'People'
+    ID = db.Column(db.Integer, primary_key = True , autoincrement=False)
+    Name = db.Column(db.String(50))
+    Category= db.Column(db.String(15))
+    Phone = db.Column(db.Integer)
+    Email = db.Column(db.Integer)
+    Company = db.Column(db.Integer)
 
-#    def __init__(self, id, name, category):
-#        self.ID = id
-#        self.Name = name
-#        self.Category = category
-#        self.Phone = 1
-#        self.Email = 1
-#        self.Company = 1
+    def __init__(self, id, name, category):
+        self.ID = id
+        self.Name = name
+        self.Category = category
+        self.Phone = 1
+        self.Email = 1
+        self.Company = 1
 
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
-     ID = db.Column(db.Integer, primary_key = True)
-     name = db.Column(db.String(100))
-     client = db.Column(db.String(100))
-     contact_name = db.Column(db.String(100))
-     contact_email = db.Column(db.String(100))
-     contact_phone = db.Column(db.String(50))
-     date = db.Column(db.Date)
-     start_time = db.Column(db.Time(7))
-     wrap_time = db.Column(db.Time(7))
-     location = db.Column(db.String(200))
-     studio = db.Column(db.String(100))
-     talent = db.relationship('Talent')
+     ID = db.Column(db.Integer, primary_key = True , autoincrement=False)
+     UserName = db.Column(db.String(50))
+     Name = db.Column(db.String(15))
+     Date = db.Column(db.Date)
+     StartTime = db.Column(db.Time(7))
+     EndTime = db.Column(db.Time(7))
+     Client = db.Column(db.String(50))
+     Location = db.Column(db.String(50))
+     Studio = db.Column(db.String(50))
 
-     def __init__(self, name, client=None, contactName=None, contactEmail=None, contactPhone=None, date=None, startTime=None, 
-                  wrapTime=None, location=None, studio=None):
-        self.name = name
-        self.client = client
-        self.contact_name = contactName
-        self.contact_email = contactEmail
-        self.contact_phone = contactPhone
-        self.date = date
-        self.start_time = startTime
-        self.wrap_time = wrapTime
-        self.location = location
-        self.studio = studio
-
-class Talent(db.Model):
-    __tablename__ = 'Talent'
-    ID = db.Column(db.Integer, primary_key = True)
-    start_time = db.Column(db.Time(7))
-    name = db.Column(db.String(100))
-    agency = db.Column(db.String(100))
-    notes = db.Column(db.String(1000))
-    shoot = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
-
-    def __init__(self, startTime=None, name=None, agency=None, notes=None):
-        self.start_time = startTime
-        self.name = name
-        self.agency = agency
-        self.notes = notes
-
-
+     def __init__(self, id, name):
+        self.ID = id
+        self.UserName = "user"+name
+        self.Name = name
+        self.Date = None
+        self.StartTime = None
+        self.EndTime = None
+        self.Client = None
+        self.Location = None
+        self.Studio = None
 
 class User(db.Model):
     __tablename__ = 'Users'
