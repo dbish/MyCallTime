@@ -48,9 +48,11 @@ def about():
 def newSheet():
     """Renders the about page."""
    
-    #newEntry = Shoots(123, "shoot 2")
-    #db.session.add(newEntry)
+    #newShoot = Shoots("diamond's shoot")
+    #newShoot.talent = [Talent(name="diamond")]
+    #db.session.add(newShoot)
     #db.session.commit()
+
 
     return render_template(
         'newSheet.html',
