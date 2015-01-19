@@ -4,6 +4,7 @@
     PHONE: "phone number"                
 });
 
+
 function Info(name, type) {
     this.name = name;
     this.type = type;

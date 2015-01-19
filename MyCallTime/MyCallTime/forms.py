@@ -1,6 +1,27 @@
 from flask_wtf import Form
 from wtforms import StringField, TextAreaField, TextField, SubmitField, ValidationError, validators, PasswordField
-from MyCallTime.models import db, User
+from MyCallTime.models import db, User, Shoots, Talent
+from wtforms_alchemy import ModelForm, model_form_factory, ModelFieldList
+from wtforms.fields import FormField
+
+BaseModelForm = model_form_factory(Form)
+
+class ModelForm(BaseModelForm):
+    @classmethod
+    def get_session(self):
+        return db.session
+
+class TalentForm(ModelForm):
+    class Meta:
+        model = Talent
+
+class ShootsForm(ModelForm):
+    class Meta:
+        model = Shoots
+
+    talent = ModelFieldList(FormField(TalentForm))
+      #  exclue = ['talent']
+
 
 class ContactForm(Form):
   name = TextField("Name", [validators.Required("Please enter your name.")])

@@ -2,41 +2,74 @@
 
 {% block content %}
 
-<h2 class="title">{{ title }}</h2>
+<h2 class="title"><span id="result">title</span></h2>
+
 
 <div class="col-lg-10">
+    <button type="button" class="btn btn-success">Save All</button>
     <div class="input-group">
+        
         <label>Shoot Name</label>
-        <input type="text" class="form-control"> 
+        {% if shoot.name %}
+            <input type="text" name="shootName" class="form-control" value={{shoot.name}}>
+        {% else %}
+            <input type="text" name="shootName" class="form-control">
+        {% endif %}
+
     </div>
     <div class="input-group">
         <label>Client</label>
-        <input type="text" class="form-control">
+        {% if shoot.client %}
+            <input type="text" class="form-control" name="client" value="{{shoot.client}}">
+        {% else %}
+            <input type="text" class="form-control" name="client">
+        {% endif %}
     </div>
     <div class="input-group">
         <label>Contact</label>
     </div>
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="name">
+        {% if shoot.contact_name %}
+            <input type="text" class="form-control" placeholder="name" name="contactName" value={{shoot.contact_name}}>
+        {% else %}
+            <input type="text" class="form-control" placeholder="name" name="contactName">
+        {% endif %}
     </div>
-  
+
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="email">
+        {% if shoot.contact_email %}
+            <input type="text" class="form-control" placeholder="email" name="contactEmail" value={{shoot.contact_email}}>
+        {% else %}
+            <input type="text" class="form-control" placeholder="email" name="contactEmail">
+        {% endif %}
     </div>
     <div class="input-group">
-        <input type="text" class="form-control" placeholder="555-555-5555">
+        {% if shoot.contact_phone %}
+            <input type="text" class="form-control" placeholder="555-555-5555" name="contactPhone" value={{shoot.contact_phone}}>
+        {% else %}
+            <input type="text" class="form-control" placeholder="555-555-5555" name="contactPhone">
+        {% endif %}
     </div>
     <div class="input-group">
         <label>Date and Time</label>
-        <input type="date" class="form-control" >
-        
+        {% if shoot.date %}
+            <input type="date" class="form-control" name="date" value={{shoot.date}}>
+        {% else %}
+            <input type="date" class="form-control" name="date">
+        {% endif %}
+     
     </div>
     <div class="input-group">
         <label></label>
     </div>
     <div class="input-group">
         <span class="input-group-addon">Start</span>
-        <input type="time" class="form-control">
+        {% if shoot.start_time %}
+            <input type="time" class="form-control" name="startTime" value={{shoot.start_time}}>
+        {% else %}
+            <input type="time" class="form-control" name="startTime">
+        {% endif %}
+        
 
     </div>
     <div class="input-group">
@@ -44,17 +77,31 @@
     </div>
     <div class="input-group">
         <span class="input-group-addon">Wrap</span>
-        <input type="time" class="form-control">
+        {% if shoot.wrap_time %}
+            <input type="time" class="form-control" name="wrapTime" value={{shoot.wrap_time}}>
+        {% else %}
+            <input type="time" class="form-control" name="wrapTime">
+        {% endif %}
 
     </div>
     <div class="input-group">
         <label>Location</label>
-        <input type="text" class="form-control">
+        {% if shoot.location %}
+            <input type="text" class="form-control" name="location" value={{shoot.location}}>
+        {% else %}
+            <input type="text" class="form-control" name="location">
+        {% endif %}
+       
 
     </div>
     <div class="input-group">
         <label>Studio Number(s)</label>
-        <input type="tel" class="form-control">
+        {% if shoot.studio %}
+            <input type="text" class="form-control" name="studio" value={{shoot.studio}}>
+        {% else %}
+            <input type="text" class="form-control" name="studio">
+        {% endif %}
+        
 
     </div>
     
@@ -76,7 +123,43 @@
                 <div class="panel-body">
                     <div class="row">
                         <div class="col-lg-6">
+                            {% set count = 0 %}
+                            {% for model in shoot.talent %}
+                                {% set count = count + 1 %}
+                                <div class="input-group"><label>Talent #{{count}}</label></div>
+                                <div class="input-group"><div class="input-group-btn">
+                                <input type="time" class="form-control" value={{model.start_time}}></div>
+                                {% if model.name %}
+                                    <input type="text" class="form-control" value={{model.name}}>  
+                                {% else %}
+                                    <input type="text" class="form-control">
+                                {% endif %} 
+                                </div>
 
+                                <div class="input-group"><label>Agent</label></div>
+                                <div class="input-group"><input type="text" class="form-control"></div>
+                                <div class="input-group"><input type="text" class="form-control" placeholder="555-555-5555"></div>
+                                {% if model.agency %}
+                                    <div class="input-group"><input type="text" class="form-control" placeholder="agency" value={{model.agency}}></div>
+                                {% else %}
+                                    <div class="input-group"><input type="text" class="form-control" placeholder="agency"></div>
+                                {% endif %}
+
+                                {% if model.notes %}
+                                    <div class="input-group"><input type="text" class="form-control" placeholder="notes" value={{model.notes}}></div>
+                                {% else %}
+                                    <div class="input-group"><input type="text" class="form-control" placeholder="notes"></div>
+                                {% endif %}
+                            {% else %}
+                                <div class="input-group"><label>Talent</label></div>
+                                <div class="input-group"><div class="input-group-btn"><input type="time" class="form-control"></div><input type="text" class="form-control"></div>
+                                <div class="input-group"><label>Agent</label></div>
+                                <div class="input-group"><input type="text" class="form-control"></div>
+                                <div class="input-group"><input type="text" class="form-control" placeholder="555-555-5555"></div>
+                                <div class="input-group"><input type="text" class="form-control" placeholder="agency"></div>
+                                <div class="input-group"><input type="text" class="form-control" placeholder="notes"></div>
+                            {% endfor %}
+                            
                         </div><!-- /.col-lg-6 -->
                     </div><!-- /.row -->
                 </div>
@@ -247,5 +330,5 @@
         <label></label>
     </div>
 </div>
-    <script type="text/javascript" language="javascript" src="/static/scripts/loadSheet.js"></script>
+     <script type="text/javascript" language="javascript" src="/static/scripts/saveData.js"></script>
         {% endblock %}

@@ -1,4 +1,5 @@
 from flask_sqlalchemy import SQLAlchemy
+
 from werkzeug import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
@@ -22,6 +23,7 @@ db = SQLAlchemy()
 
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
+     __name__ = 'Edit Shoot'
      ID = db.Column(db.Integer, primary_key = True)
      name = db.Column(db.String(100))
      client = db.Column(db.String(100))
@@ -57,7 +59,7 @@ class Talent(db.Model):
     notes = db.Column(db.String(1000))
     shoot = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
 
-    def __init__(self, startTime=None, name=None, agency=None, notes=None):
+    def __init__(self, name=None, agency=None, notes=None, startTime=None):
         self.start_time = startTime
         self.name = name
         self.agency = agency
