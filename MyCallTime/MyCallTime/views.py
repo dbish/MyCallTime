@@ -19,69 +19,100 @@ def home():
     if 'email' not in session:
         return redirect(url_for('signin'))
 
+    user = db.session.query(User).filter_by(email=session['email']).first()
+    user_uid = user.id
+
+    allShoots = db.session.query(Shoots).filter_by(created_by=user_uid).all()
+
     return render_template(
         'index.html',
         title='Home Page',
-        year=datetime.now().year
-        
-    )
-
-@app.route('/contact') 
-def contact():
-    """Renders the contact page."""
-    return render_template(
-        'contact.html',
-        title='Contact',
         year=datetime.now().year,
-        message='Your contact page.'
+        shoots=allShoots
     )
 
-@app.route('/about')
-def about():
-    """Renders the about page."""
-    return render_template(
-        'about.html',
-        title='About',
-        year=datetime.now().year,
-        message='Your application description page.'
-    )
+#@app.route('/contact') 
+#def contact():
+#    """Renders the contact page."""
+#    return render_template(
+#        'contact.html',
+#        title='Contact',
+#        year=datetime.now().year,
+#        message='Your contact page.'
+#    )
 
-@app.route('/save', methods = ['POST'])
-def save():
-    results = request.form
-    #results = request.get_json()
+#@app.route('/about')
+#def about():
+#    """Renders the about page."""
+#    return render_template(
+#        'about.html',
+#        title='About',
+#        year=datetime.now().year,
+#        message='Your application description page.'
+#    )
 
-    return jsonify(result=str(results))
+#@app.route('/save', methods = ['POST'])
+#def save():
+#    results = request.form
+#    #results = request.get_json()
+
+#    return jsonify(result=str(results))
     
 
-@app.route('/newSheet')
-def newSheet():
-    """Renders the about page."""
+#@app.route('/newSheet')
+#def newSheet():
+#    """Renders the about page."""
    
-    #newShoot = Shoots("diamond's shoot")
-    #newShoot.talent = [Talent(name="diamond")]
-    #db.session.add(newShoot)
-    #db.session.commit()
+#    #newShoot = Shoots("diamond's shoot")
+#    #newShoot.talent = [Talent(name="diamond")]
+#    #db.session.add(newShoot)
+#    #db.session.commit()
+
+#    newShoot = Shoots("")
+
+#    return render_template(
+#        'newSheet.html',
+#        shoot=newShoot,
+#        year=datetime.now().year,
+#        message='Your application description page.',
+       
+#    )
+
+@app.route('/shoots/<int:shoot_id>', methods=['GET', 'POST'])
+def viewShoot(shoot_id):
+    if 'email' not in session:
+        return redirect(url_for('signin'))
+
+    shoot = db.session.query(Shoots).get(shoot_id)
+   
+    form = ShootsForm(obj=shoot)
+    if form.validate_on_submit():
+        form.populate_obj(shoot)
+        db.session.commit()
+    
+    return render_template('edit.html', form=form, id=shoot_id)
+
+
+@app.route('/newShoot', methods=['GET', 'POST'])
+def newShoot():
+    if 'email' not in session:
+        return redirect(url_for('signin'))
+
+    user = db.session.query(User).filter_by(email=session['email']).first()
+    user_uid = user.id
 
     newShoot = Shoots("")
+    newShoot.created_by = user_uid
+    db.session.add(newShoot)
+    form = ShootsForm(obj=newShoot)
+    if form.validate_on_submit():
+        form.populate_obj(newShoot)
+        db.session.commit()
+        db.session.flush()
+        db.session.refresh(newShoot)
+        return redirect(url_for('viewShoot', shoot_id=newShoot.ID))
+    return render_template('edit.html', form=form)
 
-    return render_template(
-        'newSheet.html',
-        shoot=newShoot,
-        year=datetime.now().year,
-        message='Your application description page.',
-       
-    )
-
-@app.route('/shoots/<int:shoot_id>')
-def viewShoot(shoot_id):
-
-    return render_template(
-        'newSheet.html',
-         title='test',
-        year=datetime.now().year,
-        message='Your application description page.',
-    )
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():
@@ -102,24 +133,6 @@ def signup():
   elif request.method == 'GET':
     return render_template('signup.html', form=form)
 
-@app.route('/edit', methods=['GET', 'POST'])
-def edit():
-    newShoot = Shoots("diamond's shoot")
-    newShoot.talent = [Talent("diamond"), Talent("joe")]
-    form = ShootsForm(obj=newShoot)
-    
-    return render_template('edit.html', form=form)
-
-@app.route('/newShoot', methods=['GET', 'POST'])
-def newShoot():
-    newShoot = Shoots("")
-    newShoot.talent = [Talent("")]
-    form = ShootsForm(obj=newShoot)
-    if form.validate_on_submit():
-        form.populate_obj(newShoot)
-        db.session.add(newShoot)
-        db.session.commit()
-    return render_template('edit.html', form=form)
 
 @app.route('/signin', methods=['GET', 'POST'])
 def signin():

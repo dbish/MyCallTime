@@ -23,7 +23,7 @@ db = SQLAlchemy()
 
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
-     __name__ = 'Edit Shoot'
+    # __name__ = 'Edit Shoot'
      ID = db.Column(db.Integer, primary_key = True)
      name = db.Column(db.String(100))
      client = db.Column(db.String(100))
@@ -36,6 +36,7 @@ class Shoots(db.Model):
      location = db.Column(db.String(200))
      studio = db.Column(db.String(100))
      talent = db.relationship('Talent')
+     created_by =  db.Column(db.Integer)
 
      def __init__(self, name, client=None, contactName=None, contactEmail=None, contactPhone=None, date=None, startTime=None, 
                   wrapTime=None, location=None, studio=None):
