@@ -39,12 +39,13 @@
                     </td>
                 </tr>
                 {% for shoot in shoots%}
-                <tr onclick="window.document.location='#';">
-                    <td>{{shoot.date}}</td>
-                    <td>{{shoot.name}}</td>
-                    <td>{{shoot.location}}</td>
-                    <td>{{shoot.client}}</td>
-                </tr>
+                    {% set edit_link = "window.document.location='/shoots/"+shoot.ID|string+"';" %}
+                    <tr onclick={{edit_link}}>
+                        <td>{{shoot.date}}</td>
+                        <td>{{shoot.name}}</td>
+                        <td>{{shoot.location}}</td>
+                        <td>{{shoot.client}}</td>
+                    </tr>
                 {% endfor %}
             </tbody>
         </table>
