@@ -31,52 +31,6 @@ def home():
         shoots=allShoots
     )
 
-#@app.route('/contact') 
-#def contact():
-#    """Renders the contact page."""
-#    return render_template(
-#        'contact.html',
-#        title='Contact',
-#        year=datetime.now().year,
-#        message='Your contact page.'
-#    )
-
-#@app.route('/about')
-#def about():
-#    """Renders the about page."""
-#    return render_template(
-#        'about.html',
-#        title='About',
-#        year=datetime.now().year,
-#        message='Your application description page.'
-#    )
-
-#@app.route('/save', methods = ['POST'])
-#def save():
-#    results = request.form
-#    #results = request.get_json()
-
-#    return jsonify(result=str(results))
-    
-
-#@app.route('/newSheet')
-#def newSheet():
-#    """Renders the about page."""
-   
-#    #newShoot = Shoots("diamond's shoot")
-#    #newShoot.talent = [Talent(name="diamond")]
-#    #db.session.add(newShoot)
-#    #db.session.commit()
-
-#    newShoot = Shoots("")
-
-#    return render_template(
-#        'newSheet.html',
-#        shoot=newShoot,
-#        year=datetime.now().year,
-#        message='Your application description page.',
-       
-#    )
 
 @app.route('/shoots/<int:shoot_id>', methods=['GET', 'POST'])
 def viewShoot(shoot_id):
@@ -84,7 +38,6 @@ def viewShoot(shoot_id):
         return redirect(url_for('signin'))
 
     shoot = db.session.query(Shoots).get(shoot_id)
-   
     form = ShootsForm(obj=shoot)
     if form.validate_on_submit():
         form.populate_obj(shoot)
@@ -103,7 +56,9 @@ def newShoot():
 
     newShoot = Shoots("")
     newShoot.created_by = user_uid
+    newShoot.talent = [Talent()]
     db.session.add(newShoot)
+
     form = ShootsForm(obj=newShoot)
     if form.validate_on_submit():
         form.populate_obj(newShoot)

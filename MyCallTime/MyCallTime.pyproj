@@ -54,6 +54,7 @@
     <None Include="mycalltime.pubxml" />
     <Content Include="MyCallTime\static\scripts\loadSheet.js" />
     <Content Include="MyCallTime\static\scripts\saveData.js" />
+    <Content Include="MyCallTime\templates\edit2.html" />
     <Content Include="MyCallTime\templates\new.html" />
     <Content Include="MyCallTime\templates\edit.html" />
     <Content Include="MyCallTime\templates\newSheet.html" />

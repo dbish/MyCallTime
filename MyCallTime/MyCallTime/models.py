@@ -23,7 +23,6 @@ db = SQLAlchemy()
 
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
-    # __name__ = 'Edit Shoot'
      ID = db.Column(db.Integer, primary_key = True)
      name = db.Column(db.String(100))
      client = db.Column(db.String(100))
@@ -35,7 +34,7 @@ class Shoots(db.Model):
      wrap_time = db.Column(db.Time(7))
      location = db.Column(db.String(200))
      studio = db.Column(db.String(100))
-     talent = db.relationship('Talent')
+    
      created_by =  db.Column(db.Integer)
 
      def __init__(self, name, client=None, contactName=None, contactEmail=None, contactPhone=None, date=None, startTime=None, 
@@ -58,7 +57,11 @@ class Talent(db.Model):
     name = db.Column(db.String(100))
     agency = db.Column(db.String(100))
     notes = db.Column(db.String(1000))
-    shoot = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+    shoot = db.relationship(Shoots, backref='talent')
+
+    # = db.relationship('Shoots', backref='Shoots')
+    #theShoot = db.relationship(Shoots, backref='talent')
 
     def __init__(self, name=None, agency=None, notes=None, startTime=None):
         self.start_time = startTime

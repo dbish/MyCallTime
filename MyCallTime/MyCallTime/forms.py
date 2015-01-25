@@ -19,8 +19,8 @@ class ShootsForm(ModelForm):
     class Meta:
         model = Shoots
 
-    #talent = ModelFieldList(FormField(TalentForm))
-    exclude = ['talent']
+    talent = ModelFieldList(FormField(TalentForm))
+    #exclude = ['talent']
 
 
 class ContactForm(Form):
