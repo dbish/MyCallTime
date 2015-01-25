@@ -44,7 +44,7 @@ def viewShoot(shoot_id):
         form.populate_obj(shoot)
         db.session.commit()
     
-    return render_template('edit.html', form=form, id=shoot_id)
+    return render_template('edit.html', form=form, id=shoot_id, title=shoot.name)
 
 
 @app.route('/newShoot', methods=['GET', 'POST'])
@@ -70,7 +70,7 @@ def newShoot():
             return redirect(url_for('viewShoot', shoot_id=newShoot.ID))
         else:
             flash('falied validation')
-    return render_template('edit.html', form=form)
+    return render_template('edit.html', form=form, title="New Shoot")
 
 
 @app.route('/signup', methods=['GET', 'POST'])

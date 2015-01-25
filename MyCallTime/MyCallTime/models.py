@@ -21,6 +21,25 @@ db = SQLAlchemy()
 #        self.Email = 1
 #        self.Company = 1
 
+class Talent(db.Model):
+    __tablename__ = 'Talent'
+    ID = db.Column(db.Integer, primary_key = True)
+    start_time = db.Column(db.Time(7))
+    name = db.Column(db.String(100))
+    agency = db.Column(db.String(100))
+    notes = db.Column(db.String(1000))
+    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+    #shoot = db.relationship(Shoots, backref='talent')
+
+    # = db.relationship('Shoots', backref='Shoots')
+    #theShoot = db.relationship(Shoots, backref='talent')
+
+    def __init__(self, name=None, agency=None, notes=None, startTime=None):
+        self.start_time = startTime
+        self.name = name
+        self.agency = agency
+        self.notes = notes
+
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
      ID = db.Column(db.Integer, primary_key = True)
@@ -36,6 +55,7 @@ class Shoots(db.Model):
      studio = db.Column(db.String(100))
     
      created_by =  db.Column(db.Integer)
+     talent = db.relationship(Talent)
 
      def __init__(self, name, client=None, contactName=None, contactEmail=None, contactPhone=None, date=None, startTime=None, 
                   wrapTime=None, location=None, studio=None):
@@ -50,24 +70,7 @@ class Shoots(db.Model):
         self.location = location
         self.studio = studio
 
-class Talent(db.Model):
-    __tablename__ = 'Talent'
-    ID = db.Column(db.Integer, primary_key = True)
-    start_time = db.Column(db.Time(7))
-    name = db.Column(db.String(100))
-    agency = db.Column(db.String(100))
-    notes = db.Column(db.String(1000))
-    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
-    shoot = db.relationship(Shoots, backref='talent')
 
-    # = db.relationship('Shoots', backref='Shoots')
-    #theShoot = db.relationship(Shoots, backref='talent')
-
-    def __init__(self, name=None, agency=None, notes=None, startTime=None):
-        self.start_time = startTime
-        self.name = name
-        self.agency = agency
-        self.notes = notes
 
 
 

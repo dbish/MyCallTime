@@ -14,6 +14,7 @@ class ModelForm(BaseModelForm):
 class TalentForm(ModelForm):
     class Meta:
         model = Talent
+        
 
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(TalentForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
@@ -21,6 +22,7 @@ class TalentForm(ModelForm):
 class ShootsForm(ModelForm):
     class Meta:
         model = Shoots
+        exclude = ['created_by']
 
     talent = ModelFieldList(FormField(TalentForm))
 
