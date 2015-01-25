@@ -12,6 +12,7 @@ from wtforms.ext.sqlalchemy.orm import model_form
 from flask_wtf import Form
 
 
+
 @app.route('/')
 @app.route('/home')
 def home():
@@ -60,12 +61,15 @@ def newShoot():
     db.session.add(newShoot)
 
     form = ShootsForm(obj=newShoot)
-    if form.validate_on_submit():
-        form.populate_obj(newShoot)
-        db.session.commit()
-        db.session.flush()
-        db.session.refresh(newShoot)
-        return redirect(url_for('viewShoot', shoot_id=newShoot.ID))
+    if request.method == 'POST':
+        if form.validate_on_submit():
+            form.populate_obj(newShoot)
+            db.session.commit()
+            db.session.flush()
+            db.session.refresh(newShoot)
+            return redirect(url_for('viewShoot', shoot_id=newShoot.ID))
+        else:
+            flash('falied validation')
     return render_template('edit.html', form=form)
 
 

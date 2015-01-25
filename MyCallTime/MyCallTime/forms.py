@@ -15,12 +15,14 @@ class TalentForm(ModelForm):
     class Meta:
         model = Talent
 
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(TalentForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
 class ShootsForm(ModelForm):
     class Meta:
         model = Shoots
 
     talent = ModelFieldList(FormField(TalentForm))
-    #exclude = ['talent']
 
 
 class ContactForm(Form):
@@ -41,8 +43,8 @@ class SignupForm(Form):
  
   def validate(self):
     if not Form.validate(self):
-      return False
-     
+      return False   
+
     user = User.query.filter_by(email = self.email.data.lower()).first()
     if user:
       self.email.errors.append("That email is already taken")
