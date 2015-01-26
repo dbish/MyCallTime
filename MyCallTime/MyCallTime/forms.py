@@ -37,7 +37,7 @@ class SignupForm(Form):
   lastname = TextField("Last name",  [validators.Required("Please enter your last name.")])
   email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
   password = PasswordField('Password', [validators.Required("Please enter a password.")])
-  companycode = TextField("Company Code",  [validators.Required("Please enter a company sign up code.")])
+  #companycode = TextField("Company Code",  [validators.Required("Please enter a company sign up code.")])
   submit = SubmitField("Create account")
  
   def __init__(self, *args, **kwargs):

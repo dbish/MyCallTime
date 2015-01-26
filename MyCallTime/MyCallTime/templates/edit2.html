@@ -1,0 +1,317 @@
+﻿{% extends "layout.html" %}
+
+{% block content %}
+
+<h2 class="title"><span id="result">{{title}}</span></h2>
+
+
+{% if id %}
+    <form action="{{url_for('viewShoot', shoot_id=id)}}" method="post">
+    
+{% else %}
+     <form action="{{url_for('newShoot')}}" method="post">
+{% endif %}
+         <p><input type="Submit" value="Save All"></p>
+         {{ form.hidden_tag() }}
+    {% for field in form%}
+       
+    
+
+         {% if field.name != "talent"%}
+         {% if field.name != "photo"%}
+         {% if field.name != "production"%}
+         {% if field.name != "wardrobe"%}
+         {% if field.name != "hair"%}
+         {% if field.name != "makeup"%}
+         {% if field.name != "art"%}
+         {% if field.name != "catering"%}
+         <div class="{{field.name}}">
+             {% if field.widget.input_type != 'hidden' %} {{ field.label }} {% endif %}
+            
+             {{field(class=field.name)}}
+             
+         </div>
+         {% endif %}
+         {% endif %}
+         {% endif %}
+         {% endif %}
+         {% endif %}
+         {% endif %}
+         {% endif %}
+         {% endif %}
+
+    {% endfor %}
+
+    
+  
+</form>
+        
+
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading0">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTalent" aria-expanded="false" aria-controls="collapseOne">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            Talent
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseTalent" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading0">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <!--{% for field in form%}
+
+                                {% if field.name == "talent"%}
+
+                                    {{field.label}}
+                                    {{field(class=field.name)}}
+
+
+                                {% endif %}
+                                {% endfor %}-->
+
+
+                                <ul id="talentList">
+                                    {% for talent_form in form.talent %}
+
+                                    <li>
+                                        {{talent_form.label}}
+                                        {% for subfield in talent_form%}
+
+                                        <div>{{subfield.label}} {{subfield}}</div>
+
+
+                                        {% endfor %}
+                                    </li>
+
+                                    {% endfor %}
+                                </ul>           
+                               
+
+                                <!--{% for field in form%}
+
+                                {% if field.name == "talent"%}
+                                    
+                                    {{field.type}}
+                                    {{field(class=field.name)}}
+
+                               
+                                {% endif %}
+                                {% endfor %}-->
+
+                                <button id="addTalent">New Talent</button>
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapsePhoto" aria-expanded="false" aria-controls="collapseOne">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            Photography
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapsePhoto" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {% for field in form%}
+
+                                {% if field.name == "photo"%}
+                               
+                                    {{field(class=field.name)}}
+
+                              
+                                {% endif %}
+                                {% endfor %}
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseProduction" aria-expanded="false" aria-controls="collapseOne">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            Production
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseProduction" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {% for field in form%}
+
+                                {% if field.name == "production"%}
+                             
+                                    {{field(class=field.name)}}
+
+                               
+                                {% endif %}
+                                {% endfor %}
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseWardrobe" aria-expanded="false" aria-controls="collapseOne">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            Wardrobe
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseWardrobe" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {% for field in form%}
+
+                                {% if field.name == "wardrobe"%}
+                               
+                                    {{field(class=field.name)}}
+
+                                {% endif %}
+                                {% endfor %}
+
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseHair" aria-expanded="false" aria-controls="collapseOne">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            Hair
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseHair" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {% for field in form%}
+
+                                {% if field.name == "hair"%}
+                               
+                                    {{field(class=field.name)}}
+
+                              
+                                {% endif %}
+                                {% endfor %}
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseMakeup" aria-expanded="false" aria-controls="collapseOne">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            Make-Up
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseMakeup" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {% for field in form%}
+
+                                {% if field.name == "makeup"%}
+                             
+                                    {{field(class=field.name)}}
+
+                               
+                                {% endif %}
+                                {% endfor %}
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="headingOne">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseArt" aria-expanded="false" aria-controls="collapseOne">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            Art Department
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseArt" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingOne">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {% for field in form%}
+
+                                {% if field.name == "art"%}
+                               
+                                    {{field(class=field.name)}}
+
+                              
+                                {% endif %}
+                                {% endfor %}
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+            <div class="panel panel-default">
+                <div class="panel-heading" role="tab" id="heading2">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#collapseCatering" aria-expanded="false" aria-controls="collapse2">
+                            <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
+                            Catering
+                        </a>
+                    </h4>
+                </div>
+                <div id="collapseCatering" class="panel-collapse collapse" role="tabpanel" aria-labelledby="heading2">
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-lg-6">
+                                {% for field in form%}
+
+                                {% if field.name == "catering"%}
+                                
+                                    {{field(class=field.name)}}
+
+                               
+                                {% endif %}
+                                {% endfor %}
+                            </div><!-- /.col-lg-6 -->
+                        </div><!-- /.row -->
+                    </div>
+                </div>
+            </div>
+        </div>
+<script type="text/javascript" language="javascript" src="/static/scripts/newItem.js"></script>
+{% endblock %}

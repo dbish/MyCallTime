@@ -32,6 +32,14 @@ def home():
         shoots=allShoots
     )
 
+@app.route('/delete/<int:shoot_id>', methods=['GET'])
+def deleteShoot(shoot_id):
+     if 'email' not in session:
+        return redirect(url_for('signin'))
+     shoot = db.session.query(Shoots).get(shoot_id)
+     db.session.delete(shoot)
+     db.session.commit()
+     return redirect(url_for('home'))
 
 @app.route('/shoots/<int:shoot_id>', methods=['GET', 'POST'])
 def viewShoot(shoot_id):
@@ -81,7 +89,7 @@ def signup():
     if form.validate() == False:
       return render_template('signup.html', form=form)
     else:  
-      newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data, form.companycode.data)
+      newuser = User(form.firstname.data, form.lastname.data, form.email.data, form.password.data)
       db.session.add(newuser)
       db.session.commit() 
 

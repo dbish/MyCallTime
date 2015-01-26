@@ -29,10 +29,7 @@ class Talent(db.Model):
     agency = db.Column(db.String(100))
     notes = db.Column(db.String(1000))
     shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
-    #shoot = db.relationship(Shoots, backref='talent')
 
-    # = db.relationship('Shoots', backref='Shoots')
-    #theShoot = db.relationship(Shoots, backref='talent')
 
     def __init__(self, name=None, agency=None, notes=None, startTime=None):
         self.start_time = startTime
@@ -55,7 +52,7 @@ class Shoots(db.Model):
      studio = db.Column(db.String(100))
     
      created_by =  db.Column(db.Integer)
-     talent = db.relationship(Talent)
+     talent = db.relationship(Talent, cascade="all,delete")
 
      def __init__(self, name, client=None, contactName=None, contactEmail=None, contactPhone=None, date=None, startTime=None, 
                   wrapTime=None, location=None, studio=None):
@@ -81,14 +78,14 @@ class User(db.Model):
     lastname = db.Column(db.String(100))
     email = db.Column(db.String(100))
     password = db.Column(db.String(100))
-    companycode = db.Column(db.String(100))
+    #companycode = db.Column(db.String(100))
 
-    def __init__(self, firstname, lastname, email, password, companycode):
+    def __init__(self, firstname, lastname, email, password):
         self.firstname = firstname.title()
         self.lastname = lastname.title()
         self.email = email.lower()
         self.set_password(password)
-        self.companycode = companycode
+        #self.companycode = companycode
      
     def set_password(self, password):
         self.password = generate_password_hash(password)

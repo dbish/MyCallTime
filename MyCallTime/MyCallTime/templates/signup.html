@@ -1,43 +1,81 @@
-﻿{% extends "layout.html" %}
+﻿
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MyCallSheets</title>
+    <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
+    <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
 
-{% block content %}
-<h2>Sign up</h2>
+    <script src="/static/scripts/modernizr-2.6.2.js"></script>
+    <script type="text/javascript" language="javascript" src="/static/scripts/jquery-1.10.2.min.js"></script>
+</head>
 
-  {% for message in form.firstname.errors %}
-<div class="flash">{{ message }}</div>
-  {% endfor %}
+<body>
+    <div class="jumbotron">
+        <h1>
+            <span class="title">My Call Sheets</span>
 
-  {% for message in form.lastname.errors %}
-<div class="flash">{{ message }}</div>
-  {% endfor %}
+        </h1>
 
-  {% for message in form.email.errors %}
-<div class="flash">{{ message }}</div>
-  {% endfor %}
 
-  {% for message in form.password.errors %}
-<div class="flash">{{ message }}</div>
-  {% endfor %}
+        <h2>Sign Up</h2>
 
-<form action="{{ url_for('signup') }}" method=post>
-    {{ form.hidden_tag() }}
+        {% for message in form.firstname.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {{ form.firstname.label }}
-    {{ form.firstname }}
+        {% for message in form.lastname.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {{ form.lastname.label }}
-    {{ form.lastname }}
+        {% for message in form.email.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {{ form.email.label }}
-    {{ form.email }}
+        {% for message in form.password.errors %}
+        <div class="flash">{{ message }}</div>
+        {% endfor %}
 
-    {{ form.password.label }}
-    {{ form.password }}
+        <form action="{{ url_for('signup') }}" method=post>
+            {{ form.hidden_tag() }}
 
-    {{ form.companycode.label }}
-    {{ form.companycode }}
+            {{ form.firstname.label }}
+            {{ form.firstname }}
 
-    {{ form.submit }}
-</form>
+            {{ form.lastname.label }}
+            {{ form.lastname }}
 
-{% endblock %}
+            {{ form.email.label }}
+            {{ form.email }}
+
+            {{ form.password.label }}
+            {{ form.password }}
+
+         
+
+            {{ form.submit }}
+        </form>
+
+
+      
+    </div>
+
+
+    <script src="/static/scripts/jquery-1.10.2.js"></script>
+    <script src="/static/scripts/bootstrap.js"></script>
+    <script src="/static/scripts/respond.js"></script>
+    <script type="text/javascript">
+        var $SCRIPT_ROOT = {{ request.script_root|tojson|safe }};
+    </script>
+    {% block scripts %}{% endblock %}
+
+</body>
+</html>
+
+
+
+
+
+

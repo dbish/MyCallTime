@@ -21,15 +21,19 @@
                     <th>Shoot</th>
                     <th>Location</th>
                     <th>Client</th>
+                    <th>Delete</th>
                 </tr>
             </thead>
             <tbody>
                 <tr onclick="window.document.location='/newShoot';">
                     <td>
-                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size:15px;color:indianred"></span>
+                        <span class="glyphicon glyphicon-plus-sign" aria-hidden="true" style="font-size:15px;color:green"></span>
                     </td>
                     <td>
-                        <span aria-hidden="true" style="font-size:15px;color:indianred">click to create shoot</span>
+                        <span aria-hidden="true" style="font-size:15px;color:green">click to create shoot</span>
+                    </td>
+                    <td>
+                        &nbsp;
                     </td>
                     <td>
                         &nbsp;
@@ -39,12 +43,14 @@
                     </td>
                 </tr>
                 {% for shoot in shoots%}
-                    {% set edit_link = "window.document.location='/shoots/"+shoot.ID|string+"';" %}
-                    <tr onclick={{edit_link}}>
+                    <!--{% set edit_link = "window.document.location='/shoots/"+shoot.ID|string+"';" %}-->
+                    <!--<tr onclick={{edit_link}}>-->
+                    <tr>
                         <td>{{shoot.date}}</td>
-                        <td>{{shoot.name}}</td>
+                        <td><a href="{{url_for('viewShoot', shoot_id=shoot.ID)}}">{{shoot.name}}</a></td>
                         <td>{{shoot.location}}</td>
                         <td>{{shoot.client}}</td>
+                        <td><a href="{{url_for('deleteShoot', shoot_id=shoot.ID)}}"><span class="glyphicon glyphicon-minus-sign" aria-hidden="true" style="font-size:15px;color:red"></span></a></td>
                     </tr>
                 {% endfor %}
             </tbody>
