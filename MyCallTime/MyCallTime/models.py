@@ -37,6 +37,22 @@ class Talent(db.Model):
         self.agency = agency
         self.notes = notes
 
+class Photo(db.Model):
+    __tablename__= 'Photo'
+    ID = db.Column(db.Integer, primary_key = True)
+    start_time = db.Column(db.Time(7))
+    photographer = db.Column(db.String(100))
+    digital_tech = db.Column(db.String(100))
+    assistant = db.Column(db.String(100))
+    notes = db.Column(db.String(1000))
+    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+
+    def __init__(self, photo=None, digitech=None, ast=None, startTime=None):
+        self.start_time = startTime
+        self.photographer = photo
+        self.digital_tech = digitech
+        self.assistant = ast
+
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
      ID = db.Column(db.Integer, primary_key = True)
@@ -53,6 +69,7 @@ class Shoots(db.Model):
     
      created_by =  db.Column(db.Integer)
      talent = db.relationship(Talent, cascade="all,delete")
+     photo = db.relationship(Photo, cascade="all,delete")
 
      def __init__(self, name, client=None, contactName=None, contactEmail=None, contactPhone=None, date=None, startTime=None, 
                   wrapTime=None, location=None, studio=None):
