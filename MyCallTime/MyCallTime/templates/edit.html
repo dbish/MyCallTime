@@ -18,10 +18,20 @@
 
             {% if field.name != "photo"%}
             {% if field.name != "talent"%}
+            {% if field.name != "catering"%}
+            {% if field.name != "art"%}
+            {% if field.name != "makeup"%}
+            {% if field.name != "hair"%}
+            {% if field.name != "wardrobe"%}
             <div class="{{field.name}}">
                     {% if field.widget.input_type != 'hidden' %} {{ field.label }} {% endif %}
                     {{ field(class=field.name) }}
             </div>
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% endif %}
+            {% endif %}
             {% endif %}
             {% endif %}
             {% endfor %}
@@ -52,9 +62,47 @@
             </div>
             {% endfor %}
          
+            
 
-               
-            </ul>
+            <h3 class="title"><span id="result">Art</span></h3>
+            {% for subfield in form.art%}
+            <div>
+                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                {{subfield}}
+            </div>
+            {% endfor %}
+
+            <h3 class="title"><span id="result">Make-Up</span></h3>
+            {% for subfield in form.makeup%}
+            <div>
+                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                {{subfield}}
+            </div>
+            {% endfor %}
+
+            <h3 class="title"><span id="result">Hair</span></h3>
+            {% for subfield in form.hair%}
+            <div>
+                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                {{subfield}}
+            </div>
+            {% endfor %}
+
+            <h3 class="title"><span id="result">Wardrobe</span></h3>
+            {% for subfield in form.wardrobe%}
+            <div>
+                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                {{subfield}}
+            </div>
+            {% endfor %}
+
+            <h3 class="title"><span id="result">Catering</span></h3>
+            {% for subfield in form.catering%}
+            <div>
+                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                {{subfield}}
+            </div>
+            {% endfor %}
            
 
 

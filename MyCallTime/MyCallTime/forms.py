@@ -1,6 +1,6 @@
 from flask_wtf import Form
 from wtforms import StringField, TextAreaField, TextField, SubmitField, ValidationError, validators, PasswordField
-from MyCallTime.models import db, User, Shoots, Talent, Photo
+from MyCallTime.models import db, User, Shoots, Talent, Photo, Catering, Art, Makeup, Hair, Wardrobe
 from wtforms_alchemy import ModelForm, model_form_factory, ModelFieldList, ModelFormField
 from wtforms.fields import FormField
 
@@ -25,6 +25,41 @@ class PhotoForm(ModelForm):
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(PhotoForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
 
+class CateringForm(ModelForm):
+    class Meta:
+        model = Catering
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(CateringForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class ArtForm(ModelForm):
+    class Meta:
+        model = Art
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(ArtForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class MakeupForm(ModelForm):
+    class Meta:
+        model = Makeup
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(MakeupForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class HairForm(ModelForm):
+    class Meta:
+        model = Hair
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(HairForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class WardrobeForm(ModelForm):
+    class Meta:
+        model = Wardrobe
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(WardrobeForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
 class ShootsForm(ModelForm):
     class Meta:
         model = Shoots
@@ -32,7 +67,11 @@ class ShootsForm(ModelForm):
 
     talent = ModelFieldList(FormField(TalentForm))
     photo = ModelFormField(PhotoForm)
-
+    catering = ModelFormField(CateringForm)
+    art = ModelFormField(ArtForm)
+    makeup = ModelFormField(MakeupForm)
+    hair = ModelFormField(HairForm)
+    wardrobe = ModelFormField(WardrobeForm)
 
 class ContactForm(Form):
   name = TextField("Name", [validators.Required("Please enter your name.")])

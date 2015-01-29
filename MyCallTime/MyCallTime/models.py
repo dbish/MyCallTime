@@ -54,6 +54,81 @@ class Photo(db.Model):
         self.assistant = ast
         self.notes = notes
 
+class Art(db.Model):
+    __tablename__= 'Art'
+    ID = db.Column(db.Integer, primary_key = True)
+    start_time = db.Column(db.Time(7))
+    artist = db.Column(db.String(100))
+    assistant = db.Column(db.String(100))
+    notes = db.Column(db.String(1000))
+    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+
+    def __init__(self, artist=None, ast=None, startTime=None, notes=None):
+        self.start_time = startTime
+        self.artist = artist
+        self.assistant = ast
+        self.notes = notes
+
+class Catering(db.Model):
+    __tablename__= 'Catering'
+    ID = db.Column(db.Integer, primary_key = True)
+    start_time = db.Column(db.Time(7))
+    company = db.Column(db.String(100))
+    contact = db.Column(db.String(100))
+    notes = db.Column(db.String(1000))
+    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+
+    def __init__(self, comp=None, cont=None, startTime=None, notes=None):
+        self.start_time = startTime
+        self.company = comp
+        self.contact = cont
+        self.notes = notes
+
+class Makeup(db.Model):
+    __tablename__= 'Makeup'
+    ID = db.Column(db.Integer, primary_key = True)
+    start_time = db.Column(db.Time(7))
+    artist = db.Column(db.String(100))
+    assistant = db.Column(db.String(100))
+    notes = db.Column(db.String(1000))
+    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+
+    def __init__(self, artist=None, ast=None, startTime=None, notes=None):
+        self.start_time = startTime
+        self.artist = artist
+        self.assistant = ast
+        self.notes = notes
+
+class Hair(db.Model):
+    __tablename__= 'Hair'
+    ID = db.Column(db.Integer, primary_key = True)
+    start_time = db.Column(db.Time(7))
+    stylist = db.Column(db.String(100))
+    assistant = db.Column(db.String(100))
+    notes = db.Column(db.String(1000))
+    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+
+    def __init__(self, stylist=None, ast=None, startTime=None, notes=None):
+        self.start_time = startTime
+        self.stylist = stylist
+        self.assistant = ast
+        self.notes = notes
+
+class Wardrobe(db.Model):
+    __tablename__= 'Wardrobe'
+    ID = db.Column(db.Integer, primary_key = True)
+    start_time = db.Column(db.Time(7))
+    stylist = db.Column(db.String(100))
+    assistant = db.Column(db.String(100))
+    notes = db.Column(db.String(1000))
+    shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+
+    def __init__(self, stylist=None, ast=None, startTime=None, notes=None):
+        self.start_time = startTime
+        self.stylist = stylist
+        self.assistant = ast
+        self.notes = notes
+
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
      ID = db.Column(db.Integer, primary_key = True)
@@ -71,6 +146,11 @@ class Shoots(db.Model):
      created_by =  db.Column(db.Integer)
      talent = db.relationship(Talent, cascade="all,delete")
      photo = db.relationship(Photo, uselist=False, cascade="all,delete")
+     catering = db.relationship(Catering, uselist=False, cascade="all,delete")
+     art = db.relationship(Art, uselist=False, cascade="all,delete")
+     makeup = db.relationship(Makeup, uselist=False, cascade="all,delete")
+     hair = db.relationship(Hair, uselist=False, cascade="all,delete")
+     wardrobe = db.relationship(Wardrobe, uselist=False, cascade="all,delete")
 
      def __init__(self, name, client=None, contactName=None, contactEmail=None, contactPhone=None, date=None, startTime=None, 
                   wrapTime=None, location=None, studio=None):
