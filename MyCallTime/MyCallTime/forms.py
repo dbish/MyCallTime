@@ -1,7 +1,7 @@
 from flask_wtf import Form
 from wtforms import StringField, TextAreaField, TextField, SubmitField, ValidationError, validators, PasswordField
-from MyCallTime.models import db, User, Shoots, Talent
-from wtforms_alchemy import ModelForm, model_form_factory, ModelFieldList
+from MyCallTime.models import db, User, Shoots, Talent, Photo
+from wtforms_alchemy import ModelForm, model_form_factory, ModelFieldList, ModelFormField
 from wtforms.fields import FormField
 
 BaseModelForm = model_form_factory(Form)
@@ -15,9 +15,15 @@ class TalentForm(ModelForm):
     class Meta:
         model = Talent
         
-
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(TalentForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class PhotoForm(ModelForm):
+    class Meta:
+        model = Photo
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(PhotoForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
 
 class ShootsForm(ModelForm):
     class Meta:
@@ -25,6 +31,7 @@ class ShootsForm(ModelForm):
         exclude = ['created_by']
 
     talent = ModelFieldList(FormField(TalentForm))
+    photo = ModelFormField(PhotoForm)
 
 
 class ContactForm(Form):

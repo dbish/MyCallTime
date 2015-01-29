@@ -47,11 +47,12 @@ class Photo(db.Model):
     notes = db.Column(db.String(1000))
     shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
 
-    def __init__(self, photo=None, digitech=None, ast=None, startTime=None):
+    def __init__(self, photo=None, digitech=None, ast=None, startTime=None, notes=None):
         self.start_time = startTime
         self.photographer = photo
         self.digital_tech = digitech
         self.assistant = ast
+        self.notes = notes
 
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
@@ -69,7 +70,7 @@ class Shoots(db.Model):
     
      created_by =  db.Column(db.Integer)
      talent = db.relationship(Talent, cascade="all,delete")
-     photo = db.relationship(Photo, cascade="all,delete")
+     photo = db.relationship(Photo, uselist=False, cascade="all,delete")
 
      def __init__(self, name, client=None, contactName=None, contactEmail=None, contactPhone=None, date=None, startTime=None, 
                   wrapTime=None, location=None, studio=None):

@@ -7,7 +7,7 @@ from flask import render_template, request, flash, session, url_for, redirect, j
 from MyCallTime import app
 from MyCallTime.forms import ContactForm, SignupForm, SignInForm, ShootsForm
 from MyCallTime.models  import db
-from MyCallTime.models import Shoots, User, Talent
+from MyCallTime.models import Shoots, User, Talent, Photo
 from wtforms.ext.sqlalchemy.orm import model_form
 from flask_wtf import Form
 
@@ -66,6 +66,7 @@ def newShoot():
     newShoot = Shoots("")
     newShoot.created_by = user_uid
     newShoot.talent = [Talent()]
+    newShoot.photo = Photo()
     db.session.add(newShoot)
 
     form = ShootsForm(obj=newShoot)
@@ -77,7 +78,7 @@ def newShoot():
             db.session.refresh(newShoot)
             return redirect(url_for('viewShoot', shoot_id=newShoot.ID))
         else:
-            flash('falied validation')
+            flash('failed validation')
     return render_template('edit.html', form=form, title="New Shoot")
 
 

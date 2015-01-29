@@ -16,11 +16,13 @@
             {% for field in form%}
 
 
+            {% if field.name != "photo"%}
             {% if field.name != "talent"%}
             <div class="{{field.name}}">
                     {% if field.widget.input_type != 'hidden' %} {{ field.label }} {% endif %}
                     {{ field(class=field.name) }}
             </div>
+            {% endif %}
             {% endif %}
             {% endfor %}
             
@@ -34,14 +36,26 @@
                     <div>
                     {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
                     {{subfield}}</div>
-
-                    
                     {% endfor %}
                 </li>
 
                 {% endfor %}
             </ul>           
             <button type="button" id="addTalent">New Talent</button>
+
+            <h3 class="title"><span id="result">Photography</span></h3>
+            
+            {% for subfield in form.photo%}
+            <div>
+                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                {{subfield}}
+            </div>
+            {% endfor %}
+         
+
+               
+            </ul>
+           
 
 
 
