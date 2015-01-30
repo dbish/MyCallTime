@@ -62,23 +62,7 @@ def copyShoot(shoot_id):
 
     shoot = db.session.query(Shoots).get(shoot_id)
     newShoot = Shoots("")
-    newShoot.client = shoot.client
-    newShoot.contact_name = shoot.contact_name
-    newShoot.contact_email = shoot.contact_email
-    newShoot.contact_phone = shoot.contact_phone
-    newShoot.start_time = shoot.start_time
-    newShoot.wrap_time = shoot.wrap_time
-    newShoot.location = shoot.location
-    newShoot.studio = shoot.studio
-    newShoot.created_by = shoot.created_by
-    newShoot.talent = [Talent()]
-    newShoot.photo = Photo()
-    newShoot.catering = Catering()
-    newShoot.art = Art()
-    newShoot.makeup = Makeup()
-    newShoot.hair = Hair()
-    newShoot.wardrobe = Wardrobe()
-
+    newShoot.copy(shoot)
 
     db.session.add(newShoot)
     form = ShootsForm(obj=newShoot)

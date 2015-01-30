@@ -37,6 +37,9 @@ class Talent(db.Model):
         self.agency = agency
         self.notes = notes
 
+    def createCopy(self):
+        return Talent(self.name, self.agency, self.notes, self.start_time)
+
 class Photo(db.Model):
     __tablename__= 'Photo'
     ID = db.Column(db.Integer, primary_key = True)
@@ -54,6 +57,9 @@ class Photo(db.Model):
         self.assistant = ast
         self.notes = notes
 
+    def createCopy(self):
+        return Photo(self.photographer, self.digital_tech, self.assistant, self.start_time, self.notes)
+
 class Art(db.Model):
     __tablename__= 'Art'
     ID = db.Column(db.Integer, primary_key = True)
@@ -68,6 +74,9 @@ class Art(db.Model):
         self.artist = artist
         self.assistant = ast
         self.notes = notes
+
+    def createCopy(self):
+        return Art(self.artist, self.assistant, self.start_time, self.notes)
 
 class Catering(db.Model):
     __tablename__= 'Catering'
@@ -84,6 +93,9 @@ class Catering(db.Model):
         self.contact = cont
         self.notes = notes
 
+    def createCopy(self):
+        return Catering(self.company, self.contact, self.start_time, self.notes)
+
 class Makeup(db.Model):
     __tablename__= 'Makeup'
     ID = db.Column(db.Integer, primary_key = True)
@@ -98,6 +110,9 @@ class Makeup(db.Model):
         self.artist = artist
         self.assistant = ast
         self.notes = notes
+
+    def createCopy(self):
+        return Makeup(self.artist, self.assistant, self.start_time, self.notes)
 
 class Hair(db.Model):
     __tablename__= 'Hair'
@@ -114,6 +129,9 @@ class Hair(db.Model):
         self.assistant = ast
         self.notes = notes
 
+    def createCopy(self):
+        return Hair(self.stylist, self.assistant, self.start_time, self.notes)
+
 class Wardrobe(db.Model):
     __tablename__= 'Wardrobe'
     ID = db.Column(db.Integer, primary_key = True)
@@ -128,6 +146,9 @@ class Wardrobe(db.Model):
         self.stylist = stylist
         self.assistant = ast
         self.notes = notes
+
+    def createCopy(self):
+        return Wardrobe(self.stylist, self.assistant, self.start_time, self.notes)
 
 class Shoots(db.Model):
      __tablename__ = 'Shoots'
@@ -165,22 +186,27 @@ class Shoots(db.Model):
         self.location = location
         self.studio = studio
     
-     def clearID(self):
-         self.ID = None
-         for talent in self.talent:
-             talent.ID = None
+     def copy(self, toCopy):
+        self.name = toCopy.name
+        self.client = toCopy.client
+        self.contact_name = toCopy.contact_name
+        self.contact_email = toCopy.contact_email
+        self.contact_phone = toCopy.contact_phone
+        self.start_time = toCopy.start_time
+        self.wrap_time = toCopy.wrap_time
+        self.location = toCopy.location
+        self.studio = toCopy.studio
+        self.talent = []
+        for talent in toCopy.talent:
+             self.talent.append(talent.createCopy())
          
-         photo.ID = None
-         catering.ID = None
-         art.ID = None
-         makeup.ID = None
-         hair.ID = None
-         wardrobe.ID = None
-
-
-
-
-
+        self.photo = toCopy.photo.createCopy()
+        self.catering = toCopy.catering.createCopy()
+        self.art = toCopy.art.createCopy()
+        self.makeup = toCopy.makeup.createCopy()
+        self.hair = toCopy.hair.createCopy()
+        self.wardrobe = toCopy.wardrobe.createCopy()
+  
 
 class User(db.Model):
     __tablename__ = 'Users'

@@ -33,11 +33,17 @@
                         <div class="cancel">
                             you have no sheets. Create a new one with the button above.
                         </div>
-                        <button class="create" type="button" style="display:none" id="cancelCreate" onclick="window.location.href='/newShoot'">new sheet</button>
                     </td>
+     
                     
                 </tr>
                 {% endif %}
+                <tr>
+                    <td colspan="5" class="create" style="display:none">
+                        <button type="button" onclick="window.location.href='/newShoot'">new sheet</button>
+                    </td>
+                </tr>
+                
                 {% for shoot in shoots%}
                     <!--{% set edit_link = "window.document.location='/shoots/"+shoot.ID|string+"';" %}-->
                     <!--<tr onclick={{edit_link}}>-->
