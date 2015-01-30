@@ -164,6 +164,19 @@ class Shoots(db.Model):
         self.wrap_time = wrapTime
         self.location = location
         self.studio = studio
+    
+     def clearID(self):
+         self.ID = None
+         for talent in self.talent:
+             talent.ID = None
+         
+         photo.ID = None
+         catering.ID = None
+         art.ID = None
+         makeup.ID = None
+         hair.ID = None
+         wardrobe.ID = None
+
 
 
 
