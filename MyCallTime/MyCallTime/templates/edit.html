@@ -76,7 +76,7 @@
                                     {% if subfield.widget.input_type != 'hidden' %}
                                             <div class="{{subfield.label.text}} col-md-4">
                                                 {{ subfield.label }}
-                                                {{subfield}}
+                                                <div>{{subfield}}</div>
                                             </div>
                                     {% else %}
                                             <div>
@@ -89,7 +89,6 @@
                         {% endfor %}
                     </ul>
                     <span class="fake-link" id="addTalent"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Talent</span>
-                     
                     </div>
             </div>
 
@@ -98,12 +97,26 @@
                     <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden="true"></span> Photography</h3>
                 </div>
                 <div class="panel-body">
-                    {% for subfield in form.photo%}
-                    <div>
-                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                        {{subfield}}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Photographer</label>
+                            <div>{{form.photo.photographer}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Call Time</label>
+                            <div>{{form.photo.start_time}}</div>
+                        </div>
                     </div>
-                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Digital Tech</label>
+                            <div>{{form.photo.digital_tech}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{form.photo.assistant}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -112,27 +125,45 @@
                     <h3 class="panel-title"><span class="glyphicon glyphicon-bullhorn aria-hidden=" true"></span> Art</h3>
                 </div>
                 <div class="panel-body">
-                   
-                    {% for subfield in form.art%}
-                    <div>
-                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                        {{subfield}}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Set Designer</label>
+                            <div>{{form.art.artist}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Call Time</label>
+                            <div>{{form.art.start_time}}</div>
+                        </div>
                     </div>
-                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{form.art.assistant}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-eye-open aria-hidden=" true"></span> Make-Up</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-eye-open aria-hidden=" true"></span> Make-up</h3>
                 </div>
                 <div class="panel-body">
-                    
-                    {% for subfield in form.makeup%}
-                    <div>
-                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                        {{subfield}}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Make-up Artist</label>
+                            <div>{{form.makeup.artist}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Call Time</label>
+                            <div>{{form.makeup.start_time}}</div>
+                        </div>
                     </div>
-                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{form.makeup.assistant}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -140,13 +171,22 @@
                     <h3 class="panel-title"><span class="glyphicon glyphicon-check aria-hidden=" true"></span> Hair</h3>
                 </div>
                 <div class="panel-body">
-                    
-                    {% for subfield in form.hair%}
-                    <div>
-                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                        {{subfield}}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Hair Stylist</label>
+                            <div>{{form.hair.stylist}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Call Time</label>
+                            <div>{{form.hair.start_time}}</div>
+                        </div>
                     </div>
-                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{form.hair.assistant}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -154,12 +194,22 @@
                     <h3 class="panel-title"><span class="glyphicon glyphicon-certificate aria-hidden=" true"></span> Wardrobe</h3>
                 </div>
                 <div class="panel-body">
-                    {% for subfield in form.wardrobe%}
-                    <div>
-                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                        {{subfield}}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Stylist</label>
+                            <div>{{form.wardrobe.stylist}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Call Time</label>
+                            <div>{{form.wardrobe.start_time}}</div>
+                        </div>
                     </div>
-                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{form.wardrobe.assistant}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
 
@@ -168,12 +218,23 @@
                     <h3 class="panel-title"><span class="glyphicon glyphicon-cutlery aria-hidden=" true"></span> Catering</h3>
                 </div>
                 <div class="panel-body">
-                    {% for subfield in form.catering%}
-                    <div>
-                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                        {{subfield}}
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Company</label>
+                            <div>{{form.catering.company}}</div>
+                            <div>{{form.catering.contact}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Lunch Time</label>
+                            <div>{{form.catering.start_time}}</div>
+                        </div>
                     </div>
-                    {% endfor %}
+                    <div class="row">
+                        <div class="col-md-10">
+                            <label>Notes</label>
+                            <div>{{form.catering.notes}}</div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </form>
