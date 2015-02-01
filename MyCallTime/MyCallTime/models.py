@@ -24,8 +24,8 @@ db = SQLAlchemy()
 class Talent(db.Model):
     __tablename__ = 'Talent'
     ID = db.Column(db.Integer, primary_key = True)
-    start_time = db.Column(db.Time(7))
     name = db.Column(db.String(100))
+    start_time = db.Column(db.Time(7))
     agency = db.Column(db.String(100))
     notes = db.Column(db.String(1000))
     shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))

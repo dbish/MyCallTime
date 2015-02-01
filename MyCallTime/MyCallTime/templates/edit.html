@@ -1,112 +1,186 @@
-﻿{% extends "layout.html" %}
+﻿{% extends "layout2.html" %}
 
 {% block content %}
 
-<h2 class="title"><span id="result">{{title}}</span></h2>
+<h2 class="title"><span id="result">&nbsp</span></h2>
 
 
 {% if id %}
-    <form action="{{url_for('viewShoot', shoot_id=id)}}" method="post">
+    <form id="edit-form" action="{{url_for('viewShoot', shoot_id=id)}}" method="post">
     
 {% else %}
-        <form action="{{url_for('newShoot')}}" method="post">
+        <form id="edit-form" action="{{url_for('newShoot')}}" method="post">
             {% endif %}
-            <p><input type="Submit" value="Save All"></p>
-            {{ form.hidden_tag() }}
-            {% for field in form%}
-
-
-            {% if field.name != "photo"%}
-            {% if field.name != "talent"%}
-            {% if field.name != "catering"%}
-            {% if field.name != "art"%}
-            {% if field.name != "makeup"%}
-            {% if field.name != "hair"%}
-            {% if field.name != "wardrobe"%}
-            <div class="{{field.name}}">
-                    {% if field.widget.input_type != 'hidden' %} {{ field.label }} {% endif %}
-                    {{ field(class=field.name) }}
-            </div>
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% endif %}
-            {% endfor %}
-            
-            <h3 class="title"><span id="result">Talent</span></h3>
-            <ul id="talentList">
-                {% for talent_form in form.talent %}
-
-                <li>
-                    {{talent_form.label}}
-                    {% for subfield in talent_form%}
-                    <div>
-                    {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                    {{subfield}}</div>
-                    {% endfor %}
-                </li>
-
-                {% endfor %}
-            </ul>           
-            <button type="button" id="addTalent">New Talent</button>
-
-            <h3 class="title"><span id="result">Photography</span></h3>
-            
-            {% for subfield in form.photo%}
-            <div>
-                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                {{subfield}}
-            </div>
-            {% endfor %}
-         
-            
-
-            <h3 class="title"><span id="result">Art</span></h3>
-            {% for subfield in form.art%}
-            <div>
-                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                {{subfield}}
-            </div>
-            {% endfor %}
-
-            <h3 class="title"><span id="result">Make-Up</span></h3>
-            {% for subfield in form.makeup%}
-            <div>
-                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                {{subfield}}
-            </div>
-            {% endfor %}
-
-            <h3 class="title"><span id="result">Hair</span></h3>
-            {% for subfield in form.hair%}
-            <div>
-                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                {{subfield}}
-            </div>
-            {% endfor %}
-
-            <h3 class="title"><span id="result">Wardrobe</span></h3>
-            {% for subfield in form.wardrobe%}
-            <div>
-                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                {{subfield}}
-            </div>
-            {% endfor %}
-
-            <h3 class="title"><span id="result">Catering</span></h3>
-            {% for subfield in form.catering%}
-            <div>
-                {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
-                {{subfield}}
-            </div>
-            {% endfor %}
            
+            {{ form.hidden_tag() }}
+            {{form.csrf_token}}
+            <div class="row">
+                <div class="{{form.name.name}} col-md-5">
+                    <label>Shoot Name</label>
+                    <div>{{form.name}}</div>
+                </div>
+                <div class="{{form.client.name}} col-md-5">
+                    <label>Client</label>
+                    <div>{{form.client}}</div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="dateAndTime col-md-5">
+                    <label>Date and Time</label>
+                    <div>
+                        {{form.date}}
+                        {{form.start_time}}
+                        {{form.wrap_time}}
+                    </div>
+                </div>
+                <div class="imageDrop col-md-5">
+                    <label>Drop an Image</label>
+                    <div><img class="media-object" src="..." alt="..."></div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="contact col-md-5">
+                    <label>General Contact</label>
+                    <div>
+                        {{form.contact_name}}
+                        {{form.contact_email}}
+                        {{form.contact_phone}}
+                    </div>
+                </div>
+                <div class="location col-md-5">
+                    <label>Location</label>
+                    <div>
+                        {{form.location}}
+                        {{form.studio}}
+                    </div>
+                </div>
+            </div>
+            
+            <div>&nbsp</div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Talent</h3>
+                </div>
+                <div class="panel-body">
+                    <ul id="talentList">
+                        {% for talent_form in form.talent %}
+                        <li class="well">
+                            <div class="row">
+                                {% for subfield in talent_form%}
+                                    {% if subfield.label.text!="name" %}
+                                    {% if subfield.label.text!="start_time" %}
+                                        </div>
+                                        <div class="row">
+                                    {% endif %} 
+                                    {% endif %}
 
+                                    {% if subfield.widget.input_type != 'hidden' %}
+                                            <div class="{{subfield.label.text}} col-md-4">
+                                                {{ subfield.label }}
+                                                {{subfield}}
+                                            </div>
+                                    {% else %}
+                                            <div>
+                                                {{subfield}}
+                                             </div>
+                                            
+                                    {% endif %}
+                                    
+                                        
+                                        
+                                   
+                                {% endfor %}
+                            </div>
+                        </li>
+                        {% endfor %}
+                    </ul>
+                    <button type="button" id="addTalent">New Talent</button>
+                </div>
+            </div>
 
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden="true"></span> Photography</h3>
+                </div>
+                <div class="panel-body">
+                    {% for subfield in form.photo%}
+                    <div>
+                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                        {{subfield}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
 
-</form>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-bullhorn aria-hidden=" true"></span> Art</h3>
+                </div>
+                <div class="panel-body">
+                   
+                    {% for subfield in form.art%}
+                    <div>
+                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                        {{subfield}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-eye-open aria-hidden=" true"></span> Make-Up</h3>
+                </div>
+                <div class="panel-body">
+                    
+                    {% for subfield in form.makeup%}
+                    <div>
+                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                        {{subfield}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-check aria-hidden=" true"></span> Hair</h3>
+                </div>
+                <div class="panel-body">
+                    
+                    {% for subfield in form.hair%}
+                    <div>
+                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                        {{subfield}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-certificate aria-hidden=" true"></span> Wardrobe</h3>
+                </div>
+                <div class="panel-body">
+                    {% for subfield in form.wardrobe%}
+                    <div>
+                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                        {{subfield}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-cutlery aria-hidden=" true"></span> Catering</h3>
+                </div>
+                <div class="panel-body">
+                    {% for subfield in form.catering%}
+                    <div>
+                        {% if subfield.widget.input_type != 'hidden' %} {{ subfield.label }} {% endif %}
+                        {{subfield}}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </form>
 <script type="text/javascript" language="javascript" src="/static/scripts/newItem.js"></script>
 {% endblock %}

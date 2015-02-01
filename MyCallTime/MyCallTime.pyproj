@@ -56,6 +56,7 @@
     <Content Include="MyCallTime\static\scripts\createSheet.js" />
     <Content Include="MyCallTime\static\scripts\newItem.js" />
     <Content Include="MyCallTime\templates\edit.html" />
+    <Content Include="MyCallTime\templates\layout2.html" />
     <Content Include="MyCallTime\templates\new.html" />
     <Content Include="MyCallTime\templates\edit2.html" />
     <Content Include="MyCallTime\templates\newSheet.html" />
