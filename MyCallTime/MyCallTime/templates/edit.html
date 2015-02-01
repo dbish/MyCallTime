@@ -73,7 +73,6 @@
                                         <div class="row">
                                     {% endif %} 
                                     {% endif %}
-
                                     {% if subfield.widget.input_type != 'hidden' %}
                                             <div class="{{subfield.label.text}} col-md-4">
                                                 {{ subfield.label }}
@@ -82,20 +81,16 @@
                                     {% else %}
                                             <div>
                                                 {{subfield}}
-                                             </div>
-                                            
-                                    {% endif %}
-                                    
-                                        
-                                        
-                                   
+                                             </div>    
+                                    {% endif %}   
                                 {% endfor %}
                             </div>
                         </li>
                         {% endfor %}
                     </ul>
-                    <button type="button" id="addTalent">New Talent</button>
-                </div>
+                    <span class="fake-link" id="addTalent"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Talent</span>
+                     
+                    </div>
             </div>
 
             <div class="panel panel-default">
