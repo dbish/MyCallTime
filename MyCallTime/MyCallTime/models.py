@@ -24,7 +24,7 @@ db = SQLAlchemy()
 class Talent(db.Model):
     __tablename__ = 'Talent'
     ID = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(100))
+    full_name = db.Column(db.String(100))
     start_time = db.Column(db.Time(7))
     agency = db.Column(db.String(100))
     notes = db.Column(db.String(1000))
@@ -33,12 +33,12 @@ class Talent(db.Model):
 
     def __init__(self, name=None, agency=None, notes=None, startTime=None):
         self.start_time = startTime
-        self.name = name
+        self.full_name = name
         self.agency = agency
         self.notes = notes
 
     def createCopy(self):
-        return Talent(self.name, self.agency, self.notes, self.start_time)
+        return Talent(self.full_name, self.agency, self.notes, self.start_time)
 
 class Photo(db.Model):
     __tablename__= 'Photo'

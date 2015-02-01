@@ -27,11 +27,9 @@
             <div class="row">
                 <div class="dateAndTime col-md-5">
                     <label>Date and Time</label>
-                    <div>
-                        {{form.date}}
-                        {{form.start_time}}
-                        {{form.wrap_time}}
-                    </div>
+                    <div>{{form.date}}</div>
+                    <div>{{form.start_time}}</div>   
+                    <div>{{form.wrap_time}}</div>
                 </div>
                 <div class="imageDrop col-md-5">
                     <label>Drop an Image</label>
@@ -41,16 +39,14 @@
             <div class="row">
                 <div class="contact col-md-5">
                     <label>General Contact</label>
-                    <div>
-                        {{form.contact_name}}
-                        {{form.contact_email}}
-                        {{form.contact_phone}}
-                    </div>
+                    <div>{{form.contact_name}}</div>
+                    <div>{{form.contact_email}}</div>
+                    <div>{{form.contact_phone}}</div>
                 </div>
                 <div class="location col-md-5">
                     <label>Location</label>
-                    <div>
-                        {{form.location}}
+                    <div>{{form.location}}</div>
+                    <div>   
                         {{form.studio}}
                     </div>
                 </div>
@@ -65,25 +61,23 @@
                     <ul id="talentList">
                         {% for talent_form in form.talent %}
                         <li class="well">
+                            {{talent_form.csrf_token}}
                             <div class="row">
-                                {% for subfield in talent_form%}
-                                    {% if subfield.label.text!="name" %}
-                                    {% if subfield.label.text!="start_time" %}
-                                        </div>
-                                        <div class="row">
-                                    {% endif %} 
-                                    {% endif %}
-                                    {% if subfield.widget.input_type != 'hidden' %}
-                                            <div class="{{subfield.label.text}} col-md-4">
-                                                {{ subfield.label }}
-                                                <div>{{subfield}}</div>
-                                            </div>
-                                    {% else %}
-                                            <div>
-                                                {{subfield}}
-                                             </div>    
-                                    {% endif %}   
-                                {% endfor %}
+                                <div class="col-md-5">
+                                    <label>Name</label>
+                                    <div>{{talent_form.full_name}}</div>
+                                </div>
+                                <div class="col-md-5">
+                                    <label>Call Time</label>
+                                    <div>{{talent_form.start_time}}</div>
+                                </div>
+                             </div>
+                            <div class="row">
+                                <div class="col-md-5">
+                                    <label>Agent/Contact</label>
+                                    <div>{{talent_form.agency}}</div>
+                                    <div>{{talent_form.notes}}</div>
+                                </div>
                             </div>
                         </li>
                         {% endfor %}
