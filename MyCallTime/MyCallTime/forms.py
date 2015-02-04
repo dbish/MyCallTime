@@ -1,10 +1,13 @@
 from flask_wtf import Form
 from wtforms import StringField, TextAreaField, TextField, SubmitField, ValidationError, validators, PasswordField
-from MyCallTime.models import db, User, Shoots, Talent, Photo, Catering, Art, Makeup, Hair, Wardrobe
+from MyCallTime.models import db, User, Shoots, Talent, Photo, Catering, Art, Makeup, Hair, Wardrobe, Production
+from MyCallTime.models import ArtAssistants, ProdAssistants, PhotoAssistants, HairAssistants, MakeupAssistants, WardrobeAssistants
 from wtforms_alchemy import ModelForm, model_form_factory, ModelFieldList, ModelFormField
 from wtforms.fields import FormField
 
 BaseModelForm = model_form_factory(Form)
+
+
 
 class ModelForm(BaseModelForm):
     @classmethod
@@ -18,9 +21,62 @@ class TalentForm(ModelForm):
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(TalentForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
 
+class ArtAssistantsForm(ModelForm):
+    class Meta:
+        model = ArtAssistants
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(ArtAssistantsForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class ProdAssistantsForm(ModelForm):
+    class Meta:
+        model = ProdAssistants
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(ProdAssistantsForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class PhotoAssistantsForm(ModelForm):
+    class Meta:
+        model = PhotoAssistants
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(PhotoAssistantsForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class HairAssistantsForm(ModelForm):
+    class Meta:
+        model = HairAssistants
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(HairAssistantsForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class MakeupAssistantsForm(ModelForm):
+    class Meta:
+        model = MakeupAssistants
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(MakeupAssistantsForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class WardrobeAssistantsForm(ModelForm):
+    class Meta:
+        model = WardrobeAssistants
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(WardrobeAssistantsForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
+class ProductionForm(ModelForm):
+    class Meta:
+        model = Production
+
+    assistants = ModelFieldList(FormField(ProdAssistantsForm))
+
+    def __init__(self, csrf_enabled=False, *args, **kwargs):
+        super(ProductionForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
+
 class PhotoForm(ModelForm):
     class Meta:
         model = Photo
+
+    assistants = ModelFieldList(FormField(PhotoAssistantsForm))
 
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(PhotoForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
@@ -36,12 +92,16 @@ class ArtForm(ModelForm):
     class Meta:
         model = Art
 
+    assistants = ModelFieldList(FormField(ArtAssistantsForm))
+
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(ArtForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
 
 class MakeupForm(ModelForm):
     class Meta:
         model = Makeup
+
+    assistants = ModelFieldList(FormField(MakeupAssistantsForm))
 
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(MakeupForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
@@ -50,12 +110,16 @@ class HairForm(ModelForm):
     class Meta:
         model = Hair
 
+    assistants = ModelFieldList(FormField(HairAssistantsForm))
+
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(HairForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
 
 class WardrobeForm(ModelForm):
     class Meta:
         model = Wardrobe
+
+    assistants = ModelFieldList(FormField(WardrobeAssistantsForm))
 
     def __init__(self, csrf_enabled=False, *args, **kwargs):
         super(WardrobeForm, self).__init__(csrf_enabled=csrf_enabled, *args, **kwargs)
@@ -72,6 +136,7 @@ class ShootsForm(ModelForm):
     makeup = ModelFormField(MakeupForm)
     hair = ModelFormField(HairForm)
     wardrobe = ModelFormField(WardrobeForm)
+    production = ModelFormField(ProductionForm)
 
 class ContactForm(Form):
   name = TextField("Name", [validators.Required("Please enter your name.")])

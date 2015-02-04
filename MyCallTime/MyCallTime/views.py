@@ -7,7 +7,7 @@ from flask import render_template, request, flash, session, url_for, redirect, j
 from MyCallTime import app
 from MyCallTime.forms import ContactForm, SignupForm, SignInForm, ShootsForm
 from MyCallTime.models  import db
-from MyCallTime.models import Shoots, User, Talent, Photo, Catering, Art, Makeup, Hair, Wardrobe
+from MyCallTime.models import Shoots, User, Talent, Photo, Catering, Art, Makeup, Hair, Wardrobe, Production
 from wtforms.ext.sqlalchemy.orm import model_form
 from flask_wtf import Form
 from copy import deepcopy
@@ -86,6 +86,7 @@ def newShoot():
     newShoot.makeup = Makeup()
     newShoot.hair = Hair()
     newShoot.wardrobe = Wardrobe()
+    newShoot.production = Production()
 
     db.session.add(newShoot)
 

@@ -51,6 +51,12 @@
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="contact col-md-10">
+                    <label>Notes</label>
+                    <div>{{form.notes}}</div>
+                </div>
+            </div>
             
             <div>&nbsp</div>
             <div class="panel panel-default">
@@ -75,8 +81,9 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <label>Agent/Contact</label>
-                                    <div>{{talent_form.agency}}</div>
-                                    <div>{{talent_form.notes}}</div>
+                                    <div>{{talent_form.agent_name}}</div>
+                                    <div>{{talent_form.agent_email}}</div>
+                                    <div>{{talent_form.agent_phone}}</div>
                                 </div>
                             </div>
                         </li>
@@ -84,6 +91,32 @@
                     </ul>
                     <span class="fake-link" id="addTalent"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Talent</span>
                     </div>
+            </div>
+
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden=" true"></span> Production</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Company</label>
+                            <div>{{form.production.company}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>Call Time</label>
+                            <div>{{form.production.start_time}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>Producer</label>
+                            <div>{{form.production.producer_name}}</div>
+                            <div>{{form.production.producer_email}}</div>
+                            <div>{{form.production.producer_phone}}</div>
+                        </div>
+                    </div>
+                </div>
             </div>
 
             <div class="panel panel-default">
@@ -103,12 +136,24 @@
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <label>Digital Tech</label>
-                            <div>{{form.photo.digital_tech}}</div>
+                            <label>Agent/Contact</label>
+                            <div>{{form.photo.agent_name}}</div>
+                            <div>{{form.photo.agent_email}}</div>
+                            <div>{{form.photo.agent_phone}}</div>
                         </div>
                         <div class="col-md-5">
-                            <label>Assistant</label>
-                            <div>{{form.photo.assistant}}</div>
+                            <label>Digital Tech</label>
+                            <div>{{form.photo.digital_tech}}</div>
+                            <div>{{form.photo.digital_email}}</div>
+                            <div>{{form.photo.digital_phone}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
+                            <label>1st Assistant</label>
+                            <div>{{form.photo.first_ast_name}}</div>
+                            <div>{{form.photo.first_ast_email}}</div>
+                            <div>{{form.photo.first_ast_phone}}</div>
                         </div>
                     </div>
                 </div>
@@ -131,8 +176,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <label>Assistant</label>
-                            <div>{{form.art.assistant}}</div>
+                            <label>Agent/Contact</label>
+                            <div>{{form.art.agent_name}}</div>
+                            <div>{{form.art.agent_email}}</div>
+                            <div>{{form.art.agent_phone}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>1st Assistant</label>
+                            <div>{{form.art.first_ast_name}}</div>
+                            <div>{{form.art.first_ast_email}}</div>
+                            <div>{{form.art.first_ast_phone}}</div>
                         </div>
                     </div>
                 </div>
@@ -154,8 +207,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <label>Assistant</label>
-                            <div>{{form.makeup.assistant}}</div>
+                            <label>Agent/Contact</label>
+                            <div>{{form.makeup.agent_name}}</div>
+                            <div>{{form.makeup.agent_email}}</div>
+                            <div>{{form.makeup.agent_phone}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>1st Assistant</label>
+                            <div>{{form.makeup.first_ast_name}}</div>
+                            <div>{{form.makeup.first_ast_email}}</div>
+                            <div>{{form.makeup.first_ast_phone}}</div>
                         </div>
                     </div>
                 </div>
@@ -177,8 +238,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <label>Assistant</label>
-                            <div>{{form.hair.assistant}}</div>
+                            <label>Agent/Contact</label>
+                            <div>{{form.hair.agent_name}}</div>
+                            <div>{{form.hair.agent_email}}</div>
+                            <div>{{form.hair.agent_phone}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>1st Assistant</label>
+                            <div>{{form.hair.first_ast_name}}</div>
+                            <div>{{form.hair.first_ast_email}}</div>
+                            <div>{{form.hair.first_ast_phone}}</div>
                         </div>
                     </div>
                 </div>
@@ -200,8 +269,16 @@
                     </div>
                     <div class="row">
                         <div class="col-md-5">
-                            <label>Assistant</label>
-                            <div>{{form.wardrobe.assistant}}</div>
+                            <label>Agent/Contact</label>
+                            <div>{{form.wardrobe.agent_name}}</div>
+                            <div>{{form.wardrobe.agent_email}}</div>
+                            <div>{{form.wardrobe.agent_phone}}</div>
+                        </div>
+                        <div class="col-md-5">
+                            <label>1st Assistant</label>
+                            <div>{{form.wardrobe.first_ast_name}}</div>
+                            <div>{{form.wardrobe.first_ast_email}}</div>
+                            <div>{{form.wardrobe.first_ast_phone}}</div>
                         </div>
                     </div>
                 </div>
@@ -215,12 +292,20 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label>Company</label>
-                            <div>{{form.catering.company}}</div>
-                            <div>{{form.catering.contact}}</div>
+                            <div>{{form.catering.company_name}}</div>
+                            <div>{{form.catering.company_email}}</div>
+                            <div>{{form.catering.company_phone}}</div>
+
                         </div>
                         <div class="col-md-5">
+                            <label>Breakfast Time</label>
+                            <div>{{form.catering.breakfast}}</div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-5">
                             <label>Lunch Time</label>
-                            <div>{{form.catering.start_time}}</div>
+                            <div>{{form.catering.lunch}}</div>
                         </div>
                     </div>
                     <div class="row">
