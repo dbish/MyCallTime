@@ -8,6 +8,7 @@ from MyCallTime import app
 from MyCallTime.forms import ContactForm, SignupForm, SignInForm, ShootsForm
 from MyCallTime.models  import db
 from MyCallTime.models import Shoots, User, Talent, Photo, Catering, Art, Makeup, Hair, Wardrobe, Production
+from MyCallTime.models import ArtAssistants, ProdAssistants, PhotoAssistants, HairAssistants, MakeupAssistants, WardrobeAssistants
 from wtforms.ext.sqlalchemy.orm import model_form
 from flask_wtf import Form
 from copy import deepcopy
@@ -81,12 +82,19 @@ def newShoot():
     newShoot.created_by = user_uid
     newShoot.talent = [Talent()]
     newShoot.photo = Photo()
+    newShoot.photo.assistants = [PhotoAssistants()]
     newShoot.catering = Catering()
     newShoot.art = Art()
+    newShoot.art.assistants = [ArtAssistants()]
     newShoot.makeup = Makeup()
+    newShoot.makeup.assistants = [MakeupAssistants()]
     newShoot.hair = Hair()
+    newShoot.hair.assistants = [HairAssistants()]
     newShoot.wardrobe = Wardrobe()
+    newShoot.wardrobe.assistants = [WardrobeAssistants()]
     newShoot.production = Production()
+    newShoot.production.assistants = [ProdAssistants()]
+    
 
     db.session.add(newShoot)
 

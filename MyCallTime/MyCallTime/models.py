@@ -15,7 +15,7 @@ db = SQLAlchemy()
 
 #    def __init__(self, id, name, category):
 #        self.ID = id
-#        self.Name = name
+#        self.assistantName = assistantName
 #        self.Category = category
 #        self.Phone = 1
 #        self.Email = 1
@@ -24,98 +24,98 @@ db = SQLAlchemy()
 class ProdAssistants(db.Model):
     __tablename__ = 'ProdAssistants'
     ID = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(50))
+    assistantName = db.Column(db.String(50))
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     prod_id = db.Column(db.Integer, db.ForeignKey('Production.ID'))
 
-    def __init__(self, name=None, email=None, phone=None):
-        self.name = name
+    def __init__(self, assistantName=None, email=None, phone=None):
+        self.assistantName = assistantName
         self.email = email
         self.phone = phone
     
     def createCopy(self):
-        return ProdAssistants(self.name, self.email, self.phone)
+        return ProdAssistants(self.assistantName, self.email, self.phone)
 
 class PhotoAssistants(db.Model):
     __tablename__ = 'PhotoAssistants'
     ID = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(50))
+    assistantName = db.Column(db.String(50))
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     photo_id = db.Column(db.Integer, db.ForeignKey('Photo.ID'))
 
-    def __init__(self, name=None, email=None, phone=None):
-        self.name = name
+    def __init__(self, assistantName=None, email=None, phone=None):
+        self.assistantName = assistantName
         self.email = email
         self.phone = phone
     
     def createCopy(self):
-        return PhotoAssistants(self.name, self.email, self.phone)
+        return PhotoAssistants(self.assistantName, self.email, self.phone)
 
 class WardrobeAssistants(db.Model):
     __tablename__ = 'WardrobeAssistants'
     ID = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(50))
+    assistantName = db.Column(db.String(50))
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     wardrobe_id = db.Column(db.Integer, db.ForeignKey('Wardrobe.ID'))
 
-    def __init__(self, name=None, email=None, phone=None):
-        self.name = name
+    def __init__(self, assistantName=None, email=None, phone=None):
+        self.assistantName = assistantName
         self.email = email
         self.phone = phone
     
     def createCopy(self):
-        return WardrobeAssistants(self.name, self.email, self.phone)
+        return WardrobeAssistants(self.assistantName, self.email, self.phone)
 
 class HairAssistants(db.Model):
     __tablename__ = 'HairAssistants'
     ID = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(50))
+    assistantName = db.Column(db.String(50))
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     hair_id = db.Column(db.Integer, db.ForeignKey('Hair.ID'))
 
-    def __init__(self, name=None, email=None, phone=None):
-        self.name = name
+    def __init__(self, assistantName=None, email=None, phone=None):
+        self.assistantName = assistantName
         self.email = email
         self.phone = phone
     
     def createCopy(self):
-        return HairAssistants(self.name, self.email, self.phone)
+        return HairAssistants(self.assistantName, self.email, self.phone)
 
 class MakeupAssistants(db.Model):
     __tablename__ = 'MakeupAssistants'
     ID = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(50))
+    assistantName = db.Column(db.String(50))
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     makeup_id = db.Column(db.Integer, db.ForeignKey('Makeup.ID'))
 
-    def __init__(self, name=None, email=None, phone=None):
-        self.name = name
+    def __init__(self, assistantName=None, email=None, phone=None):
+        self.assistantName = assistantName
         self.email = email
         self.phone = phone
     
     def createCopy(self):
-        return MakeupAssistants(self.name, self.email, self.phone)
+        return MakeupAssistants(self.assistantName, self.email, self.phone)
 
 class ArtAssistants(db.Model):
     __tablename__ = 'ArtAssistants'
     ID = db.Column(db.Integer, primary_key = True)
-    name = db.Column(db.String(50))
+    assistantName = db.Column(db.String(50))
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     art_id = db.Column(db.Integer, db.ForeignKey('Art.ID'))
 
-    def __init__(self, name=None, email=None, phone=None):
-        self.name = name
+    def __init__(self, assistantName=None, email=None, phone=None):
+        self.assistantName = assistantName
         self.email = email
         self.phone = phone
     
     def createCopy(self):
-        return ArtAssistants(self.name, self.email, self.phone)
+        return ArtAssistants(self.assistantName, self.email, self.phone)
 
 class Production(db.Model):
     __tablename__ = 'Production'

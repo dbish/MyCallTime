@@ -116,6 +116,16 @@
                             <div>{{form.production.producer_phone}}</div>
                         </div>
                     </div>
+                    {% for assistant_form in form.production.assistants %}
+                    <div class="row prodAssistants">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{assistant_form.assistantName}}</div>
+                            <div>{{assistant_form.email}}</div>
+                            <div>{{assistant_form.phone}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -156,6 +166,16 @@
                             <div>{{form.photo.first_ast_phone}}</div>
                         </div>
                     </div>
+                    {% for assistant_form in form.photo.assistants %}
+                    <div class="row photoAssistants">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{assistant_form.assistantName}}</div>
+                            <div>{{assistant_form.email}}</div>
+                            <div>{{assistant_form.phone}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
@@ -188,6 +208,16 @@
                             <div>{{form.art.first_ast_phone}}</div>
                         </div>
                     </div>
+                    {% for assistant_form in form.art.assistants %}
+                    <div class="row artAssistants">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{assistant_form.assistantName}}</div>
+                            <div>{{assistant_form.email}}</div>
+                            <div>{{assistant_form.phone}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="panel panel-default">
@@ -219,6 +249,16 @@
                             <div>{{form.makeup.first_ast_phone}}</div>
                         </div>
                     </div>
+                    {% for assistant_form in form.makeup.assistants %}
+                    <div class="row makeupAssistants">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{assistant_form.assistantName}}</div>
+                            <div>{{assistant_form.email}}</div>
+                            <div>{{assistant_form.phone}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="panel panel-default">
@@ -250,6 +290,16 @@
                             <div>{{form.hair.first_ast_phone}}</div>
                         </div>
                     </div>
+                    {% for assistant_form in form.hair.assistants %}
+                    <div class="row hairAssistants">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{assistant_form.assistantName}}</div>
+                            <div>{{assistant_form.email}}</div>
+                            <div>{{assistant_form.phone}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
             <div class="panel panel-default">
@@ -281,6 +331,16 @@
                             <div>{{form.wardrobe.first_ast_phone}}</div>
                         </div>
                     </div>
+                    {% for assistant_form in form.wardrobe.assistants %}
+                    <div class="row wardrobeAssistants">
+                        <div class="col-md-5">
+                            <label>Assistant</label>
+                            <div>{{assistant_form.assistantName}}</div>
+                            <div>{{assistant_form.email}}</div>
+                            <div>{{assistant_form.phone}}</div>
+                        </div>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
