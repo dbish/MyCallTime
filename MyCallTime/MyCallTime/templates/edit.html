@@ -117,7 +117,7 @@
                         </div>
                     </div>
                     {% for assistant_form in form.production.assistants %}
-                    <div class="row prodAssistants">
+                    <div class="row" id="prodAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
                             <div>{{assistant_form.assistantName}}</div>
@@ -126,6 +126,7 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <span class="fake-link" id="addProdAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
                 </div>
             </div>
 
@@ -167,7 +168,7 @@
                         </div>
                     </div>
                     {% for assistant_form in form.photo.assistants %}
-                    <div class="row photoAssistants">
+                    <div class="row" id="photoAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
                             <div>{{assistant_form.assistantName}}</div>
@@ -176,6 +177,7 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <span class="fake-link" id="addPhotoAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
                 </div>
             </div>
 
@@ -209,7 +211,7 @@
                         </div>
                     </div>
                     {% for assistant_form in form.art.assistants %}
-                    <div class="row artAssistants">
+                    <div class="row" id="artAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
                             <div>{{assistant_form.assistantName}}</div>
@@ -218,6 +220,7 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <span class="fake-link" id="addArtAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -250,7 +253,7 @@
                         </div>
                     </div>
                     {% for assistant_form in form.makeup.assistants %}
-                    <div class="row makeupAssistants">
+                    <div class="row" id="makeupAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
                             <div>{{assistant_form.assistantName}}</div>
@@ -259,6 +262,7 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <span class="fake-link" id="addMakeupAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -291,7 +295,7 @@
                         </div>
                     </div>
                     {% for assistant_form in form.hair.assistants %}
-                    <div class="row hairAssistants">
+                    <div class="row" id="hairAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
                             <div>{{assistant_form.assistantName}}</div>
@@ -300,6 +304,7 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <span class="fake-link" id="addHairAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
                 </div>
             </div>
             <div class="panel panel-default">
@@ -332,7 +337,7 @@
                         </div>
                     </div>
                     {% for assistant_form in form.wardrobe.assistants %}
-                    <div class="row wardrobeAssistants">
+                    <div class="row" id="wardrobeAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
                             <div>{{assistant_form.assistantName}}</div>
@@ -341,6 +346,7 @@
                         </div>
                     </div>
                     {% endfor %}
+                    <span class="fake-link" id="addWardrobeAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
                 </div>
             </div>
 
