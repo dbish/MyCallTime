@@ -52,6 +52,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mycalltime.pubxml" />
+    <Content Include="MyCallTime\static\content\jasny-bootstrap.css" />
+    <Content Include="MyCallTime\static\content\jasny-bootstrap.css.map" />
+    <Content Include="MyCallTime\static\content\jasny-bootstrap.min.css" />
+    <Content Include="MyCallTime\static\scripts\holder.min.js" />
+    <Content Include="MyCallTime\static\scripts\jasny-bootstrap.js" />
+    <Content Include="MyCallTime\static\scripts\jasny-bootstrap.min.js" />
     <Content Include="MyCallTime\static\scripts\loadSheet.js" />
     <Content Include="MyCallTime\static\scripts\createSheet.js" />
     <Content Include="MyCallTime\static\scripts\newItem.js" />
