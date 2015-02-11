@@ -12,7 +12,8 @@ from MyCallTime.models import ArtAssistants, ProdAssistants, PhotoAssistants, Ha
 from wtforms.ext.sqlalchemy.orm import model_form
 from flask_wtf import Form
 from copy import deepcopy
-
+from fpdf import FPDF, HTMLMixin
+Title = "something"
 
 @app.route('/')
 @app.route('/home')
@@ -154,15 +155,56 @@ def signout():
   session.pop('email', None)
   return redirect(url_for('home'))
 
+
+
+from reportlab.lib import colors
+from reportlab.lib.pagesizes import letter
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.lib.styles import getSampleStyleSheet 
+from reportlab.rl_config import defaultPageSize
+from reportlab.lib.units import inch
+
+def myFirstPage(canvas, doc):
+
+    PAGE_HEIGHT=defaultPageSize[1]
+    PAGE_WIDTH=defaultPageSize[0]
+    canvas.saveState()
+    canvas.setFont('Times-Bold',16)
+    canvas.drawCentredString(PAGE_WIDTH/2.0, PAGE_HEIGHT-108, Title)
+    canvas.restoreState()
+
+def createPdf(title, date, location, id, shoot):
+    styleSheet = getSampleStyleSheet()
+
+    styleSheet = getSampleStyleSheet()
+    PAGE_HEIGHT=defaultPageSize[1]
+    PAGE_WIDTH=defaultPageSize[0]
+
+    
+    doc = SimpleDocTemplate("MyCallTime/static/pdfs/"+str(id)+".pdf", pagesize=letter)
+    # container for the 'Flowable' objects
+    elements = []
+ 
+    data= [[Paragraph('<b>Team</b>', styleSheet["BodyText"]), Paragraph('<b>Name</b>', styleSheet["BodyText"]), Paragraph('<b>Contact</b>', styleSheet["BodyText"]), Paragraph('<b>CallTime</b>', styleSheet["BodyText"])]]
+    data.append(['Photographer', shoot.photo.photographer, "contact agent", shoot.photo.start_time])
+    data.append(['Photo Agent', shoot.photo.agent_name,  shoot.photo.agent_phone, "as needed"])
+    data.append(['Digital Tech', shoot.photo.digital_tech, shoot.photo.digitech_phone, shoot.photo.start_time])
+
+    t=Table(data)
+
+
+    #t.setStyle(TableStyle([('BACKGROUND',(1,1),(-2,-2),colors.green),
+    #                       ('TEXTCOLOR',(0,0),(1,-1),colors.red)]))
+    elements.append(t)
+    # write the document to disk
+    doc.build(elements, onFirstPage=myFirstPage)   
+
 @app.route('/pdf/<int:shoot_id>', methods=['GET'])
 def createPDF(shoot_id):
     if 'email' not in session:
         return redirect(url_for('signin'))
 
     shoot = db.session.query(Shoots).get(shoot_id)
-    form = ShootsForm(obj=shoot)
-    if form.validate_on_submit():
-        form.populate_obj(shoot)
-        db.session.commit()
-    
-    return ()
+    createPdf(shoot.name, shoot.date, shoot.location, shoot.ID, shoot)
+
+    return render_template('pdf.html', shootid=shoot.ID)
