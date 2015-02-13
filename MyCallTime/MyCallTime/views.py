@@ -163,6 +163,8 @@ from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
 from reportlab.lib.styles import getSampleStyleSheet 
 from reportlab.rl_config import defaultPageSize
 from reportlab.lib.units import inch
+from io import BytesIO
+from flask import make_response
 
 def myFirstPage(canvas, doc):
 
@@ -174,6 +176,7 @@ def myFirstPage(canvas, doc):
     canvas.restoreState()
 
 def createPdf(title, date, location, id, shoot):
+    buffer = BytesIO()
     styleSheet = getSampleStyleSheet()
 
     styleSheet = getSampleStyleSheet()
@@ -181,7 +184,7 @@ def createPdf(title, date, location, id, shoot):
     PAGE_WIDTH=defaultPageSize[0]
 
     
-    doc = SimpleDocTemplate("MyCallTime/static/pdfs/"+str(id)+".pdf", pagesize=letter)
+    doc = SimpleDocTemplate(buffer, pagesize=letter)
     # container for the 'Flowable' objects
     elements = []
  
@@ -191,13 +194,14 @@ def createPdf(title, date, location, id, shoot):
     data.append(['Digital Tech', shoot.photo.digital_tech, shoot.photo.digitech_phone, shoot.photo.start_time])
 
     t=Table(data)
-
-
-    #t.setStyle(TableStyle([('BACKGROUND',(1,1),(-2,-2),colors.green),
-    #                       ('TEXTCOLOR',(0,0),(1,-1),colors.red)]))
+    
     elements.append(t)
-    # write the document to disk
+
+    # write the document to buffer
     doc.build(elements, onFirstPage=myFirstPage)   
+    pdf = buffer.getvalue()
+    buffer.close()
+    return pdf
 
 @app.route('/pdf/<int:shoot_id>', methods=['GET'])
 def createPDF(shoot_id):
@@ -205,6 +209,10 @@ def createPDF(shoot_id):
         return redirect(url_for('signin'))
 
     shoot = db.session.query(Shoots).get(shoot_id)
-    createPdf(shoot.name, shoot.date, shoot.location, shoot.ID, shoot)
+    pdf = createPdf(shoot.name, shoot.date, shoot.location, shoot.ID, shoot)
+    response = make_response(pdf)
 
-    return render_template('pdf.html', shootid=shoot.ID)
+
+    response.headers['Content-Type']='application/pdf'
+    response.headers['Content-Disposition'] = 'filename="shoot.pdf"'
+    return response

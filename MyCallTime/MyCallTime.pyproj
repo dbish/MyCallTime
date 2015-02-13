@@ -44,7 +44,6 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="MyCallTime\" />
-    <Folder Include="MyCallTime\static\pdfs\" />
     <Folder Include="MyCallTime\static\" />
     <Folder Include="MyCallTime\static\content\" />
     <Folder Include="MyCallTime\static\fonts\" />
@@ -53,7 +52,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="mycalltime.pubxml" />
-    <Content Include="MyCallTime\static\pdfs\simple_table.pdf" />
     <Content Include="MyCallTime\static\content\jasny-bootstrap.css" />
     <Content Include="MyCallTime\static\content\jasny-bootstrap.css.map" />
     <Content Include="MyCallTime\static\content\jasny-bootstrap.min.css" />
