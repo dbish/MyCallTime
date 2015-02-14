@@ -393,11 +393,13 @@
             </div>
         </form>
 
+        {% if id %}
         <form action="{{url_for('createPDF', shoot_id=id)}}">
             <input type="submit" value="View PDF">
         </form>
         <form action="{{url_for('savePDF', shoot_id=id)}}">
             <input type="submit" value="Save PDF">
         </form>
+        {% endif %}
 <script type="text/javascript" language="javascript" src="/static/scripts/newItem.js"></script>
 {% endblock %}

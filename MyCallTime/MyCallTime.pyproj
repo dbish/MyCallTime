@@ -60,6 +60,7 @@
     <Content Include="MyCallTime\static\scripts\jasny-bootstrap.min.js" />
     <Content Include="MyCallTime\static\scripts\loadSheet.js" />
     <Content Include="MyCallTime\static\scripts\createSheet.js" />
+    <Content Include="MyCallTime\static\scripts\dashboard.js" />
     <Content Include="MyCallTime\static\scripts\newItem.js" />
     <Content Include="MyCallTime\templates\pdf.html" />
     <Content Include="MyCallTime\templates\edit.html" />
