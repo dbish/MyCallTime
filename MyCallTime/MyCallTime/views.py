@@ -5,7 +5,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, request, flash, session, url_for, redirect, jsonify, json
 from MyCallTime import app
-from MyCallTime.forms import ContactForm, SignupForm, SignInForm, ShootsForm
+from MyCallTime.forms import ContactForm, SignupForm, SignInForm, ShootsForm, EmailForm
 from MyCallTime.models  import db
 from MyCallTime.models import Shoots, User, Talent, Photo, Catering, Art, Makeup, Hair, Wardrobe, Production
 from MyCallTime.models import ArtAssistants, ProdAssistants, PhotoAssistants, HairAssistants, MakeupAssistants, WardrobeAssistants
@@ -13,7 +13,11 @@ from wtforms.ext.sqlalchemy.orm import model_form
 from flask_wtf import Form
 from copy import deepcopy
 from fpdf import FPDF, HTMLMixin
+from flask.ext.mail import Message, Mail
+import MyCallTime.config as config
 Title = " "
+
+mail = Mail(app)
 
 @app.route('/')
 @app.route('/home')
@@ -292,3 +296,29 @@ def savePDF(shoot_id):
     response.headers['Content-Disposition'] = 'attachment; filename="shoot.pdf"'
 
     return response
+
+@app.route('/emailpdf/<int:shoot_id>', methods=['GET', 'POST'])
+def emailPDF(shoot_id):
+    if 'email' not in session:
+        return redirect(url_for('signin'))
+
+    form = EmailForm()
+    shoot = db.session.query(Shoots).get(shoot_id)
+    if request.method == 'POST':
+        if form.validate() == False:
+            return render_template('sendemail.html', form=form, id=shoot_id)
+        else:
+            msg = Message(form.subject.data, sender=config.emailUsername, 
+                          recipients=[form.recipient.data], cc=[form.cc.data])
+            msg.body=form.message.data
+            pdf = createPdf(shoot.name, shoot.date, shoot.location, shoot.ID, shoot)
+            msg.attach("mycallsheet.pdf", "application/pdf", pdf)
+            mail.send(msg)
+            return 'Email sent.'
+      
+
+    elif request.method == 'GET':
+        form.cc.data=session['email']
+        form.subject.data=shoot.name+" Call Sheet"
+        form.message.data = "Attached is the call sheet for our upcoming shoot."
+        return render_template('sendemail.html', form=form, id=shoot_id)

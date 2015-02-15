@@ -183,3 +183,10 @@ class SignInForm(Form):
         else:
             self.email.errors.append("Invalid e-mail or password")
             return False
+
+class EmailForm(Form):
+    recipient = TextField("Recipients",  [validators.Required("Please enter an email address."), validators.Email("Please enter a valid email address.")])
+    cc = TextField("CC",  [validators.Email("Please enter a valid email address.")])
+    subject = TextField("Subject", [validators.Required("Please enter a subject.")])
+    message = TextField("Body")
+    submit = SubmitField("Send")

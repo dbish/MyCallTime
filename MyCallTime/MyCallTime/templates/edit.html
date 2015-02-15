@@ -395,11 +395,13 @@
 
         {% if id %}
         <form action="{{url_for('createPDF', shoot_id=id)}}">
-            <input type="submit" value="View PDF">
+            <input type="submit" value="Preview">
         </form>
-        <form action="{{url_for('savePDF', shoot_id=id)}}">
-            <input type="submit" value="Save PDF">
+        <form action="{{url_for('emailPDF', shoot_id=id)}}">
+            <input type="submit" value="Email">
         </form>
         {% endif %}
+        
+
 <script type="text/javascript" language="javascript" src="/static/scripts/newItem.js"></script>
 {% endblock %}

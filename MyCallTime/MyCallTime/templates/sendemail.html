@@ -1,0 +1,38 @@
+﻿{% extends "layout.html" %}
+
+{% block content %}
+<h2>Email PDF</h2>
+{% for message in form.recipient.errors %}
+<div class="flash">{{ message }}</div>
+{% endfor %}
+
+{% for message in form.cc.errors %}
+<div class="flash">{{ message }}</div>
+{% endfor %}
+
+{% for message in form.subject.errors %}
+<div class="flash">{{ message }}</div>
+{% endfor %}
+
+{% for message in form.message.errors %}
+<div class="flash">{{ message }}</div>
+{% endfor %}
+
+<form action="{{ url_for('emailPDF', shoot_id=id) }}" method=post>
+    {{ form.hidden_tag() }}
+
+    {{ form.recipient.label }}
+    {{ form.recipient }}
+
+    {{ form.cc.label }}
+    {{ form.cc }}
+
+    {{ form.subject.label }}
+    {{ form.subject }}
+
+    {{ form.message.label }}
+    {{ form.message }}
+
+    {{ form.submit }}
+</form>
+{% endblock %}
