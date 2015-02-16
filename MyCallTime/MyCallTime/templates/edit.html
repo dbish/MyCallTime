@@ -48,15 +48,15 @@
             <div class="row">
                 <div class="contact col-md-5">
                     <label>General Contact</label>
-                    <div>{{form.contact_name}}</div>
-                    <div>{{form.contact_email}}</div>
-                    <div>{{form.contact_phone}}</div>
+                    <div>{{form.contact_name(placeholder="name")}}</div>
+                    <div>{{form.contact_email(placeholder="email")}}</div>
+                    <div>{{form.contact_phone(placeholder="phone")}}</div>
                 </div>
                 <div class="location col-md-5">
                     <label>Location</label>
-                    <div>{{form.location}}</div>
+                    <div>{{form.location(placeholder="address")}}</div>
                     <div>   
-                        {{form.studio}}
+                        {{form.studio(placeholder="studio")}}
                     </div>
                 </div>
             </div>
@@ -90,9 +90,9 @@
                             <div class="row">
                                 <div class="col-md-5">
                                     <label>Agent/Contact</label>
-                                    <div>{{talent_form.agent_name}}</div>
-                                    <div>{{talent_form.agent_email}}</div>
-                                    <div>{{talent_form.agent_phone}}</div>
+                                    <div>{{talent_form.agent_name(placeholder="name")}}</div>
+                                    <div>{{talent_form.agent_email(placeholder="email")}}</div>
+                                    <div>{{talent_form.agent_phone(placeholder="phone")}}</div>
                                 </div>
                             </div>
                         </li>
@@ -120,18 +120,18 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label>Producer</label>
-                            <div>{{form.production.producer_name}}</div>
-                            <div>{{form.production.producer_email}}</div>
-                            <div>{{form.production.producer_phone}}</div>
+                            <div>{{form.production.producer_name(placeholder="name")}}</div>
+                            <div>{{form.production.producer_email(placeholder="email")}}</div>
+                            <div>{{form.production.producer_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% for assistant_form in form.production.assistants %}
                     <div class="row" id="prodAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
-                            <div>{{assistant_form.assistantName}}</div>
-                            <div>{{assistant_form.email}}</div>
-                            <div>{{assistant_form.phone}}</div>
+                            <div>{{assistant_form.assistantName(placeholder="name")}}</div>
+                            <div>{{assistant_form.email(placeholder="email")}}</div>
+                            <div>{{assistant_form.phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% endfor %}
@@ -157,32 +157,32 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label>Agent/Contact</label>
-                            <div>{{form.photo.agent_name}}</div>
-                            <div>{{form.photo.agent_email}}</div>
-                            <div>{{form.photo.agent_phone}}</div>
+                            <div>{{form.photo.agent_name(placeholder="name")}}</div>
+                            <div>{{form.photo.agent_email(placeholder="email")}}</div>
+                            <div>{{form.photo.agent_phone(placeholder="phone")}}</div>
                         </div>
                         <div class="col-md-5">
                             <label>Digital Tech</label>
-                            <div>{{form.photo.digital_tech}}</div>
-                            <div>{{form.photo.digital_email}}</div>
-                            <div>{{form.photo.digital_phone}}</div>
+                            <div>{{form.photo.digital_tech(placeholder="name")}}</div>
+                            <div>{{form.photo.digitech_email(placeholder="email")}}</div>
+                            <div>{{form.photo.digitech_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     <div class="row">
                         <div class="col-md-5">
                             <label>1st Assistant</label>
-                            <div>{{form.photo.first_ast_name}}</div>
-                            <div>{{form.photo.first_ast_email}}</div>
-                            <div>{{form.photo.first_ast_phone}}</div>
+                            <div>{{form.photo.first_ast_name(placeholder="name")}}</div>
+                            <div>{{form.photo.first_ast_email(placeholder="email")}}</div>
+                            <div>{{form.photo.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% for assistant_form in form.photo.assistants %}
                     <div class="row" id="photoAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
-                            <div>{{assistant_form.assistantName}}</div>
-                            <div>{{assistant_form.email}}</div>
-                            <div>{{assistant_form.phone}}</div>
+                            <div>{{assistant_form.assistantName(placeholder="name")}}</div>
+                            <div>{{assistant_form.email(placeholder="email")}}</div>
+                            <div>{{assistant_form.phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% endfor %}
@@ -208,24 +208,24 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label>Agent/Contact</label>
-                            <div>{{form.art.agent_name}}</div>
-                            <div>{{form.art.agent_email}}</div>
-                            <div>{{form.art.agent_phone}}</div>
+                            <div>{{form.art.agent_name(placeholder="name")}}</div>
+                            <div>{{form.art.agent_email(placeholder="email")}}</div>
+                            <div>{{form.art.agent_phone(placeholder="phone")}}</div>
                         </div>
                         <div class="col-md-5">
                             <label>1st Assistant</label>
-                            <div>{{form.art.first_ast_name}}</div>
-                            <div>{{form.art.first_ast_email}}</div>
-                            <div>{{form.art.first_ast_phone}}</div>
+                            <div>{{form.art.first_ast_name(placeholder="name")}}</div>
+                            <div>{{form.art.first_ast_email(placeholder="email")}}</div>
+                            <div>{{form.art.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% for assistant_form in form.art.assistants %}
                     <div class="row" id="artAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
-                            <div>{{assistant_form.assistantName}}</div>
-                            <div>{{assistant_form.email}}</div>
-                            <div>{{assistant_form.phone}}</div>
+                            <div>{{assistant_form.assistantName(placeholder="name")}}</div>
+                            <div>{{assistant_form.email(placeholder="email")}}</div>
+                            <div>{{assistant_form.phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% endfor %}
@@ -250,24 +250,24 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label>Agent/Contact</label>
-                            <div>{{form.makeup.agent_name}}</div>
-                            <div>{{form.makeup.agent_email}}</div>
-                            <div>{{form.makeup.agent_phone}}</div>
+                            <div>{{form.makeup.agent_name(placeholder="name")}}</div>
+                            <div>{{form.makeup.agent_email(placeholder="email")}}</div>
+                            <div>{{form.makeup.agent_phone(placeholder="phone")}}</div>
                         </div>
                         <div class="col-md-5">
                             <label>1st Assistant</label>
-                            <div>{{form.makeup.first_ast_name}}</div>
-                            <div>{{form.makeup.first_ast_email}}</div>
-                            <div>{{form.makeup.first_ast_phone}}</div>
+                            <div>{{form.makeup.first_ast_name(placeholder="name")}}</div>
+                            <div>{{form.makeup.first_ast_email(placeholder="email")}}</div>
+                            <div>{{form.makeup.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% for assistant_form in form.makeup.assistants %}
                     <div class="row" id="makeupAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
-                            <div>{{assistant_form.assistantName}}</div>
-                            <div>{{assistant_form.email}}</div>
-                            <div>{{assistant_form.phone}}</div>
+                            <div>{{assistant_form.assistantName(placeholder="name")}}</div>
+                            <div>{{assistant_form.email(placeholder="email")}}</div>
+                            <div>{{assistant_form.phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% endfor %}
@@ -292,24 +292,24 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label>Agent/Contact</label>
-                            <div>{{form.hair.agent_name}}</div>
-                            <div>{{form.hair.agent_email}}</div>
-                            <div>{{form.hair.agent_phone}}</div>
+                            <div>{{form.hair.agent_name(placeholder="name")}}</div>
+                            <div>{{form.hair.agent_email(placeholder="email")}}</div>
+                            <div>{{form.hair.agent_phone(placeholder="phone")}}</div>
                         </div>
                         <div class="col-md-5">
                             <label>1st Assistant</label>
-                            <div>{{form.hair.first_ast_name}}</div>
-                            <div>{{form.hair.first_ast_email}}</div>
-                            <div>{{form.hair.first_ast_phone}}</div>
+                            <div>{{form.hair.first_ast_name(placeholder="name")}}</div>
+                            <div>{{form.hair.first_ast_email(placeholder="email")}}</div>
+                            <div>{{form.hair.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% for assistant_form in form.hair.assistants %}
                     <div class="row" id="hairAssistants">
                         <div class="col-md-5">
                             <label>Assistant</label>
-                            <div>{{assistant_form.assistantName}}</div>
-                            <div>{{assistant_form.email}}</div>
-                            <div>{{assistant_form.phone}}</div>
+                            <div>{{assistant_form.assistantName(placeholder="name")}}</div>
+                            <div>{{assistant_form.email(placeholder="email")}}</div>
+                            <div>{{assistant_form.phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% endfor %}
@@ -334,24 +334,24 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label>Agent/Contact</label>
-                            <div>{{form.wardrobe.agent_name}}</div>
-                            <div>{{form.wardrobe.agent_email}}</div>
-                            <div>{{form.wardrobe.agent_phone}}</div>
+                            <div>{{form.wardrobe.agent_name(placeholder="name")}}</div>
+                            <div>{{form.wardrobe.agent_email(placeholder="email")}}</div>
+                            <div>{{form.wardrobe.agent_phone(placeholder="phone")}}</div>
                         </div>
                         <div class="col-md-5">
                             <label>1st Assistant</label>
-                            <div>{{form.wardrobe.first_ast_name}}</div>
-                            <div>{{form.wardrobe.first_ast_email}}</div>
-                            <div>{{form.wardrobe.first_ast_phone}}</div>
+                            <div>{{form.wardrobe.first_ast_name(placeholder="name")}}</div>
+                            <div>{{form.wardrobe.first_ast_email(placeholder="email")}}</div>
+                            <div>{{form.wardrobe.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% for assistant_form in form.wardrobe.assistants %}
                     <div class="row" id="wardrobeAssistants">
                         <div class="col-md-5">
                             <label>Assistant <span class="glyphicon glyphicon-minus-sign" aria-hidden="true"></span></label>
-                            <div>{{assistant_form.assistantName}}</div>
-                            <div>{{assistant_form.email}}</div>
-                            <div>{{assistant_form.phone}}</div>
+                            <div>{{assistant_form.assistantName(placeholder="name")}}</div>
+                            <div>{{assistant_form.email(placeholder="email")}}</div>
+                            <div>{{assistant_form.phone(placeholder="phone")}}</div>
                         </div>
                     </div>
                     {% endfor %}
@@ -367,9 +367,9 @@
                     <div class="row">
                         <div class="col-md-5">
                             <label>Company</label>
-                            <div>{{form.catering.company_name}}</div>
-                            <div>{{form.catering.company_email}}</div>
-                            <div>{{form.catering.company_phone}}</div>
+                            <div>{{form.catering.company_name(placeholder="name")}}</div>
+                            <div>{{form.catering.company_email(placeholder="email")}}</div>
+                            <div>{{form.catering.company_phone(placeholder="phone")}}</div>
 
                         </div>
                         <div class="col-md-5">

@@ -1,4 +1,10 @@
 ﻿$(document).ready(function () {
+    $(':input').change(
+        function () {
+            $(this).css({ 'background-color': '#FFCCCC' });
+        }
+        );
+
     $('#addTalent').click(function()
     {
         var index = $('#talentList').children().length

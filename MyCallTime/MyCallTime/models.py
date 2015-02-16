@@ -25,7 +25,7 @@ class ProdAssistants(db.Model):
     __tablename__ = 'ProdAssistants'
     ID = db.Column(db.Integer, primary_key = True)
     assistantName = db.Column(db.String(50))
-    email = db.Column(db.String(50))
+    email = db.Column(db.String(50), info={'placeholder': 'email'})
     phone = db.Column(db.String(50))
     prod_id = db.Column(db.Integer, db.ForeignKey('Production.ID'))
 
