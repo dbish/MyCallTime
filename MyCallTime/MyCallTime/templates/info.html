@@ -1,0 +1,337 @@
+﻿<!DOCTYPE html>
+<!--[if lt IE 7 ]><html class="ie ie6" lang="en"> <![endif]-->
+<!--[if IE 7 ]><html class="ie ie7" lang="en"> <![endif]-->
+<!--[if IE 8 ]><html class="ie ie8" lang="en"> <![endif]-->
+<!--[if (gte IE 9)|!(IE)]><!-->
+<html lang="en"> <!--<![endif]-->
+
+	<head>
+
+		<meta charset="utf-8">
+
+		
+		<!-- BASIC INFO -->
+		<title>MyCallsheets</title>
+		<meta name="author" content="Cory Bishop">
+		<meta name="keywords" content="responsive, parallax, bootstrap, html5 template, one page, landing page">
+		<meta name="description" content="MyCallsheets - The only callsheet for any device">
+
+		<!-- FAVICONS -->
+		<link rel="icon" href="/static/images/favicons/favicon.ico">
+		<link rel="apple-touch-icon" href="/static/images/favicons/apple-touch-icon.png">
+		<link rel="apple-touch-icon" sizes="72x72" href="/static/images/favicons/apple-touch-icon-72x72.png">
+		<link rel="apple-touch-icon" sizes="114x114" href="/static/images/favicons/apple-touch-icon-114x114.png">
+
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Montserrat:400,700">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800">
+
+        <!-- LIBRARIES CSS -->
+        <link rel="stylesheet" href="/static/content/bootstrap.min.css">
+        <link rel="stylesheet" href="/static/content/font-awesome.min.css">
+        <link rel="stylesheet" href="statis/content/animate.min.css">
+
+        <link rel="stylesheet" href="/static/content/style.css">
+		
+        <link id="color-css" rel="stylesheet" href="static/content/colors/red.css">
+	</head>
+
+	<body class="enable-animations enable-preloader">
+
+		<div id="document" class="document">
+
+			<!-- HEADER
+			================================= -->
+			<header id="header" class="header-section section section-dark navbar navbar-fixed-top">
+
+				<div class="container-fluid">
+
+					<div class="navbar-header navbar-left">
+
+						<!-- RESPONSIVE MENU BUTTON -->
+						<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navigation">
+							<span class="sr-only">Toggle navigation</span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+							<span class="icon-bar"></span>
+						</button>
+
+						<!-- HEADER LOGO -->
+						<a class="navbar-logo navbar-brand anchor-link" href="#hero">
+                            <img src="/static/images/logos/header-logo.png" srcset="/static/images/logos/header-logo@2x.png 2x" alt="Drew">
+						</a>
+
+					</div>
+
+					<nav id="navigation" class="navigation navbar-collapse collapse navbar-right">
+						
+						<!-- NAVIGATION LINKS -->
+						<ul id="header-nav" class="nav navbar-nav">
+							
+							<li><a href="#hero" class="hidden">Top</a></li>
+
+							<li><a href="#about">About</a></li>
+							<!--<li><a href="#benefits">Benefits</a></li>-->
+							<li><a href="#how-it-works">How it Works</a></li>
+							<!--<li><a href="#video">Watch Video</a></li>-->
+							<!--<li><a href="#team">The Team</a></li>-->
+							<li><a href="#pricing">Contact US</a></li>
+							
+							<!-- HEADER ACTION BUTTON -->
+							<!--<li class="header-action-button"><a href="#" class="btn btn-primary">Action Button</a></li>-->
+
+						</ul>
+
+					</nav>
+
+				</div>
+
+			</header>
+
+			<!-- HERO
+			================================= -->
+			<section id="hero" class="hero-section hero-layout-simple hero-fullscreen section section-dark">
+
+				<div class="section-background">
+
+					<!-- IMAGE BACKGROUND -->
+					<div class="section-background-image parallax-background" data-stellar-background-ratio="0.4"></div>
+
+				</div>
+
+				<div class="container">
+
+					<div class="hero-content">
+
+						<div class="row">
+							<div class="col-md-10 col-md-offset-1">
+
+								<div class="hero-heading" data-animation="fadeIn">
+
+									<h1 class="hero-title">The only callsheet app for any device</h1>
+
+									<p class="hero-tagline">create, manage, & send callsheets instantly</p>
+
+								</div>
+
+								<p class="hero-buttons">
+                                    <a href="{{url_for('signin')}}" class="btn btn-lg btn-default">Log In</a>
+                                    <a href="{{url_for('signup')}}" class="btn btn-lg btn-primary">Sign Up</a>
+								</p>
+
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+				<!-- HERO START LINK -->
+				<a href="#headline" class="hero-start-link anchor-link"><span class="fa fa-angle-double-down"></span></a>
+
+			</section>
+
+			
+			<!-- DESCRIPTION
+			================================= -->
+			<section id="about" class="about-section section">
+
+				<div class="container">
+
+					<h2 class="section-heading text-center">About MyCallSheets</h2>
+
+					<div class="about-row row">
+
+						<!-- DESCRIPTION IMAGE -->
+						<div class="about-image col-md-6" data-animation="fadeIn">
+                            <img src="/static/images/contents/about.jpg" alt="Description Image">
+						</div>
+
+						<!-- DESCRIPTION TEXT -->
+						<div class="about-text col-md-6">
+							<p class="lead">Create, manage, and send callsheets all in one place.</p>
+							<p>After working in the fashion photography industry for years our team realized the callsheet process was broken and in need of a facelift.</p>
+							<ul class="icon-list">
+								<li>
+									<span class="icon-list-icon fa fa-area-chart" data-animation="bounceIn"></span>
+									<h4 class="icon-list-title">All-in-one Dashboard</h4>
+									<p>Manage all your callsheets in one place. No need to jump through different programs or waste memory space on your own device.</p>
+								</li>
+								<li>
+									<span class="icon-list-icon fa  fa-clock-o" data-animation="bounceIn"></span>
+								
+									<h4 class="icon-list-title">Create a callsheet within seconds</h4>
+									<p>Fill in our carefully selected shoot details, save, and send to your team in no time. Your dashboard tells you if a callsheet's been sent, saved, or expired.</p>
+								</li>
+								<li>
+									<span class="icon-list-icon fa fa-tablet" data-animation="bounceIn"></span>
+									
+									<h4 class="icon-list-title">Use it from any device</h4>
+									<p>To busy to jump on your laptop? No worries, jump on your phone, tablet, or any other device.</p>
+								</li>
+							</ul>
+						</div>
+
+					</div>
+
+				</div>
+
+			</section>
+
+			<!-- HOW IT WORKS
+			================================= -->
+			<section id="how-it-works" class="benefits-section section-gray section">
+
+				<div class="container-fluid">
+					
+					<h2 class="section-heading text-center">How it Works</h2>
+
+					<div class="hiw-row row">
+
+						<!-- HOW IT WORKS - ITEM 1 -->
+						<div class="col-md-3 col-sm-6" data-animation="fadeIn">
+							<div class="hiw-item">
+                                <img class="hiw-item-picture" src="/static/images/contents/item1.jpg" alt="">
+								<div class="hiw-item-text">
+									<span class="hiw-item-icon">1</span>
+									<h4 class="hiw-item-title">Create new sheet</h4>
+									<p class="hiw-item-description">Log into your dashboard allows  to manage, edit, or create a new callsheet.</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- HOW IT WORKS - ITEM 2 -->
+						<div class="col-md-3 col-sm-6" data-animation="fadeIn">
+							<div class="hiw-item even">
+                                <img class="hiw-item-picture" src="/static/images/contents/item2.jpg" alt="">
+								<div class="hiw-item-text">
+									<span class="hiw-item-icon">2</span>
+									<h4 class="hiw-item-title">Fill in shoot details</h4>
+									<p class="hiw-item-description">No more wasting time creating a new sheet from scratch. Our easy to use template cuts the time in half.</p>
+								</div>
+							</div>
+						</div>
+
+						<div class="hidden-md hidden-lg clear"></div>
+
+						<!-- HOW IT WORKS - ITEM 3 -->
+						<div class="col-md-3 col-sm-6" data-animation="fadeIn">
+							<div class="hiw-item">
+                                <img class="hiw-item-picture" src="/static/images/contents/item3.jpg" alt="">
+								<div class="hiw-item-text">
+									<span class="hiw-item-icon">3</span>
+									<h4 class="hiw-item-title">Preview</h4>
+									<p class="hiw-item-description">Our app creates a PDF for your viewing pleasures in seconds using our in-house viewer friendly template.</p>
+								</div>
+							</div>
+						</div>
+
+						<!-- HOW IT WORKS - ITEM 4 -->
+						<div class="col-md-3 col-sm-6" data-animation="fadeIn">
+							<div class="hiw-item even">
+                                <img class="hiw-item-picture" src="/static/images/contents/item4.jpg" alt="">
+								<div class="hiw-item-text">
+									<span class="hiw-item-icon">4</span>
+									<h4 class="hiw-item-title">Send</h4>
+									<p class="hiw-item-description">Create, preview, and then send the new callsheet to your team! </p>
+								</div>
+							</div>
+						</div>
+
+					</div>
+
+				</div>
+
+			</section>
+
+			
+
+			<!-- CONTACT US
+			================================= -->
+			<section id="pricing" class="pricing-section section">
+
+				<div class="container">
+
+					
+
+
+								<!-- FORM -->
+								<form action="" method="post" id="form" class="form" role="form">
+
+									<h4 class="form-heading">Contact us for a free Trial!</h4>
+
+									<div class="form-validation alert"></div>
+
+									<div class="form-group">
+										<label for="form-name">Name</label>
+										<input type="text" name="name" id="form-name" class="form-control" placeholder="Your Full Name" autocomplete="off">
+									</div>
+
+									<div class="form-group">
+										<label for="form-email">Email Address</label>
+										<input type="email" name="email" id="form-email" class="form-control" placeholder="Your Valid Email Address" 													autocomplete="off">
+									</div>
+									<div class="form-group">
+										<label for="subject">Subject</label>
+										<input type="text" name="subject" id="form-subject" class="form-control" placeholder="Want a free trial?" 															autocomplete="off">
+									</div>
+									<div class="form-group">
+										<label for="message">Message</label>
+										
+										<textarea id="form-message" name="message" class="form-control form-input" placeholder="Don't be shy..."  required></textarea>
+										
+									</div>
+									
+									<div class="form-group form-group-submit">
+										<button class="btn btn-primary btn-lg btn-block" type="submit" data-loading-text="Action Button">Send</button>
+									</div>
+								</form>
+
+							
+
+				</div>
+
+			</section>
+
+			
+
+			<!-- FOOTER
+			================================= -->
+			<section id="footer" class="footer-section section">
+
+				<div class="container">
+
+					<h3 class="footer-logo">
+                        <img src="/static/images/logos/footer-logo.png" srcset="/static/images/logos/footer-logo@2x.png 2x" alt="Drew">
+					</h3>
+
+					<div class="footer-socmed">
+						<a href="#" target="_blank"><span class="fa fa-facebook"></span></a>
+						<a href="#" target="_blank"><span class="fa fa-twitter"></span></a>
+					</div>
+
+					<div class="footer-copyright">
+						&copy; 2015 MyCallSheet App
+					</div>
+
+				</div>
+
+			</section>
+		
+		</div>
+
+		<!-- JAVASCRIPT
+		================================= -->
+        <script src="/static/scripts/jquery-1.11.2.min.js"></script>
+        <script src="/static/scripts/picturefill.min.js"></script>
+        <script src="/static/scripts/jpreloader.min.js"></script>
+        <script src="/static/scripts/bootstrap.min.js"></script>
+        <script src="/static/scripts/smoothscroll.min.js"></script>
+        <script src="/static/scripts/jquery.nav.min.js"></script>
+        <script src="/static/scripts/jquery.inview.min.js"></script>
+        <script src="/static/scripts/jquery.counterup.min.js"></script>
+        <script src="/static/scripts/jquery.stellar.min.js"></script>
+        <script src="/static/scripts/script.js"></script>
+		
+	</body>
+
+</html>

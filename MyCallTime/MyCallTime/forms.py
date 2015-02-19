@@ -190,3 +190,9 @@ class EmailForm(Form):
     subject = TextField("Subject", [validators.Required("Please enter a subject.")])
     message = TextField("Body")
     submit = SubmitField("Send")
+
+class ContactForm(Form):
+    name = TextField("Name",  [validators.Required("Please enter your name.")])
+    email = TextField("Email",  [validators.Required("Please enter an email address."), validators.Email("Please enter a valid email address.")])
+    subject= TextField("Subject",  [validators.Required("Please enter a subject.")])
+    message = TextField("Message",  [validators.Required("Please enter a message for us.")])

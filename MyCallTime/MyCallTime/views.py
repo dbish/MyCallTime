@@ -19,12 +19,16 @@ Title = " "
 
 mail = Mail(app)
 
+@app.route('/info')
+def info():
+    return render_template('info.html')
+
 @app.route('/')
 @app.route('/home')
 def home():
     """Renders the home page."""
     if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('info'))
 
     user = db.session.query(User).filter_by(email=session['email']).first()
     user_uid = user.id
@@ -38,10 +42,13 @@ def home():
         shoots=allShoots
     )
 
+
+
+
 @app.route('/delete/<int:shoot_id>', methods=['GET'])
 def deleteShoot(shoot_id):
      if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('info'))
      shoot = db.session.query(Shoots).get(shoot_id)
      db.session.delete(shoot)
      db.session.commit()
@@ -50,7 +57,7 @@ def deleteShoot(shoot_id):
 @app.route('/shoots/<int:shoot_id>', methods=['GET', 'POST'])
 def viewShoot(shoot_id):
     if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('info'))
 
     shoot = db.session.query(Shoots).get(shoot_id)
     form = ShootsForm(obj=shoot)
@@ -64,7 +71,7 @@ def viewShoot(shoot_id):
 @app.route('/copy/<int:shoot_id>', methods=['GET'])
 def copyShoot(shoot_id):
     if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('info'))
 
     shoot = db.session.query(Shoots).get(shoot_id)
     newShoot = Shoots("")
@@ -78,7 +85,7 @@ def copyShoot(shoot_id):
 @app.route('/newShoot', methods=['GET', 'POST'])
 def newShoot():
     if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('info'))
 
     user = db.session.query(User).filter_by(email=session['email']).first()
     user_uid = user.id
@@ -154,7 +161,7 @@ def signin():
 def signout():
  
   if 'email' not in session:
-    return redirect(url_for('signin'))
+    return redirect(url_for('info'))
      
   session.pop('email', None)
   return redirect(url_for('home'))
@@ -273,7 +280,7 @@ def createPdf(title, date, location, id, shoot):
 @app.route('/viewpdf/<int:shoot_id>', methods=['GET'])
 def createPDF(shoot_id):
     if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('info'))
 
     shoot = db.session.query(Shoots).get(shoot_id)
     pdf = createPdf(shoot.name, shoot.date, shoot.location, shoot.ID, shoot)
@@ -287,7 +294,7 @@ def createPDF(shoot_id):
 @app.route('/savepdf/<int:shoot_id>', methods=['GET'])
 def savePDF(shoot_id):
     if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('info'))
 
     shoot = db.session.query(Shoots).get(shoot_id)
     pdf = createPdf(shoot.name, shoot.date, shoot.location, shoot.ID, shoot)
@@ -300,7 +307,7 @@ def savePDF(shoot_id):
 @app.route('/emailpdf/<int:shoot_id>', methods=['GET', 'POST'])
 def emailPDF(shoot_id):
     if 'email' not in session:
-        return redirect(url_for('signin'))
+        return redirect(url_for('info'))
 
     form = EmailForm()
     shoot = db.session.query(Shoots).get(shoot_id)
