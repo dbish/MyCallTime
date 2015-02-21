@@ -33,7 +33,7 @@ def home():
     user = db.session.query(User).filter_by(email=session['email']).first()
     user_uid = user.id
 
-    allShoots = db.session.query(Shoots).filter_by(created_by=user_uid).all()
+    allShoots = db.session.query(Shoots).filter_by(created_by=user_uid).filter(Shoots.archived!=True).all()
 
     return render_template(
         'index.html',
@@ -50,7 +50,7 @@ def deleteShoot(shoot_id):
      if 'email' not in session:
         return redirect(url_for('info'))
      shoot = db.session.query(Shoots).get(shoot_id)
-     db.session.delete(shoot)
+     shoot.archived=True
      db.session.commit()
      return redirect(url_for('home'))
 
@@ -64,8 +64,11 @@ def viewShoot(shoot_id):
 
     if form.validate_on_submit():
         form.populate_obj(shoot)
+        for talent in shoot.talent:
+            if talent.archived == 1:
+                shoot.talent.remove(talent)
         db.session.commit()
-    
+        return redirect(url_for('viewShoot', shoot_id=shoot_id))
     return render_template('edit.html', form=form, id=shoot_id, title=shoot.name)
 
 @app.route('/copy/<int:shoot_id>', methods=['GET'])
@@ -114,6 +117,9 @@ def newShoot():
     if request.method == 'POST':
         if form.validate_on_submit():
             form.populate_obj(newShoot)
+            for talent in newShoot.talent:
+                if talent.archived == 1:
+                    talent.shoot_id = None
             db.session.commit()
             db.session.flush()
             db.session.refresh(newShoot)
@@ -175,7 +181,6 @@ from reportlab.lib.styles import getSampleStyleSheet
 from reportlab.rl_config import defaultPageSize
 from reportlab.lib.units import inch
 from io import BytesIO
-#from flask import Response
 from flask import make_response
 
 def myFirstPage(canvas, doc):

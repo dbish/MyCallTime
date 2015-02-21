@@ -147,6 +147,7 @@ class Talent(db.Model):
     agent_email = db.Column(db.String(50))
     agent_phone = db.Column(db.String(50))
     shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
+    archived = db.Column(db.SmallInteger)
 
 
     def __init__(self, name=None, agentName=None, startTime=None, email=None, phone=None):
@@ -355,8 +356,10 @@ class Shoots(db.Model):
      location = db.Column(db.String(200))
      studio = db.Column(db.String(100))
      notes = db.Column(db.String(1000))
+     
     
      created_by =  db.Column(db.Integer)
+     archived = db.Column(db.Boolean)
      talent = db.relationship(Talent, cascade="all,delete")
      photo = db.relationship(Photo, uselist=False, cascade="all,delete")
      catering = db.relationship(Catering, uselist=False, cascade="all,delete")

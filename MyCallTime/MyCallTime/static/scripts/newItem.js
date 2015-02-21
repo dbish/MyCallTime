@@ -116,6 +116,12 @@
     }
    );
 
+    $('.deleteTalent').click(function () {
+        $(this).parent().parent().find(".archived").find("input").val(1);
+        $(this).parent().parent().addClass('deleted');
+        $('#talent').prepend('<div class="unsaved"><p>- unsaved deletion -</p></div>');
+        
+    });
 
   
 });

@@ -89,3 +89,10 @@ ul
     cursor: pointer;
 }
 
+.deleted {
+    display:none;
+}
+
+.unsaved{
+    color:#FFCCCC;
+}

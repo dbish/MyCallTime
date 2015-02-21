@@ -72,11 +72,14 @@
                 <div class="panel-heading">
                     <h3 class="panel-title"><span class="glyphicon glyphicon-star" aria-hidden="true"></span> Talent</h3>
                 </div>
-                <div class="panel-body">
+                <div class="panel-body" id="talent">
                     <ul id="talentList">
                         {% for talent_form in form.talent %}
                         <li class="well">
                             {{talent_form.csrf_token}}
+                            <div class="archived hide">{{talent_form.archived}}</div>
+                            
+                            
                             <div class="row">
                                 <div class="col-md-5">
                                     <label>Name</label>
@@ -86,6 +89,7 @@
                                     <label>Call Time</label>
                                     <div>{{talent_form.start_time}}</div>
                                 </div>
+                                
                              </div>
                             <div class="row">
                                 <div class="col-md-5">
@@ -95,6 +99,8 @@
                                     <div>{{talent_form.agent_phone(placeholder="phone")}}</div>
                                 </div>
                             </div>
+                            <div class="col-md-1" style="float:right"><span class="fake-link deleteTalent">-delete-</span></div>
+                            
                         </li>
                         {% endfor %}
                     </ul>
