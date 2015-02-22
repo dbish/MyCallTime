@@ -4,6 +4,8 @@ from MyCallTime.models import db, User, Shoots, Talent, Photo, Catering, Art, Ma
 from MyCallTime.models import ArtAssistants, ProdAssistants, PhotoAssistants, HairAssistants, MakeupAssistants, WardrobeAssistants
 from wtforms_alchemy import ModelForm, model_form_factory, ModelFieldList, ModelFormField
 from wtforms.fields import FormField
+from sqlalchemy import func
+from flask import session
 
 BaseModelForm = model_form_factory(Form)
 
@@ -164,6 +166,39 @@ class SignupForm(Form):
       return False
     else:
       return True
+
+class MyAccountForm(Form):
+  firstname = TextField("First name",  [validators.Required("Please enter your first name.")])
+  lastname = TextField("Last name",  [validators.Required("Please enter your last name.")])
+  email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])
+  oldpassword = PasswordField('Old Password')
+  newpassword = PasswordField('New Password')
+  #companycode = TextField("Company Code",  [validators.Required("Please enter a company sign up code.")])
+  submit = SubmitField("Save Changes")
+ 
+  def __init__(self, *args, **kwargs):
+    Form.__init__(self, *args, **kwargs)
+ 
+  def validate(self):
+    if not Form.validate(self):
+      return False   
+
+    
+    user = db.session.query(User).filter_by(email=session['email']).first()
+    if user.email != self.email.data.lower():
+        userWithNewEmail = User.query.filter_by(email = self.email.data.lower()).first()
+        if userWithNewEmail:
+          self.email.errors.append("That email is already taken")
+          return False
+
+    if len(self.newpassword.data) > 0:
+        if user and user.check_password(self.oldpassword.data):
+            return True
+        else:
+            self.oldpassword.errors.append("Old password is invalid")
+    
+    return True
+
 
 class SignInForm(Form):
     email = TextField("Email",  [validators.Required("Please enter your email address."), validators.Email("Please enter your email address.")])

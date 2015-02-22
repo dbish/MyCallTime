@@ -5,7 +5,7 @@ Routes and views for the flask application.
 from datetime import datetime
 from flask import render_template, request, flash, session, url_for, redirect, jsonify, json
 from MyCallTime import app
-from MyCallTime.forms import ContactForm, SignupForm, SignInForm, ShootsForm, EmailForm
+from MyCallTime.forms import ContactForm, SignupForm, SignInForm, ShootsForm, EmailForm, MyAccountForm
 from MyCallTime.models  import db
 from MyCallTime.models import Shoots, User, Talent, Photo, Catering, Art, Makeup, Hair, Wardrobe, Production
 from MyCallTime.models import ArtAssistants, ProdAssistants, PhotoAssistants, HairAssistants, MakeupAssistants, WardrobeAssistants
@@ -54,6 +54,9 @@ def deleteShoot(shoot_id):
      db.session.commit()
      return redirect(url_for('home'))
 
+
+
+
 @app.route('/shoots/<int:shoot_id>', methods=['GET', 'POST'])
 def viewShoot(shoot_id):
     if 'email' not in session:
@@ -64,6 +67,9 @@ def viewShoot(shoot_id):
 
     if form.validate_on_submit():
         form.populate_obj(shoot)
+        #file = request.files['file']
+        #filename = file.filename
+        #shoot.photo = filename
         for talent in shoot.talent:
             if talent.archived == 1:
                 shoot.talent.remove(talent)
@@ -147,6 +153,38 @@ def newShoot():
             flash('failed validation')
     return render_template('edit.html', form=form, title="New Shoot")
 
+
+@app.route('/myaccount', methods=['GET', 'POST'])
+def myAccount():
+    if 'email' not in session:
+        return redirect(url_for('info'))
+    user = db.session.query(User).filter_by(email=session['email']).first()
+
+    form = MyAccountForm()
+    
+    if request.method == 'POST':
+        if form.validate() == False:
+            return render_template('myaccount.html', form=form)
+        else:  
+            user.firstname = form.firstname.data
+            user.lastname = form.lastname.data
+            user.email = form.email.data
+            if len(form.newpassword.data) > 0:
+                user.set_password(newpassword)
+            db.session.commit() 
+
+            session['email'] = user.email
+            return redirect(url_for('home'))
+      
+   
+    elif request.method == 'GET':
+        form.firstname.data = user.firstname
+        form.lastname.data = user.lastname
+        form.email.data = user.email
+        return render_template('myaccount.html', form=form)
+
+
+    
 
 @app.route('/signup', methods=['GET', 'POST'])
 def signup():

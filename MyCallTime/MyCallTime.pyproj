@@ -125,6 +125,7 @@
     <Content Include="MyCallTime\templates\newSheet.html" />
     <Content Include="MyCallTime\templates\sendemail.html" />
     <Content Include="MyCallTime\templates\signin.html" />
+    <Content Include="MyCallTime\templates\myaccount.html" />
     <Content Include="MyCallTime\templates\signup.html" />
     <Content Include="requirements.txt" />
     <Content Include="MyCallTime\static\content\bootstrap.css" />

@@ -4,6 +4,7 @@ from werkzeug import generate_password_hash, check_password_hash
 
 db = SQLAlchemy()
 
+
 #class People(db.Model):
 #    __tablename__ = 'People'
 #    ID = db.Column(db.Integer, primary_key = True , autoincrement=False)
@@ -362,6 +363,7 @@ class Shoots(db.Model):
      location = db.Column(db.String(200))
      studio = db.Column(db.String(100))
      notes = db.Column(db.String(1000))
+     photo = db.Column(db.String(100))
      
     
      created_by =  db.Column(db.Integer)

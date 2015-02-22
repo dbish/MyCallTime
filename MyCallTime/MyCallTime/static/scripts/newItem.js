@@ -122,23 +122,15 @@
     }
    );
 
-    $('.deleteTalent').click(function () {
+    $('#talentList').on("click", '.deleteTalent', function () {
+        alert("delete");
         $(this).parent().parent().find(".archived").find("input").val(1);
         $(this).parent().parent().addClass('deleted');
         $('#talent').prepend('<div class="unsaved"><p>- unsaved deletion -</p></div>');
-        
+
     });
 
-    //$('.deleteAssist').click(function () {
-    //    alert("delete!!!");
-    //    $(this).parent().parent().parent().find(".archived").find("input").val(1);
-    //    $(this).parent().parent().parent().addClass('deleted');
-    //    $(this).parent().parent().parent().parent().prepend('<div class="unsaved"><p> - unsaved deletion -</p></div>');
-
-    //});
-
     $('.assistants').on("click", '.deleteAssist', function () {
-        alert("delete!!!");
         $(this).parent().parent().parent().find(".archived").find("input").val(1);
         $(this).parent().parent().parent().addClass('deleted');
         $(this).parent().parent().parent().parent().prepend('<div class="unsaved"><p> - unsaved deletion -</p></div>');
