@@ -67,6 +67,25 @@ def viewShoot(shoot_id):
         for talent in shoot.talent:
             if talent.archived == 1:
                 shoot.talent.remove(talent)
+        for assistant in shoot.art.assistants:
+            if assistant.archived == 1:
+                shoot.art.assistants.remove(assistant)
+        for assistant in shoot.production.assistants:
+            if assistant.archived == 1:
+                shoot.production.assistants.remove(assistant)
+        for assistant in shoot.photo.assistants:
+            if assistant.archived == 1:
+                shoot.photo.assistants.remove(assistant)
+        for assistant in shoot.makeup.assistants:
+            if assistant.archived == 1:
+                shoot.makeup.assistants.remove(assistant)
+        for assistant in shoot.hair.assistants:
+            if assistant.archived == 1:
+                shoot.hair.assistants.remove(assistant)
+        for assistant in shoot.wardrobe.assistants:
+            if assistant.archived == 1:
+                shoot.wardrobe.assistants.remove(assistant)
+
         db.session.commit()
         return redirect(url_for('viewShoot', shoot_id=shoot_id))
     return render_template('edit.html', form=form, id=shoot_id, title=shoot.name)

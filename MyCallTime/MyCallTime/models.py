@@ -28,6 +28,7 @@ class ProdAssistants(db.Model):
     email = db.Column(db.String(50), info={'placeholder': 'email'})
     phone = db.Column(db.String(50))
     prod_id = db.Column(db.Integer, db.ForeignKey('Production.ID'))
+    archived = db.Column(db.SmallInteger)
 
     def __init__(self, assistantName=None, email=None, phone=None):
         self.assistantName = assistantName
@@ -44,6 +45,7 @@ class PhotoAssistants(db.Model):
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     photo_id = db.Column(db.Integer, db.ForeignKey('Photo.ID'))
+    archived = db.Column(db.SmallInteger)
 
     def __init__(self, assistantName=None, email=None, phone=None):
         self.assistantName = assistantName
@@ -60,6 +62,7 @@ class WardrobeAssistants(db.Model):
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     wardrobe_id = db.Column(db.Integer, db.ForeignKey('Wardrobe.ID'))
+    archived = db.Column(db.SmallInteger)
 
     def __init__(self, assistantName=None, email=None, phone=None):
         self.assistantName = assistantName
@@ -76,6 +79,7 @@ class HairAssistants(db.Model):
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     hair_id = db.Column(db.Integer, db.ForeignKey('Hair.ID'))
+    archived = db.Column(db.SmallInteger)
 
     def __init__(self, assistantName=None, email=None, phone=None):
         self.assistantName = assistantName
@@ -92,6 +96,7 @@ class MakeupAssistants(db.Model):
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     makeup_id = db.Column(db.Integer, db.ForeignKey('Makeup.ID'))
+    archived = db.Column(db.SmallInteger)
 
     def __init__(self, assistantName=None, email=None, phone=None):
         self.assistantName = assistantName
@@ -108,6 +113,7 @@ class ArtAssistants(db.Model):
     email = db.Column(db.String(50))
     phone = db.Column(db.String(50))
     art_id = db.Column(db.Integer, db.ForeignKey('Art.ID'))
+    archived = db.Column(db.SmallInteger)
 
     def __init__(self, assistantName=None, email=None, phone=None):
         self.assistantName = assistantName

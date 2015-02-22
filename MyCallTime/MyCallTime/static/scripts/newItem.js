@@ -123,5 +123,12 @@
         
     });
 
+    $('.deleteAssist').click(function () {
+        $(this).parent().parent().parent().find(".archived").find("input").val(1);
+        $(this).parent().parent().parent().addClass('deleted');
+        $(this).parent().parent().parent().parent().prepend('<div class="unsaved"><p> - unsaved deletion -</p></div>');
+
+    });
+
   
 });
