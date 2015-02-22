@@ -110,7 +110,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden=" true"></span> Production</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden="true"></span> Production</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -131,8 +131,8 @@
                             <div>{{form.production.producer_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
-                    {% for assistant_form in form.production.assistants %}
-                    <div class="row" id="prodAssistants">
+                    <div class="row assistants" id="prodAssistants">
+                        {% for assistant_form in form.production.assistants %}
                         <div class="col-md-5 assistant">
                             <div class="archived hide">{{assistant_form.archived}}</div>
                             <div class="row col-lg-6"><div class="col-lg-3"><label>Assistant</label></div><div class="col-lg-1" style="float:right"><span class="fake-link deleteAssist">x</span></div></div>
@@ -141,8 +141,8 @@
                             <div class="row col-lg-9">{{assistant_form.phone(placeholder="phone")}}</div>
 
                         </div>
+                        {% endfor %}
                     </div>
-                    {% endfor %}
                     <span class="fake-link" id="addProdAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
                 </div>
             </div>
@@ -184,7 +184,7 @@
                             <div>{{form.photo.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
-                    <div class="row" id="photoAssistants">
+                    <div class="row assistants" id="photoAssistants">
                         {% for assistant_form in form.photo.assistants %}
                         <div class="col-md-5 assistant">
                             <div class="archived hide">{{assistant_form.archived}}</div>
@@ -228,7 +228,7 @@
                             <div>{{form.art.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
-                    <div class="row" id="artAssistants">
+                    <div class="row assistants" id="artAssistants" >
                         {% for assistant_form in form.art.assistants %}
                         <div class="col-md-5 assistant">
                             <div class="archived hide">{{assistant_form.archived}}</div>
@@ -236,7 +236,7 @@
                             <div class="row col-lg-9">{{assistant_form.assistantName(placeholder="name")}}</div>
                             <div class="row col-lg-9">{{assistant_form.email(placeholder="email")}}</div>
                             <div class="row col-lg-9">{{assistant_form.phone(placeholder="phone")}}</div>
-                        </div>
+                        </div> 
                         {% endfor %}
                     </div>
                     <span class="fake-link" id="addArtAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
@@ -271,7 +271,7 @@
                             <div>{{form.makeup.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
-                    <div class="row" id="makeupAssistants">
+                    <div class="row assistants" id="makeupAssistants">
                         {% for assistant_form in form.makeup.assistants %}
                         <div class="col-md-5 assistant">
                             <div class="archived hide">{{assistant_form.archived}}</div>
@@ -314,7 +314,7 @@
                             <div>{{form.hair.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
-                    <div class="row" id="hairAssistants">
+                    <div class="row assistants" id="hairAssistants assistants">
                         {% for assistant_form in form.hair.assistants %}
                         <div class="col-md-5 assistant">
                             <div class="archived hide">{{assistant_form.archived}}</div>
@@ -358,7 +358,7 @@
                             <div>{{form.wardrobe.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
-                    <div class="row" id="wardrobeAssistants">
+                    <div class="row assistants" id="wardrobeAssistants">
                         {% for assistant_form in form.wardrobe.assistants %}
                         <div class="col-md-5 assistant">
                             <div class="archived hide">{{assistant_form.archived}}</div>
@@ -368,7 +368,7 @@
                             <div class="row col-lg-9">{{assistant_form.phone(placeholder="phone")}}</div>
                         </div>
                         {% endfor %}
-                        </div>
+                    </div>
                         <span class="fake-link" id="addWardrobeAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
                     </div>
             </div>
