@@ -364,6 +364,7 @@ class Shoots(db.Model):
      studio = db.Column(db.String(100))
      notes = db.Column(db.String(1000))
      photo = db.Column(db.String(100))
+     last_updated = db.Column(db.DateTime)
      
     
      created_by =  db.Column(db.Integer)

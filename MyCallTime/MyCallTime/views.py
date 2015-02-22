@@ -15,6 +15,10 @@ from copy import deepcopy
 from fpdf import FPDF, HTMLMixin
 from flask.ext.mail import Message, Mail
 import MyCallTime.config as config
+from datetime import datetime
+from pytz import timezone
+from sqlalchemy import desc
+
 Title = " "
 
 mail = Mail(app)
@@ -33,7 +37,7 @@ def home():
     user = db.session.query(User).filter_by(email=session['email']).first()
     user_uid = user.id
 
-    allShoots = db.session.query(Shoots).filter_by(created_by=user_uid).filter(Shoots.archived!=True).all()
+    allShoots = db.session.query(Shoots).filter_by(created_by=user_uid).filter(Shoots.archived!=True).order_by(desc(Shoots.last_updated)).all()
 
     return render_template(
         'index.html',
@@ -91,6 +95,9 @@ def viewShoot(shoot_id):
         for assistant in shoot.wardrobe.assistants:
             if assistant.archived == 1:
                 shoot.wardrobe.assistants.remove(assistant)
+        nowUTC = datetime.now(timezone('UTC'))
+
+        shoot.last_updated = nowUTC
 
         db.session.commit()
         return redirect(url_for('viewShoot', shoot_id=shoot_id))
