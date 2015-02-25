@@ -4,6 +4,20 @@
         $("input[type=radio]:first-child").attr('checked', 'checked');
     };
 
+    var today = new Date();
+
+    $('.date').each(function () {
+        dateText = $(this).text();
+        if (dateText != "None") {
+            var date = new Date(dateText);
+            if (date < today) {
+                $(this).parent().addClass("past");
+            };
+        };
+       
+    });
+
+
     $('#editShoot').click(function()
     {
 
@@ -36,6 +50,8 @@
         }).show();
 
     });
+
+
 
   
 });

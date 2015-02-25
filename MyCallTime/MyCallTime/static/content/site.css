@@ -96,3 +96,7 @@ ul
 .unsaved{
     color:#FFCCCC;
 }
+
+.past {
+    background-color:lightgray;
+}
