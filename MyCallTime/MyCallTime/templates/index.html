@@ -15,54 +15,59 @@
         <div class="col-md-2"><span class="fake-link" id="deleteShoot"><span class="glyphicon glyphicon-trash" aria-hidden="true"></span> archive</span></div>
     </div>
     <div class="container-fluid">
-        <div class="table-responsive">
-            <table class="table table-responsive table-hover">
-                <thead>
-                    <tr bgcolor="#e9e9e9">
-                        <th>&nbsp;</th>
-                        <th>shoot date</th>
-                        <th>shoot title</th>
-                        <th>location</th>
-                        <th>client</th>
-                        <th>status</th>
-                        <th>last update</th>
-                    </tr>
-                </thead>
-                <tbody>
+        <div class="input-group">
+            <span class="input-group-addon">Filter</span>
 
-                    {% if shoots|length == 0 %}
-                    <tr>
-                        <td colspan="5">
-                            <div class="cancel">
-                                you have no sheets. Create a new one with the button above.
-                            </div>
-                        </td>
-
-
-                    </tr>
-                    {% endif %}
-                    <tr>
-                        <td colspan="5" class="create" style="display:none">
-                            <button type="button" onclick="window.location.href='/newShoot'">new sheet</button>
-                        </td>
-                    </tr>
-
-                    {% for shoot in shoots%}
-                    <tr>
-                        <td><input type="radio" name="choice" value="{{shoot.ID}}"></td>
-                        <td>{{shoot.date}}</td>
-                        {% set edit_link = "window.location.href='/copy/"+shoot.ID|string+"'" %}
-                        <td><a href="{{url_for('viewShoot', shoot_id=shoot.ID)}}">{{shoot.name}}</a></td>
-                        <td>{{shoot.location}}</td>
-                        <td>{{shoot.client}}</td>
-                        <td>&nbsp;</td>
-                        <td>{{shoot.last_updated}}</td>
-                    </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-
+            <input id="filter" type="text" class="form-control" placeholder="Type here...">
         </div>
+        <div class="table-responsive">
+                <table class="table table-responsive table-hover">
+                    <thead>
+                        <tr bgcolor="#e9e9e9">
+                            <th>&nbsp;</th>
+                            <th>shoot date</th>
+                            <th>shoot title</th>
+                            <th>location</th>
+                            <th>client</th>
+                            <th>status</th>
+                            <th>last update</th>
+                        </tr>
+                    </thead>
+                    <tbody class="searchable">
+
+                        {% if shoots|length == 0 %}
+                        <tr>
+                            <td colspan="5">
+                                <div class="cancel">
+                                    You have no call sheets :( Create a new one with the button above.
+                                </div>
+                            </td>
+
+
+                        </tr>
+                        {% endif %}
+                        <tr>
+                            <td colspan="5" class="create" style="display:none">
+                                <button type="button" onclick="window.location.href='/newShoot'">new sheet</button>
+                            </td>
+                        </tr>
+
+                        {% for shoot in shoots%}
+                        <tr>
+                            <td><input type="radio" name="choice" value="{{shoot.ID}}"></td>
+
+                            <td>{{shoot.date}}</td>
+                            <td><a href="{{url_for('viewShoot', shoot_id=shoot.ID)}}">{{shoot.name}}</a></td>
+                            <td>{{shoot.location}}</td>
+                            <td>{{shoot.client}}</td>
+                            <td>&nbsp;</td>
+                            <td>{{shoot.last_updated}}</td>
+                        </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+
+            </div>
     </div>
 </div>
 
