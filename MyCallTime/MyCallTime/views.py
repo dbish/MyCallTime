@@ -71,9 +71,6 @@ def viewShoot(shoot_id):
 
     if form.validate_on_submit():
         form.populate_obj(shoot)
-        #file = request.files['file']
-        #filename = file.filename
-        #shoot.photo = filename
         for talent in shoot.talent:
             if talent.archived == 1:
                 shoot.talent.remove(talent)
@@ -100,6 +97,7 @@ def viewShoot(shoot_id):
         shoot.last_updated = nowUTC
 
         db.session.commit()
+        flash('call sheet saved', 'success')
         return redirect(url_for('viewShoot', shoot_id=shoot_id))
     return render_template('edit.html', form=form, id=shoot_id, title=shoot.name)
 
@@ -258,7 +256,6 @@ def myFirstPage(canvas, doc):
 
 
 def createPdf(title, date, location, id, shoot):
-    #buffer = StringIO()
     buffer = BytesIO()
     styleSheet = getSampleStyleSheet()
 
