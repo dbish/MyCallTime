@@ -54,6 +54,7 @@
     <Folder Include="MyCallTime\static\images\favicons\" />
     <Folder Include="MyCallTime\static\images\logos\" />
     <Folder Include="MyCallTime\static\modules\" />
+    <Folder Include="MyCallTime\static\uploads\" />
     <Folder Include="MyCallTime\static\scripts\" />
     <Folder Include="MyCallTime\templates\" />
   </ItemGroup>

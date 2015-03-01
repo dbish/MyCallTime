@@ -18,7 +18,9 @@ import MyCallTime.config as config
 from datetime import datetime
 from pytz import timezone
 from sqlalchemy import desc
+import os
 
+ALLOWED_EXTENSIONS=set(['png', 'jpg', 'jpeg'])
 Title = " "
 
 mail = Mail(app)
@@ -59,7 +61,9 @@ def deleteShoot(shoot_id):
      return redirect(url_for('home'))
 
 
-
+def allowed_file(filename):
+    return '.' in filename and \
+        filename.rsplit('.', 1)[1] in ALLOWED_EXTENSIONS
 
 @app.route('/shoots/<int:shoot_id>', methods=['GET', 'POST'])
 def viewShoot(shoot_id):
@@ -96,10 +100,23 @@ def viewShoot(shoot_id):
 
         shoot.last_updated = nowUTC
 
+        file = request.files['file']
+        if file and allowed_file(file.filename):
+            filename = file.filename
+            file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(shoot_id)))
+
+
         db.session.commit()
         flash('call sheet saved', 'success')
         return redirect(url_for('viewShoot', shoot_id=shoot_id))
-    return render_template('edit.html', form=form, id=shoot_id, title=shoot.name)
+
+    time = datetime.now(timezone('UTC')) 
+    if os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], str(shoot_id))):
+        hasImage = True 
+    else:
+        hasImage = False
+
+    return render_template('edit.html', form=form, id=shoot_id, title=shoot.name, image=hasImage, time=time)
 
 @app.route('/copy/<int:shoot_id>', methods=['GET'])
 def copyShoot(shoot_id):

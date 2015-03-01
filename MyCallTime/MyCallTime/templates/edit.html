@@ -15,6 +15,7 @@
     {% endif %}
     {% endwith %}
 
+
 <script src="https://maps.googleapis.com/maps/api/js?sensor=false&libraries=places"></script>
 <script type="text/javascript">
     function initialize() {
@@ -29,15 +30,16 @@
 
 
 {% if id %}
-    <form id="edit-form" action="{{url_for('viewShoot', shoot_id=id)}}" method="post">
+    <form id="edit-form" action="{{url_for('viewShoot', shoot_id=id)}}" method="post" enctype="multipart/form-data">
     
 {% else %}
-        <form id="edit-form" action="{{url_for('newShoot')}}" method="post">
+        <form id="edit-form" action="{{url_for('newShoot')}}" method="post" enctype="multipart/form-data">
             {% endif %}
-           
+
             {{ form.hidden_tag() }}
             {{form.csrf_token}}
             <div class="row">
+
                 <div class="{{form.name.name}} col-md-5">
                     <label>Shoot Name</label>
                     <div>{{form.name}}</div>
@@ -51,22 +53,29 @@
                 <div class="dateAndTime col-md-5">
                     <label>Date and Time</label>
                     <div>{{form.date}}</div>
-                    <div>{{form.start_time}}</div>   
+                    <div>{{form.start_time}}</div>
                     <div>{{form.wrap_time}}</div>
                 </div>
                 <div>
+
                     <div class="fileinput fileinput-new" data-provides="fileinput">
                         <div class="fileinput-new thumbnail" style="width: 200px; height: 150px;">
-                            <img data-src="holder.js/100%x100%" alt="...">
+                            
+                            {% if image %}
+                                <img src="/static/uploads/{{id}}?{{time}}" style="height: 150px;">
+                            {% else %}
+                                <img data-src="holder.js/100%x100%" />
+                            {% endif %}
+
                         </div>
                         <div class="fileinput-preview fileinput-exists thumbnail" style="max-width: 200px; max-height: 150px;"></div>
                         <div>
-                            <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="..."></span>
+                            <span class="btn btn-default btn-file"><span class="fileinput-new">Select image</span><span class="fileinput-exists">Change</span><input type="file" name="file"></span>
                             <a href="#" class="btn btn-default fileinput-exists" data-dismiss="fileinput">Remove</a>
                         </div>
                     </div>
                 </div>
-                
+
             </div>
             <div class="row">
                 <div class="contact col-md-5">
@@ -78,7 +87,7 @@
                 <div class="location col-md-5">
                     <label>Location</label>
                     <div>{{form.location(placeholder="address")}}</div>
-                    <div>   
+                    <div>
                         {{form.studio(placeholder="studio")}}
                     </div>
                 </div>
@@ -89,7 +98,7 @@
                     <div>{{form.notes}}</div>
                 </div>
             </div>
-            
+
             <div>&nbsp</div>
             <div class="panel panel-default">
                 <div class="panel-heading">
@@ -101,8 +110,8 @@
                         <li class="well">
                             {{talent_form.csrf_token}}
                             <div class="archived hide">{{talent_form.archived}}</div>
-                            
-                            
+
+
                             <div class="row">
                                 <div class="col-md-5">
                                     <label>Name</label>
@@ -112,8 +121,8 @@
                                     <label>Call Time</label>
                                     <div>{{talent_form.start_time}}</div>
                                 </div>
-                                
-                             </div>
+
+                            </div>
                             <div class="row">
                                 <div class="col-md-5">
                                     <label>Agent/Contact</label>
@@ -123,17 +132,17 @@
                                 </div>
                             </div>
                             <div class="col-md-1" style="float:right"><span class="fake-link deleteTalent">-delete-</span></div>
-                            
+
                         </li>
                         {% endfor %}
                     </ul>
                     <span class="fake-link" id="addTalent"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Talent</span>
-                    </div>
+                </div>
             </div>
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden="true"></span> Production</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden=" true"></span> Production</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -172,7 +181,7 @@
 
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden="true"></span> Photography</h3>
+                    <h3 class="panel-title"><span class="glyphicon glyphicon-barcode aria-hidden=" true"></span> Photography</h3>
                 </div>
                 <div class="panel-body">
                     <div class="row">
@@ -251,7 +260,7 @@
                             <div>{{form.art.first_ast_phone(placeholder="phone")}}</div>
                         </div>
                     </div>
-                    <div class="row assistants" id="artAssistants" >
+                    <div class="row assistants" id="artAssistants">
                         {% for assistant_form in form.art.assistants %}
                         <div class="col-md-5 assistant">
                             <div class="archived hide">{{assistant_form.archived}}</div>
@@ -259,7 +268,7 @@
                             <div class="row col-lg-9">{{assistant_form.assistantName(placeholder="name")}}</div>
                             <div class="row col-lg-9">{{assistant_form.email(placeholder="email")}}</div>
                             <div class="row col-lg-9">{{assistant_form.phone(placeholder="phone")}}</div>
-                        </div> 
+                        </div>
                         {% endfor %}
                     </div>
                     <span class="fake-link" id="addArtAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
@@ -392,8 +401,8 @@
                         </div>
                         {% endfor %}
                     </div>
-                        <span class="fake-link" id="addWardrobeAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
-                    </div>
+                    <span class="fake-link" id="addWardrobeAssistant"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span> Assistant</span>
+                </div>
             </div>
 
             <div class="panel panel-default">
