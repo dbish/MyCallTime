@@ -255,7 +255,7 @@ def signout():
 
 from reportlab.lib import colors
 from reportlab.lib.pagesizes import letter
-from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph
+from reportlab.platypus import SimpleDocTemplate, Table, TableStyle, Paragraph, Image
 from reportlab.lib.styles import getSampleStyleSheet 
 from reportlab.rl_config import defaultPageSize
 from reportlab.lib.units import inch
@@ -284,7 +284,17 @@ def createPdf(title, date, location, id, shoot):
     doc = SimpleDocTemplate(buffer, pagesize=letter)
     # container for the 'Flowable' objects
     elements = []
-    
+    metaData = [[Paragraph('<b>Shoot Name</b>', styleSheet["BodyText"]), Paragraph('<b>Client</b>', styleSheet["BodyText"]), Paragraph('<b>Date</b>', styleSheet["BodyText"])]]
+    metaData.append([shoot.name, shoot.client, shoot.date])
+    metaData.append(['', '', ''])
+    metaData.append([Paragraph('<b>Location</b>', styleSheet["BodyText"])])
+    metaData.append([shoot.location, shoot.studio])
+    metaData.append(['', '', ''])
+    metaData.append([Paragraph('<b>Contact</b>', styleSheet["BodyText"])])
+    metaData.append([shoot.contact_name, shoot.contact_phone, shoot.contact_email])
+    metaData.append(['', '', ''])
+    metaData.append([Paragraph('<b>Notes:</b>', styleSheet["BodyText"]), shoot.notes])
+    metaData.append(['', '', ''])
     talentData= [[Paragraph('<b>Talent</b>', styleSheet["BodyText"]), Paragraph('<b>Agent</b>', styleSheet["BodyText"]), Paragraph('<b>Contact</b>', styleSheet["BodyText"]), Paragraph('<b>CallTime</b>', styleSheet["BodyText"])]]
     for talent in shoot.talent:
         talentData.append([talent.full_name, talent.agent_name, talent.agent_phone, talent.start_time])
@@ -344,15 +354,29 @@ def createPdf(title, date, location, id, shoot):
     for assistant in shoot.wardrobe.assistants:
         data.append(['Wardrobe Assist', assistant.assistantName, assistant.phone, shoot.wardrobe.start_time])
 
+
     #don't print rows where there is no name for a task
     data = [row for row in data if row[1] != '']
     
+    cateringData = [[Paragraph('<b>Catering</b>', styleSheet["BodyText"])]]
+    cateringData.append([shoot.catering.company_name, shoot.catering.company_phone, shoot.catering.company_email])
+    cateringData.append([Paragraph('<i><b>breakfast:</b></i>', styleSheet["BodyText"]), shoot.catering.breakfast])
+    cateringData.append([Paragraph('<i><b>lunch:</b></i>', styleSheet["BodyText"]), shoot.catering.lunch])
+    cateringData.append([Paragraph('<i><b>notes:</b></i>', styleSheet["BodyText"]), shoot.catering.notes])
 
     talentTable = Table(talentData)
     t=Table(data)
-    
+
+    if os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], str(id))):
+        elements.append(Image(os.path.join(app.config['UPLOAD_FOLDER'], str(id)), height=140, width=190))
+
+    elements.append(Table(metaData))
     elements.append(talentTable)
     elements.append(t)
+    elements.append(Table(cateringData))
+
+   
+
     # write the document to buffer
     
     doc.build(elements, onFirstPage=myFirstPage)   
