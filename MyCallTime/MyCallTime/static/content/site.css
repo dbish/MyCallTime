@@ -111,3 +111,16 @@ ul
         margin: 0px;
         padding: 0px
 }
+
+#title{
+    color:white;
+    position:absolute;
+    text-align:center;
+    margin:auto;
+    width:100%;
+    z-index:-1;
+    display:inline-block;
+    font-size:20px;
+    top:10px;
+
+}

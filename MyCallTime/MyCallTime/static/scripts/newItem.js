@@ -1,4 +1,7 @@
 ﻿$(document).ready(function () {
+
+    $('#title').text($('#name').val());
+
     $(':input').change(
         function () {
             $(this).css({ 'background-color': '#FFCCCC' });
