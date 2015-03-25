@@ -1532,3 +1532,7 @@ body.enable-preloader.done-preloader > .document {
 	overflow: hidden;
 	text-align: center;
 }
+
+.login {
+    background-color:white;
+}
