@@ -12,10 +12,18 @@
             var date = new Date(dateText);
             if (date < today) {
                 $(this).parent().addClass("past");
-            };
+                
+                $(this).parent().find('.status').text("past");
+            }; 
+           
+            
         };
+
+
+        
        
     });
+
 
 
     $('#editShoot').click(function()

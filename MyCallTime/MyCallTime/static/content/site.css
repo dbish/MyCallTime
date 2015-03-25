@@ -101,9 +101,15 @@ ul
     background-color:lightgray;
 }
 
+.sent{
+    background-color:lightgreen;
+}
+
 .success{
     background-color:lightgreen;
 }
+
+
 
 #map-canvas {
         height: 300px;

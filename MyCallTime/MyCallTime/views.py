@@ -428,6 +428,9 @@ def emailPDF(shoot_id):
             pdf = createPdf(shoot.name, shoot.date, shoot.location, shoot.ID, shoot)
             msg.attach("mycallsheet.pdf", "application/pdf", pdf)
             mail.send(msg)
+            shoot.status="sent"
+            db.session.commit()
+
             return 'Email sent.'
       
 

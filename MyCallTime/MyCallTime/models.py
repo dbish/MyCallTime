@@ -365,6 +365,7 @@ class Shoots(db.Model):
      notes = db.Column(db.String(1000))
      photo = db.Column(db.String(100))
      last_updated = db.Column(db.DateTime)
+     status = db.Column(db.String(50))
      
     
      created_by =  db.Column(db.Integer)
@@ -390,6 +391,7 @@ class Shoots(db.Model):
         self.wrap_time = wrapTime
         self.location = location
         self.studio = studio
+        self.status = "saved"
     
      def copy(self, toCopy):
         self.name = toCopy.name

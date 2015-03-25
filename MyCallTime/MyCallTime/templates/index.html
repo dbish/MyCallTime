@@ -53,14 +53,19 @@
                         </tr>
 
                         {% for shoot in shoots%}
-                        <tr>
+                        <tr class="{{shoot.status}}">
                             <td><input type="radio" name="choice" value="{{shoot.ID}}"></td>
 
                             <td class="date">{{shoot.date}}</td>
                             <td><a href="{{url_for('viewShoot', shoot_id=shoot.ID)}}">{{shoot.name}}</a></td>
                             <td>{{shoot.location}}</td>
                             <td>{{shoot.client}}</td>
-                            <td>&nbsp;</td>
+                            {% if shoot.status %}
+                            <td><div class="status">{{shoot.status}}</div></td>
+                            {% else %}
+                            <td><div class="status">saved</div></td>
+                            {%endif%}
+
                             <td>{{shoot.last_updated}}</td>
                         </tr>
                         {% endfor %}
