@@ -129,6 +129,9 @@ class WardrobeForm(ModelForm):
 class ShootsForm(ModelForm):
     class Meta:
         model = Shoots
+        widgets = {
+            'notes': TextAreaField(),
+        }
         exclude = ['created_by']
 
     talent = ModelFieldList(FormField(TalentForm))

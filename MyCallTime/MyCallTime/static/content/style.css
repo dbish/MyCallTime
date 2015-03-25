@@ -1536,3 +1536,16 @@ body.enable-preloader.done-preloader > .document {
 .login {
     background-color:white;
 }
+
+.signinForm, .signupForm{
+    width:400px;
+    margin:0 auto;
+  
+    background-color:transparent;
+    
+}
+
+.showForm{
+    display:none;
+}
+

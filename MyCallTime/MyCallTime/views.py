@@ -27,7 +27,9 @@ mail = Mail(app)
 
 @app.route('/info')
 def info():
-    return render_template('info.html')
+    form = SignInForm()
+    signupform=SignupForm() 
+    return render_template('info.html', form=form, signupform=signupform)
 
 @app.route('/')
 @app.route('/home')

@@ -44,6 +44,20 @@
         </div><!-- /.container-fluid -->
     </nav>
 
+    <footer class="footer">
+        <div>
+
+                <div >
+                    <ul class="nav navbar-nav">
+                        <li><a href="{{ url_for('myAccount') }}"><span class="glyphicon glyphicon-user" aria-hidden="true" style="font-size:25px;color:white"></span><br /><span style="font-size:10px;color:white">profile</span></a></li>
+                        <li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-list-alt" aria-hidden="true" style="font-size:25px;color:white"></span><br /><span style="font-size:10px;color:white">sheets</span></a></li>
+                        <!--<li><a href="{{ url_for('home') }}"><span class="glyphicon glyphicon-bullhorn" aria-hidden="true" style="font-size:25px"></span><br /><span style="font-size:10px">studios</span></a></li>-->
+                        <li><a href="{{ url_for('signout') }}"><span class="glyphicon glyphicon-log-out" aria-hidden="true" style="font-size:25px;color:white"></span><br /><span style="font-size:10px;color:white">sign out</span></a></li>
+                    </ul>
+                </div>
+        </div>
+
+    </footer>
 
    
     <div class="container body-content">

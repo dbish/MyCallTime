@@ -114,12 +114,48 @@
 								</div>
 
 								<p class="hero-buttons">
-                                    <a href="{{url_for('signin')}}" class="btn btn-lg btn-default login" >Log In</a>
-                                    <a href="{{url_for('signup')}}" class="btn btn-lg btn-primary">Sign Up</a>
+                                    <a href="javascription:void(0)" class="btn btn-lg btn-default login">Log In</a>
+                                    <a href="javascription:void(0)" class="btn btn-lg btn-primary signup">Sign Up</a>
 								</p>
 
 							</div>
 						</div>
+                        <div class="row hiddenform">
+                            <div class="signinForm showForm">
+                                <form action="{{ url_for('signin') }}"  method=post>
+
+                                    {{ form.hidden_tag() }}
+                                    <div>
+                                        {{ form.email(placeholder="email address") }}
+                                    </div>
+                                    <div>{{ form.password(placeholder="password") }}</div>
+                                    
+                                    <div>
+                                        {{ form.submit }}
+
+                                    </div>
+                                    
+                                </form>
+
+                            </div>
+                            <div class="signupForm showForm">
+                                <form action="{{ url_for('signup') }}" method=post>
+                                    {{ signupform.hidden_tag() }}
+                                    <div>
+                                        {{ signupform.email(placeholder="email address") }}
+                                    </div>
+                                    <div>{{ signupform.password(placeholder="password") }}</div>
+
+                                    <div>
+                                        {{ signupform.submit }}
+
+                                    </div>
+
+                                </form>
+
+                            </div>
+
+                        </div>
 
 					</div>
 

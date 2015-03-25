@@ -1,7 +1,18 @@
 ;(function( $ ) {
 	"use strict";
 
-	$( document ).on( 'ready', function() {
+	$(document).on('ready', function () {
+
+	    $('.login').click(function (event) {
+	        $(".signupForm").addClass("showForm");
+	        $(".signinForm").toggleClass("showForm");
+	    });
+
+	    $('.signup').click(function (event) {
+	        $(".signinForm").addClass("showForm");
+	        $(".signupForm").toggleClass("showForm");
+
+	    });
 
 		var drew = {
 			headerFloatingHeight : 60,

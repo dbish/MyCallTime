@@ -8,19 +8,21 @@
     <link rel="stylesheet" type="text/css" href="/static/content/bootstrap.min.css" />
     <link rel="stylesheet" type="text/css" href="/static/content/site.css" />
 
+
     <script src="/static/scripts/modernizr-2.6.2.js"></script>
     <script type="text/javascript" language="javascript" src="/static/scripts/jquery-1.10.2.min.js"></script>
 </head>
 
-<body>
-    <div class="jumbotron">
-        <h1>
-            <span class="title">My Call Sheets</span>
+<body id="signin">
+    <h1>
+        <span class="title">My Call Sheets</span>
 
-        </h1>
+    </h1>
+    <div>
+      
 
 
-        <h2>Sign In</h2>
+        <div class="form-title"><p>Sign In</p></div>
 
         {% for message in form.email.errors %}
         <div class="flash">{{ message }}</div>
@@ -30,14 +32,10 @@
         <div class="flash">{{ message }}</div>
         {% endfor %}
 
-        <form action="{{ url_for('signin') }}" method=post>
+        <form action="{{ url_for('signin') }}" class="login" method=post>
             {{ form.hidden_tag() }}
-
-            {{ form.email.label }}
-            {{ form.email }}
-
-            {{ form.password.label }}
-            {{ form.password }}
+            {{ form.email(placeholder="email address") }}
+            {{ form.password(placeholder="password") }}
 
             {{ form.submit }}
         </form>
