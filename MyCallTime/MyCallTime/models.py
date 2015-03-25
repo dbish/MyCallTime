@@ -2,6 +2,8 @@ from flask_sqlalchemy import SQLAlchemy
 
 from werkzeug import generate_password_hash, check_password_hash
 
+from wtforms import widgets
+
 db = SQLAlchemy()
 
 
@@ -244,7 +246,7 @@ class Catering(db.Model):
     company_name = db.Column(db.String(100))
     company_email = db.Column(db.String(50))
     company_phone = db.Column(db.String(50))
-    notes = db.Column(db.String(1000))
+    notes = db.Column(db.String(1000), info={'widget':widgets.TextArea()})
     shoot_id = db.Column(db.Integer, db.ForeignKey('Shoots.ID'))
 
 
@@ -362,7 +364,7 @@ class Shoots(db.Model):
      wrap_time = db.Column(db.Time(7))
      location = db.Column(db.String(200))
      studio = db.Column(db.String(100))
-     notes = db.Column(db.String(1000))
+     notes = db.Column(db.String(1000), info={'widget':widgets.TextArea()})
      photo = db.Column(db.String(100))
      last_updated = db.Column(db.DateTime)
      status = db.Column(db.String(50))
