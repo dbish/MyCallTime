@@ -63,10 +63,18 @@
                             {% if shoot.status %}
                             <td><div class="status">{{shoot.status}}</div></td>
                             {% else %}
-                            <td><div class="status">saved</div></td>
+                            <td><div class="status">updates saved</div></td>
                             {%endif%}
-
-                            <td>{{shoot.last_updated}}</td>
+                            {%if shoot.last_updated %}
+                               {%if shoot.last_updated.strftime('%Y-%m-%d') == today%}
+                                    <td>{{shoot.last_updated.strftime('%I:%M%p')}}</td>
+                               {% else %}
+                                    <td>{{shoot.last_updated.strftime('%m-%d-%Y')}}</td>
+                               {% endif %}
+                            
+                            {% else %}
+                            <td>&nbsp;</td>
+                            {%endif %}
                         </tr>
                         {% endfor %}
                     </tbody>

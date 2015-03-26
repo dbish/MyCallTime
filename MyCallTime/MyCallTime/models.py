@@ -393,7 +393,7 @@ class Shoots(db.Model):
         self.wrap_time = wrapTime
         self.location = location
         self.studio = studio
-        self.status = "saved"
+        self.status = "updates saved"
     
      def copy(self, toCopy):
         self.name = toCopy.name

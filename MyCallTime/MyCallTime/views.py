@@ -47,7 +47,8 @@ def home():
         'index.html',
         title='Home Page',
         year=datetime.now().year,
-        shoots=allShoots
+        shoots=allShoots,
+        today=datetime.now(timezone('UTC')).strftime('%Y-%m-%d')
     )
 
 
@@ -430,7 +431,7 @@ def emailPDF(shoot_id):
             pdf = createPdf(shoot.name, shoot.date, shoot.location, shoot.ID, shoot)
             msg.attach("mycallsheet.pdf", "application/pdf", pdf)
             mail.send(msg)
-            shoot.status="sent"
+            shoot.status="updates sent"
             db.session.commit()
 
             return 'Email sent.'
