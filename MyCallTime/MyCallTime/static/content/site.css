@@ -237,3 +237,17 @@ p.form-title
     width:100%;
     
 }
+
+
+
+.button{
+    width:150px;
+    display:block;
+    -moz-appearance:button;
+    -webkit-appearance:button;
+    cursor:pointer;
+}
+
+.hideButton{
+    display:none;
+}

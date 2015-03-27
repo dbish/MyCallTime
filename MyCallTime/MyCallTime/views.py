@@ -48,7 +48,7 @@ def home():
         title='Home Page',
         year=datetime.now().year,
         shoots=allShoots,
-        today=datetime.now(timezone('UTC')).strftime('%Y-%m-%d')
+        today=datetime.now(timezone('EST')).strftime('%Y-%m-%d')
     )
 
 
@@ -99,7 +99,7 @@ def viewShoot(shoot_id):
         for assistant in shoot.wardrobe.assistants:
             if assistant.archived == 1:
                 shoot.wardrobe.assistants.remove(assistant)
-        nowUTC = datetime.now(timezone('UTC'))
+        nowUTC = datetime.now(timezone('EST'))
 
         shoot.last_updated = nowUTC
 
@@ -108,12 +108,18 @@ def viewShoot(shoot_id):
             filename = file.filename
             file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(shoot_id)))
 
-
         db.session.commit()
+
+        if request.form['viewPDF']=="true":
+            return redirect(url_for('createPDF', shoot_id=shoot_id))
+
+        if request.form['emailPDF']=="true":
+            return redirect(url_for('emailPDF', shoot_id=shoot_id))
+
         flash('call sheet saved', 'success')
         return redirect(url_for('viewShoot', shoot_id=shoot_id))
 
-    time = datetime.now(timezone('UTC')) 
+    time = datetime.now(timezone('EST')) 
     if os.path.isfile(os.path.join(app.config['UPLOAD_FOLDER'], str(shoot_id))):
         hasImage = True 
     else:
@@ -170,9 +176,20 @@ def newShoot():
             for talent in newShoot.talent:
                 if talent.archived == 1:
                     talent.shoot_id = None
+
+            nowUTC = datetime.now(timezone('EST'))
+            newShoot.last_updated = nowUTC
+
+
+
             db.session.commit()
             db.session.flush()
             db.session.refresh(newShoot)
+            file = request.files['file']
+            if file and allowed_file(file.filename):
+                filename = file.filename
+                file.save(os.path.join(app.config['UPLOAD_FOLDER'], str(newShoot.ID)))
+
             return redirect(url_for('viewShoot', shoot_id=newShoot.ID))
         else:
             flash('failed validation')
@@ -401,6 +418,7 @@ def createPDF(shoot_id):
     response.headers['Content-Disposition'] = 'filename="shoot.pdf"'
     return response
 
+
 @app.route('/savepdf/<int:shoot_id>', methods=['GET'])
 def savePDF(shoot_id):
     if 'email' not in session:
@@ -434,7 +452,10 @@ def emailPDF(shoot_id):
             shoot.status="updates sent"
             db.session.commit()
 
-            return 'Email sent.'
+            flash('call sheet emailed', 'success')
+
+            return redirect(url_for('home'))
+
       
 
     elif request.method == 'GET':

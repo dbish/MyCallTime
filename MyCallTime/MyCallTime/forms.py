@@ -220,10 +220,10 @@ class SignInForm(Form):
             return False
 
 class EmailForm(Form):
-    recipient = TextField("Recipients",  [validators.Required("Please enter an email address."), validators.Email("Please enter a valid email address.")])
+    recipient = TextAreaField("Recipients",  [validators.Required("Please enter an email address."), validators.Email("Please enter a valid email address.")])
     cc = TextField("CC",  [validators.Email("Please enter a valid email address.")])
     subject = TextField("Subject", [validators.Required("Please enter a subject.")])
-    message = TextField("Body")
+    message = TextAreaField("Body")
     submit = SubmitField("Send")
 
 class ContactForm(Form):

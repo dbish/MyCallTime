@@ -2,9 +2,22 @@
 
     $('#title').text($('#name').val());
 
+    $('#saveAndPreviewButton').click(function () {
+        $('#viewPDF').val("true");
+        $('#edit-form').trigger('submit');
+    });
+
+    $('#saveAndEmailButton').click(function () {
+        $('#emailPDF').val("true");
+        $('#edit-form').trigger('submit');
+    });
+
     $(':input').change(
         function () {
             $(this).css({ 'background-color': '#FFCCCC' });
+
+            $('.noEditsButton').addClass('hideButton');
+            $('.editsButton').removeClass('hideButton');
         }
         );
 

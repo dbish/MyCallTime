@@ -20,19 +20,29 @@
 
 <form action="{{ url_for('emailPDF', shoot_id=id) }}" method=post>
     {{ form.hidden_tag() }}
+    <div>
+        {{ form.recipient.label }}
+        {{ form.recipient(placeholder="enter email addresses here, seperate multiple addresses by commas") }}
 
-    {{ form.recipient.label }}
-    {{ form.recipient }}
-
-    {{ form.cc.label }}
-    {{ form.cc }}
-
-    {{ form.subject.label }}
-    {{ form.subject }}
-
-    {{ form.message.label }}
-    {{ form.message }}
-
-    {{ form.submit }}
+    </div>
+    <div>
+        {{ form.cc.label }}
+        {{ form.cc }}
+    </div>
+    <div>
+        {{ form.subject.label }}
+        {{ form.subject }}
+    </div>
+    <div>
+        <label>attachment:</label>
+        <a href="{{url_for('createPDF', shoot_id=id)}}" target="_blank">call sheet.pdf</a>
+    </div>
+    <div>
+        {{ form.message.label }}
+        {{ form.message }}
+    </div>
+    <div>
+        {{ form.submit }}
+    </div>
 </form>
 {% endblock %}

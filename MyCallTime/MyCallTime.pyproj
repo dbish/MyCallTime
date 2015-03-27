@@ -128,6 +128,7 @@
     <Content Include="MyCallTime\templates\signin.html" />
     <Content Include="MyCallTime\templates\myaccount.html" />
     <Content Include="MyCallTime\templates\signup.html" />
+    <None Include="mycalltime__staging.pubxml" />
     <Content Include="requirements.txt" />
     <Content Include="MyCallTime\static\content\bootstrap.css" />
     <Content Include="MyCallTime\static\content\bootstrap.min.css" />

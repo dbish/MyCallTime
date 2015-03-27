@@ -35,7 +35,8 @@
 {% else %}
         <form id="edit-form" action="{{url_for('newShoot')}}" method="post" enctype="multipart/form-data">
             {% endif %}
-
+            <input type="hidden" name="viewPDF" value="false" id="viewPDF" />
+            <input type="hidden" name="emailPDF" value="false" id="emailPDF" />
             {{ form.hidden_tag() }}
             {{form.csrf_token}}
             <div class="row">
@@ -440,12 +441,18 @@
         </form>
 
         {% if id %}
-        <form action="{{url_for('createPDF', shoot_id=id)}}">
+        <form class="noEditsButton" action="{{url_for('createPDF', shoot_id=id)}}" target="_blank">
             <input type="submit" value="Preview">
         </form>
-        <form action="{{url_for('emailPDF', shoot_id=id)}}">
-            <input type="submit" value="Email">
+        <div class="button editsButton hideButton">
+            <div id="saveAndPreviewButton" >Save and Preview</div>
+        </div>
+        <form class="noEditsButton" action="{{url_for('emailPDF', shoot_id=id)}}">
+            <input class="noEditsButton" type="submit" value="Email">
         </form>
+        <div class="button editsButton hideButton">
+            <div id="saveAndEmailButton">Save and Email</div>
+        </div>
         {% endif %}
         
 
