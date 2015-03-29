@@ -1,6 +1,16 @@
-﻿$(document).ready(function () {
+﻿
+
+$(document).ready(function () {
 
     $('#title').text($('#name').val());
+
+    $('.alert').click(function () {
+        $(this).hide();
+    });
+
+    $('.saveButton').click(function () {
+        $('#dvLoading').show();
+    });
 
     $('#saveAndPreviewButton').click(function () {
         $('#viewPDF').val("true");
@@ -139,7 +149,6 @@
    );
 
     $('#talentList').on("click", '.deleteTalent', function () {
-        alert("delete");
         $(this).parent().parent().find(".archived").find("input").val(1);
         $(this).parent().parent().addClass('deleted');
         $('#talent').prepend('<div class="unsaved"><p>- unsaved deletion -</p></div>');

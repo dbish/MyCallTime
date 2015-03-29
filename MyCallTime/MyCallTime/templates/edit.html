@@ -9,7 +9,7 @@
     {% if messages %}
 <ul class=flashes>
     {% for category, message in messages%}
-    <li class="{{category}}">{{ message }}</li>
+    <li class="{{category}} alert">{{ message }}</li>
     {% endfor %}
 </ul>
     {% endif %}
@@ -27,6 +27,8 @@
 
     google.maps.event.addDomListener(window, 'load', initialize);
 </script>
+
+<div id="dvLoading"></div>
 
 
 {% if id %}
@@ -445,16 +447,17 @@
             <input type="submit" value="Preview">
         </form>
         <div class="button editsButton hideButton">
-            <div id="saveAndPreviewButton" >Save and Preview</div>
+            <div id="saveAndPreviewButton">Save and Preview</div>
         </div>
         <form class="noEditsButton" action="{{url_for('emailPDF', shoot_id=id)}}">
             <input class="noEditsButton" type="submit" value="Email">
         </form>
-        <div class="button editsButton hideButton">
+        <div class="button editsButton hideButton saveButton">
             <div id="saveAndEmailButton">Save and Email</div>
         </div>
         {% endif %}
         
 
 <script type="text/javascript" language="javascript" src="/static/scripts/newItem.js"></script>
+
 {% endblock %}

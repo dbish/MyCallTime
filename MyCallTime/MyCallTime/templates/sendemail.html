@@ -1,48 +1,59 @@
 ﻿{% extends "layout.html" %}
 
+
+
 {% block content %}
 <h2>Email PDF</h2>
-{% for message in form.recipient.errors %}
-<div class="flash">{{ message }}</div>
-{% endfor %}
 
-{% for message in form.cc.errors %}
-<div class="flash">{{ message }}</div>
-{% endfor %}
 
-{% for message in form.subject.errors %}
-<div class="flash">{{ message }}</div>
-{% endfor %}
 
-{% for message in form.message.errors %}
-<div class="flash">{{ message }}</div>
-{% endfor %}
 
-<form action="{{ url_for('emailPDF', shoot_id=id) }}" method=post>
-    {{ form.hidden_tag() }}
-    <div>
-        {{ form.recipient.label }}
-        {{ form.recipient(placeholder="enter email addresses here, seperate multiple addresses by commas") }}
+<ul class=flashes>
+    {% for message in form.recipient.errors %}
+    <li class="alert error">{{ message }}</li>
+    {% endfor %}
 
-    </div>
-    <div>
-        {{ form.cc.label }}
-        {{ form.cc }}
-    </div>
-    <div>
-        {{ form.subject.label }}
-        {{ form.subject }}
-    </div>
-    <div>
-        <label>attachment:</label>
-        <a href="{{url_for('createPDF', shoot_id=id)}}" target="_blank">call sheet.pdf</a>
-    </div>
-    <div>
-        {{ form.message.label }}
-        {{ form.message }}
-    </div>
-    <div>
-        {{ form.submit }}
-    </div>
-</form>
-{% endblock %}
+    {% for message in form.cc.errors %}
+    <li class="alert error">{{ message }}</li>
+    {% endfor %}
+
+    {% for message in form.subject.errors %}
+    <li class="alert error">{{ message }}</li>
+    {% endfor %}
+
+    {% for message in form.message.errors %}
+    <li class="alert error">{{ message }}</li>
+    {% endfor %}
+</ul>
+
+    <div id="dvLoading"></div>
+    <form action="{{ url_for('emailPDF', shoot_id=id) }}" method=post>
+        {{ form.hidden_tag() }}
+        <div>
+            {{ form.recipient.label }}
+            {{ form.recipient(placeholder="enter email addresses here, seperate multiple addresses by commas") }}
+
+        </div>
+        <div>
+            {{ form.cc.label }}
+            {{ form.cc }}
+        </div>
+        <div>
+            {{ form.subject.label }}
+            {{ form.subject }}
+        </div>
+        <div>
+            <label>attachment:</label>
+            <a href="{{url_for('createPDF', shoot_id=id)}}" target="_blank">call sheet.pdf</a>
+        </div>
+        <div>
+            {{ form.message.label }}
+            {{ form.message }}
+        </div>
+        <div class="saveButton">
+            {{ form.submit }}
+        </div>
+    </form>
+
+    <script type="text/javascript" language="javascript" src="/static/scripts/newItem.js"></script>
+    {% endblock %}

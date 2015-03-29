@@ -24,7 +24,9 @@
        
     });
 
-
+    $('.alert').click(function () {
+        $(this).hide();
+    });
 
     $('#editShoot').click(function()
     {
