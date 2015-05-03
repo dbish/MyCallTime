@@ -12,12 +12,15 @@
             var date = new Date(dateText);
             if (date < today) {
                 $(this).parent().addClass("past");
-                
+
                 $(this).parent().find('.status').text("past");
-            }; 
-           
-            
-        };
+                $(this).parent().find('.status').removeClass("sent");
+                $(this).parent().find('.status').removeClass("saved");
+
+            };
+
+
+        }
 
 
         

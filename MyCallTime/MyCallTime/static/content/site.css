@@ -102,8 +102,15 @@ ul
 }
 
 .sent{
-    background-color:lightgreen;
+    font:bold;
+    color:#4cff00;
 }
+
+.saved{
+    font:bold;
+    color:#ffd800;
+}
+
 
 .success{
     background-color:lightgreen;

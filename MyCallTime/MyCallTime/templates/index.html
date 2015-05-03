@@ -30,7 +30,7 @@
                             <th>location</th>
                             <th>client</th>
                             <th>status</th>
-                            <th>last update</th>
+                            <th>last modified</th>
                         </tr>
                     </thead>
                     <tbody class="searchable">
@@ -53,23 +53,27 @@
                         </tr>
 
                         {% for shoot in shoots%}
-                        <tr class="{{shoot.status}}">
+                        <tr class="">
                             <td><input type="radio" name="choice" value="{{shoot.ID}}"></td>
+                            {% if shoot.date != None %}
 
-                            <td class="date">{{shoot.date}}</td>
+                            <td class="date">{{shoot.date.strftime('%m/%d/%Y')}}</td>
+                            {% else %}
+                            <td class="date">&nbsp;</td>
+                            {% endif %}
                             <td><a href="{{url_for('viewShoot', shoot_id=shoot.ID)}}">{{shoot.name}}</a></td>
                             <td>{{shoot.location}}</td>
                             <td>{{shoot.client}}</td>
-                            {% if shoot.status %}
-                            <td><div class="status">{{shoot.status}}</div></td>
+                            {% if shoot.status == "updates sent"%}
+                            <td><div class="status sent">sent</div></td>
                             {% else %}
-                            <td><div class="status">updates saved</div></td>
+                            <td><div class="status saved">saved</div></td>
                             {%endif%}
                             {%if shoot.last_updated %}
                                {%if shoot.last_updated.strftime('%Y-%m-%d') == today%}
                                     <td>{{shoot.last_updated.strftime('%I:%M%p')}}</td>
                                {% else %}
-                                    <td>{{shoot.last_updated.strftime('%m-%d-%Y')}}</td>
+                                    <td>{{shoot.last_updated.strftime('%m/%d/%Y')}}</td>
                                {% endif %}
                             
                             {% else %}
